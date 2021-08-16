@@ -55,13 +55,14 @@ SRR3995879	stx2a	O157H7  -               O157:H7	        O157:H7	            wzy
 SRR1917514	stx1a	C4      -               O5:H9	        O5:H9	            wzy_O5	H9	        -	-
 ````
 ###Column descriptions:
-SAMPLE: Input strain ID 
-STX:
-cluster
-big10_serotype
-serotype
-cluster_serotype
-oantigens
-hantigens
-IPAH
-Notes
+| Column | Description |
+| ----------- | ----------- |
+|SAMPLE|Input strain ID (extracted from input files)|
+|STX: stx toxin genes detected|cluster: STEC cluster that the isolate has been classified into|
+|big10_serotype| The serotype of the isolate as predicted by serotype specific accessory genome genes|
+|serotype|serotype from antigen prediction|
+|cluster_serotype|serotype from cluster specific gene sets|
+|oantigens| o antigen gene matches|
+|hantigens| h antigen gene matches|
+|ipaH| presence or absence of ipaH gene|
+|Notes| Other information if unexpected results are observed|

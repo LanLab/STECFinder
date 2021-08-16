@@ -1000,7 +1000,6 @@ def main():
     # run and get the intermediate files for blast and bwa (makes updating the genes db easier)
     if args.update_db:
         print(dir + "/resources/genes.fasta")
-        subprocess.run('bwa index "' + dir + '/resources/genes.fasta"', shell=True)
         subprocess.run(
             'makeblastdb -in "' + dir + '/resources/genes.fasta" -parse_seqids -blastdb_version 5 -title '
                                        '"Shigella/EIEC DB" -dbtype nucl -out "' + dir + '/resources/genes.fasta"',
