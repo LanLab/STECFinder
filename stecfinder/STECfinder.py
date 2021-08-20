@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Developers: Michael Payne, Thanh Nguyen
-# version 0.5
+#version=1.0.0
 import argparse
 import os
 import sys
@@ -109,7 +109,7 @@ def blastn_cleanup(blast,args):
         start = int(info[3])
         end = int(info[4])
         perc_identity = float(info[5])
-        score = float(info[5])
+        score = float(info[6])
         len_coverage = 100 * float(info[2]) / float(info[1])
         if start > end:
             save = start
@@ -150,23 +150,6 @@ def blastn_cleanup(blast,args):
 
     return genes_set, outhits
 
-# def h_top_len(genes):
-#     remove = []
-#     hant = {}
-#     for g, l in genes.items():
-#         if "fliC" in g:
-#             hant[g] = l
-#
-#     if len(hant) > 0:
-#         max_len = hant[min(hant, key=(lambda k: abs(hant[k]['len_coverage'] - 100)))]
-#         for a, l in hant.items():
-#
-#             if l['len_coverage'] != max_len['len_coverage']:
-#                 remove.append(a)
-#
-#     delete_genes(remove, genes)
-#     return genes
-
 def top_ranked_hantigen(genes_set):
     tophit = ["",0]
     for gene in genes_set:
@@ -181,22 +164,6 @@ def top_ranked_hantigen(genes_set):
                 remove.append(gene)
     genes = delete_genes(remove, genes_set)
     return genes
-
-# def h_top_percid(genes):
-#     remove = []
-#     hant = {}
-#     for g, l in genes.items():
-#         if "fliC" in g:
-#             hant[g] = l
-#
-#     if len(hant) > 0:
-#         max_pident = hant[min(hant, key=(lambda k: abs(hant[k]['pident'] - 100)))]
-#         for a, l in hant.items():
-#             if l['pident'] != max_pident['pident']:
-#                 remove.append(a)
-#
-#     delete_genes(remove, genes)
-#     return genes
 
 def top_ranked_stx(genes_set):
 
@@ -215,33 +182,6 @@ def top_ranked_stx(genes_set):
             if gene != tophits[genetype][0]:
                 remove.append(gene)
     genes = delete_genes(remove, genes_set)
-
-    # remove = []
-    # hant = {}
-    # for g, l in genes.items():
-    #     if "stx1" in g:
-    #         hant[g] = l
-    #
-    # if len(hant) > 0:
-    #     max_pident = hant[min(hant, key=(lambda k: abs(hant[k]['pident'] - 100)))]
-    #     for a, l in hant.items():
-    #
-    #         if l['pident'] != max_pident['pident']:
-    #             remove.append(a)
-    #
-    # hant = {}
-    # for g, l in genes.items():
-    #     if "stx2" in g:
-    #         hant[g] = l
-    #
-    # if len(hant) > 0:
-    #     max_pident = hant[min(hant, key=(lambda k: abs(hant[k]['pident'] - 100)))]
-    #     for a, l in hant.items():
-    #
-    #         if l['pident'] != max_pident['pident']:
-    #             remove.append(a)
-    #
-    # delete_genes(remove, genes)
     return genes
 
 def h_duplicate_remove(genes):
@@ -259,35 +199,33 @@ def h_duplicate_remove(genes):
     return genes
 
 
-def map_depth_ratios(use_kma,bam):
+def map_depth_ratios(genes):
     genes_set = []
-    depth_cut = mapping_depth_cutoff(use_kma,bam)
+    depth_cut = mapping_depth_cutoff_genes(genes)
     genes_set.append('average 7 HS genes: ' + str(depth_cut))
 
-    if use_kma:
-        depthcol = 8
-    else:
-        depthcol = 6
+    outset = {}
+    for gene in genes:
+        info = genes[gene]
+        meandepth = float(info['depth'])
+        ratio = 100 * meandepth / depth_cut
+        genes_set.append(gene + '\t' + str(ratio))
+        if gene.startswith("NC") and gene[11] == "_":
+            g = gene[0:11] + ":" + gene[12:]
+        else:
+            g = gene
+        outset[g] = "{0:.2f}".format(ratio)
+    return outset
 
-    for line in bam:
-        info = line.split('\t')
-        if len(info) > 1 and '#rname' not in line and '#Template' not in line:
-            gene = gene_rename(info[0])
-            meandepth = float(info[depthcol])
-            ratio = 100 * meandepth / depth_cut
-            genes_set.append(gene + '\t' + str(ratio))
-    return genes_set
 
-
-def mapping_depth_cutoff(use_kma,bam):
+def mapping_depth_cutoff(bam):
     mlst = ["NC_000913.3:recA", "NC_000913.3:purA", "NC_000913.3:mdh", "NC_000913.3:icd", "NC_000913.3:gyrB",
-            "NC_000913.3:fumC", "NC_000913.3:adk"]
+            "NC_000913.3:fumC", "NC_000913.3:adk","NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
+            "NC_000913.3_icd", "NC_000913.3_gyrB","NC_000913.3_fumC", "NC_000913.3_adk"]
     depth = 0
 
-    if use_kma:
-        depthcol = 8
-    else:
-        depthcol = 6
+    depthcol = 8
+
 
     for line in bam:
         info = line.split('\t')
@@ -296,6 +234,21 @@ def mapping_depth_cutoff(use_kma,bam):
             meandepth = float(info[depthcol])
             if gene in mlst:
                 depth += meandepth
+
+    return depth / 7
+
+def mapping_depth_cutoff_genes(genedict):
+    mlst = ["NC_000913.3:recA", "NC_000913.3:purA", "NC_000913.3:mdh", "NC_000913.3:icd", "NC_000913.3:gyrB",
+            "NC_000913.3:fumC", "NC_000913.3:adk","NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
+            "NC_000913.3_icd", "NC_000913.3_gyrB","NC_000913.3_fumC", "NC_000913.3_adk"]
+    depth = 0
+
+    depthcol = 8
+
+
+    for gene in genedict:
+        if gene in mlst:
+            depth += genedict[gene]['depth']
 
     return depth / 7
 
@@ -523,9 +476,11 @@ def determine_cluster(genes,data):
     return c, big10
 
 def string_result(res, output):
-    result = res['sample'] + "\t" + str(res['stx']) + "\t" + res['cluster'] + "\t" + \
-             res['big10'] + "\t" + res['serotype'] + "\t" + res['cluster_serotype'] + "\t" + res['oantigens']\
-             + "\t" + res['hantigens'] + "\t" + res['ipaH'] + "\t" + res['notes']
+
+    result = res['sample'] + "\t" + str(res['cluster']) + "\t" + res['cluster_serotype'] + "\t" + \
+             res['serotype'] + "\t" + res['big10'] + "\t" + res['oantigens'] + "\t" + res['hantigens']\
+             + "\t" + res['stx'] + "\t" + res['ipaH'] + "\t" + res['notes']
+
     if output:
         result += "\n"
 
@@ -536,14 +491,11 @@ def get_gene_type(gene):
     gene_type = ""
 
     mlst = ["NC_000913.3:recA", "NC_000913.3:purA", "NC_000913.3:mdh", "NC_000913.3:icd", "NC_000913.3:gyrB",
-            "NC_000913.3:fumC", "NC_000913.3:adk"]
-    plasmid = ["acp", "icsA (virG)", "icsA", "icsB", "ipaA", "ipaB", "ipaC", "ipaD", "ipaJ", "ipgA", "ipgB1", "ipgC",
-               "ipgD", "ipgE", "ipgF", "mxiA", "mxiC", "mxiD", "mxiE", "mxiG", "mxiH", "mxiI", "mxiJ", "mxiK", "mxiL",
-               "mxiM", "mxiN", "spa13", "spa15", "spa24", "spa29", "spa32", "spa33", "spa40", "spa47", "spa9", "virA",
-               "virB", "virF"]
+            "NC_000913.3:fumC", "NC_000913.3:adk","NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
+            "NC_000913.3_icd", "NC_000913.3_gyrB","NC_000913.3_fumC", "NC_000913.3_adk"]
     if gene in mlst:
         gene_type = "House Keeping"
-    elif gene.startswith("fliC")or gene.startswith("wz"):
+    elif gene.startswith("fl") or gene.startswith("wz"):
         gene_type = "O/H-antigen gene"
     elif gene.startswith("stx"):
         gene_type = "stx toxin gene"
@@ -589,7 +541,6 @@ def add_duped_genes(genes_set):
                 indupe = True
                 for g in dupels:
                     genes_set2[g] = genes_set[gene]
-                    # print(g,gene)
         if not indupe:
             genes_set2[gene] = genes_set[gene]
     return genes_set2,dupe_dict
@@ -605,7 +556,7 @@ def genes_frm_kma_output(strain_id,args):
     if os.path.exists(outfile):
         hit_results = open(outfile,'r').read().splitlines()
 
-        depth_cut = mapping_depth_cutoff(args.use_kma, hit_results)
+        depth_cut = mapping_depth_cutoff(hit_results)
         for l in hit_results[1:]:
             col = l.split("\t")
             gene = col[0].replace(" ","")
@@ -646,7 +597,7 @@ def genes_frm_kma_output(strain_id,args):
 
     else:
         sys.exit(f'KMA output file missing at: {args.tmpdir}/{strain_id}kmatmp_out.res')
-    shutil.rmtree(args.tmpdir) #TODO comment to keep tmp KMA output files
+    shutil.rmtree(args.tmpdir)
     genes_set,dupedict = add_duped_genes(genes_set)
     return genes_set,outhits
 
@@ -730,7 +681,6 @@ def cluster_aware_antigen_search(cluster,genes,clustergenes):
         ha = "-"
     serotype = oa + ":" + ha
 
-    ## TODO cluster based calling
     """
     1 - if antigen not in cluster list add note
     2 - if partial antigen report possible complete antigens
@@ -785,7 +735,7 @@ def run_typing(dir, files, mode, args):
     +	    -	+	        ipaH+stx- = Possible EIEC/Shigella, try out other tool shigeifinder!"
     +	    -	-	        "Strain with cluster specific genes but no stx detected and ipaH detected - looks like EIEC/Shigella but clusters with STEC"
     -	    +	+	        "STEC not from any major STEC lineages"
-    -	    +	-	        CLUSTERED STX
+    -	    +	-	        CLUSTERED STEC
     -	    -	+	        "ipaH-stx- = Non-STEC E.coli"
     -	    -	-	        "Strain with cluster specific genes but no stx detected"
     """
@@ -863,52 +813,73 @@ def run_typing(dir, files, mode, args):
     else:
         print(string_result(result, args.output))
 
+
+
+    for g in genes:
+        genes[g]["genetype"] = get_gene_type(g)
+
     if args.output:
         outp = open(args.output, "a+")
         if args.hits:
-            outp.write("--------------- GENE SET ---------------\n")
-            outp.write("#gene\tlength_coverage/depth\tgene_type\n")
-            for key, item in genes.items():
-                outp.write(key + '\t' + str(item) + '\t' + get_gene_type(key) + "\n")
             if mode == "a":
-                outp.write("---------- BLAST GENE HITS ----------\n")
-                outp.write("#seqid\tslen\tlength\tsstart\tsend\tpident\n")
-            elif args.use_kma:
-                outp.write("---------- KMA GENE HITS ----------\n")
+                sorted_results = sorted(hit_results,
+                                        key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[6])]))
+                outp.write("--------------- PROCESSED GENE SET ---------------\n")
+                outp.write("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tgene_type\n")
+                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                    item = genes[key]
+                    o = map(str,[key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']), item['genetype']])
+                    outp.write("\t".join(o) + "\n")
+                outp.write("---------- RAW BLAST HITS ----------\n")
+                outp.write("#seqid\tslen\tlength\tsstart\tsend\tpident\tbitscore\n")
+                outp.write('\n'.join(sorted_results) + "\n")
+                outp.write("----------------------------------------\n")
             else:
-                outp.write("---------- BWA/SAMTOOLS GENE HITS ----------\n")
-            outp.write('\n'.join(hit_results) + "\n")
-            outp.write("----------------------------------------\n")
+                sorted_results = sorted(hit_results,
+                                        key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[1])]))
+                dratios = map_depth_ratios(genes)
+                outp.write("--------------- PROCESSED GENE SET ---------------\n")
+                outp.write("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tdepth\tnormalised_depth\tgene_type\n")
+                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                    item = genes[key]
+                    o = map(str,[key,int(item['slength']),item['pident'],item['len_coverage'],int(item['score']),item['depth'],dratios[key],item['genetype']])
+                    outp.write("\t".join(o) + "\n")
+                outp.write("---------- RAW KMA HITS HITS ----------\n")
+                outp.write("#Template\tScore\tExpected\tTemplate_length\tTemplate_Identity\tTemplate_Coverage\tQuery_Identity\tQuery_Coverage\tDepth\tq_value\tp_value\n")
+                outp.write('\n'.join(sorted_results) + "\n")
+                outp.write("----------------------------------------\n")
 
-        if args.dratio:
-            outp.write(
-                "--------------- RATIOS OF DEPTH SPECFIC GENES TO AVERAGE DEPTH OF 7 HOUSE KEEPING GENES---------------\n")
-            for g in map_depth_ratios(args.use_kma,hit_results):
-                outp.write(str(g) + "\n")
-            outp.write(
-                "--------------------------------------------------------------------------------------------------------------\n")
         outp.close()
     else:
         if args.hits:
-            print("--------------- GENE SET ---------------")
-            print("#gene\tlength_coverage/depth\tgene_type")
-            for key, item in genes.items():
-                print(key + '\t' + str(item) + '\t' + get_gene_type(key))
             if mode == "a":
-                print("---------- BLAST GENE HITS ----------")
-                print("#seqid\tslen\tlength\tsstart\tsend\tpident")
+                sorted_results = sorted(hit_results,
+                                        key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[6])]))
+                print("--------------- PROCESSED GENE SET ---------------")
+                print("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tgene_type")
+                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                    item = genes[key]
+                    o = map(str,[key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']), item['genetype']])
+                    print("\t".join(o) + "")
+                print("---------- RAW BLAST HITS ----------")
+                print("#seqid\tslen\tlength\tsstart\tsend\tpident\tbitscore")
+                print('\n'.join(sorted_results) + "")
+                print("----------------------------------------")
             else:
-                print("---------- BWA/SAMTOOLS GENE HITS ----------")
-            print('\n'.join(hit_results))
-            print("----------------------------------------")
+                sorted_results = sorted(hit_results,
+                                        key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[1])]))
+                dratios = map_depth_ratios(genes)
+                print("--------------- PROCESSED GENE SET ---------------")
+                print("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tdepth\tnormalised_depth\tgene_type")
+                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                    item = genes[key]
+                    o = map(str,[key,int(item['slength']),item['pident'],item['len_coverage'],int(item['score']),item['depth'],dratios[key],item['genetype']])
+                    print("\t".join(o) + "")
+                print("---------- RAW KMA HITS ----------")
+                print("#Template\tScore\tExpected\tTemplate_length\tTemplate_Identity\tTemplate_Coverage\tQuery_Identity\tQuery_Coverage\tDepth\tq_value\tp_value")
+                print('\n'.join(sorted_results) + "")
+                print("----------------------------------------")
 
-        if args.dratio:
-            print(
-                "--------------- RATIOS OF DEPTH SPECIFIC GENES TO AVERAGE DEPTH OF 7 HOUSE KEEPING GENES---------------")
-            for g in map_depth_ratios(args.use_kma,hit_results):
-                print(g)
-            print(
-                "--------------------------------------------------------------------------------------------------------------")
 
 
 def check_deps(checkonly, args):
@@ -917,7 +888,8 @@ def check_deps(checkonly, args):
     for dep in depslist:
         rc = subprocess.call(['which', dep], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         if rc == 0:
-            sys.stderr.write(f'{dep:<10}:{"installed":<10}\n')
+            if checkonly:
+                sys.stderr.write(f'{dep:<10}:{"installed":<10}\n')
         else:
             sys.stderr.write(f'{dep:<10}:{"missing in path, Please install ":<10}{dep}\n')
             f += 1
@@ -925,8 +897,8 @@ def check_deps(checkonly, args):
         sys.stderr.write("One or more dependencies are missing.\n")
         sys.exit(1)
     else:
-        sys.stderr.write("All dependencies present.\n")
         if checkonly:
+            sys.stderr.write("All dependencies present.\n")
             sys.exit(0)
         else:
             return
@@ -938,51 +910,67 @@ def get_currdir():
     return dir
 
 
+def get_args():
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        usage='\nSTECFinder.py -i <input_data1> <input_data2> ... OR\nSTECFinder.py -i <directory/*> OR '
+              '\nSTECFinder.py -i <Read1> <Read2> -r [Raw Reads]\n',add_help=False)
+    parser.print_usage = parser.print_help
+    io = parser.add_argument_group('Input/Output')
+    io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
+    io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
+    io.add_argument("-t", nargs=1, type=int, default='4', help="number of threads. Default 4.")
+    io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
+    io.add_argument("--output",
+                        help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
+    misc = parser.add_argument_group('Misc')
+    misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
+    misc.add_argument("--check", action='store_true', help="check dependencies are installed")
+    misc.add_argument("-v", "--version", action='store_true', help="Print version number")
+
+    cuts = parser.add_argument_group('Algorithm cutoffs')
+
+    cuts.add_argument("--cutoff", type=float,
+                        help="minimum read coverage for gene to be called", default="10.0")
+    cuts.add_argument("--length", type=float,
+                        help="percentage of gene length needed for positive call", default="50.0")
+    cuts.add_argument("--ipaH_length", type=float,
+                        help="percentage of ipaH gene length needed for positive gene call", default="10.0")
+    cuts.add_argument("--ipaH_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive ipaH gene call", default="1.0")
+    cuts.add_argument("--stx_length", type=float,
+                        help="percentage of stx gene length needed for positive gene call", default="10.0")
+    cuts.add_argument("--stx_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive stx gene call", default="1.0")
+    cuts.add_argument("--o_length", type=float,
+                        help="percentage of wz_ gene length needed for positive call", default="60.0")
+    cuts.add_argument("--o_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive wz_ gene call", default="1.0")
+    cuts.add_argument("--h_length", type=float,
+                        help="percentage of fliC gene length needed for positive call", default="60.0")
+    cuts.add_argument("--h_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive fliC gene call", default="1.0")
+
+
+
+    args = parser.parse_args()
+
+    return args,parser
+
 def main():
+    version = "1.0.0"
 
-    debug = False
+    args,parser = get_args()
 
-    if not debug: ### COMMAND LINE MODE
-        parser = argparse.ArgumentParser(
-            usage='\nSTECFinder.py -i <input_data1> <input_data2> ... OR\nSTECFinder.py -i <directory/*> OR '
-                  '\nSTECFinder.py -i <Read1> <Read2> -r [Raw Reads]\n')
-        parser.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
-        parser.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
-        parser.add_argument("-t", nargs=1, type=int, default='4', help="number of threads. Default 4.")
-        parser.add_argument("--hits", action='store_true', help="To show the blast/alignment hits")
-        parser.add_argument("--dratio", action='store_true',
-                            help="To show the depth ratios of cluster-specific genes to House Keeping genes")
-        parser.add_argument("--cutoff", type=float,
-                            help="minimum read coverage for gene to be called",default="10.0")
-        parser.add_argument("--length", type=float,
-                            help="percentage of gene length needed for positive call",default="90.0")
-        parser.add_argument("--ipaH_length", type=float,
-                            help="percentage of ipaH gene length needed for positive call",default="10.0")
-        parser.add_argument("--ipaH_depth", type=float,
-                            help="percentage of ipaH gene length needed for positive call",default="10.0")
-        parser.add_argument("--stx_length", type=float,
-                            help="percentage of ipaH gene length needed for positive call",default="10.0")
-        parser.add_argument("--stx_depth", type=float,
-                            help="percentage of ipaH gene length needed for positive call",default="10.0")
-        parser.add_argument("--o_length", type=float,
-                            help="percentage of ipaH gene length needed for positive call", default="10.0")
-        parser.add_argument("--o_depth", type=float,
-                            help="percentage of ipaH gene length needed for positive call", default="10.0")
-        parser.add_argument("--h_length", type=float,
-                            help="percentage of ipaH gene length needed for positive call", default="10.0")
-        parser.add_argument("--h_depth", type=float,
-                            help="percentage of ipaH gene length needed for positive call", default="10.0")
-        parser.add_argument("--update_db", action='store_true',
-                            help="Add flag if you added new sequences to genes database.")
-        parser.add_argument("--output",
-                            help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
-        parser.add_argument("--check", action='store_true', help="check dependencies are installed")
-        args = parser.parse_args()
+    if args.check:
+        check_deps(True, args)
 
-        args.use_kma = True
-
-
-
+    if args.version:
+        print(f"STECFinder version: {version}")
+        sys.exit(0)
 
 
     args.runuuid = str(uuid.uuid1())
@@ -997,23 +985,7 @@ def main():
     # Directory current script is in
     dir = get_currdir()
 
-    # run and get the intermediate files for blast and bwa (makes updating the genes db easier)
-    if args.update_db:
-        print(dir + "/resources/genes.fasta")
-        subprocess.run(
-            'makeblastdb -in "' + dir + '/resources/genes.fasta" -parse_seqids -blastdb_version 5 -title '
-                                       '"Shigella/EIEC DB" -dbtype nucl -out "' + dir + '/resources/genes.fasta"',
-            shell=True)
-        print('makeblastdb -in "' + dir + '/resources/genes.fasta" -out "' + dir + '/resources/genes.fasta" -parse_seqids -blastdb_version 5 -title '
-                                       '"Shigella/EIEC DB" -dbtype nucl')
-        subprocess.run('kma index -i "' + dir + '/resources/genes.fasta" -o "' + dir + '/resources/genes.fasta"', shell=True)
-        sys.exit()
 
-    if args.check:
-        check_deps(True, args)
-
-    if args.dratio and not args.r:
-        parser.error("-dratio requires -r. Only applies for raw reads.")
     if not args.i:
         parser.error("-i is required")
 
@@ -1023,7 +995,7 @@ def main():
     if len(sys.argv) == 0:
         os.system("python3.7 " + dir + "/STECFinder.py -h")
     else:
-        outheader = "#SAMPLE\tSTX\tcluster\tbig10_serotype\tserotype\tcluster_serotype\toantigens\thantigens\tIPAH\tNotes"
+        outheader = "Sample\tCluster\tCluster Serotype\tSerotype\tBig10 serotype\tO antigens\tH antigens\tstx type\tipaH presence\tNotes"
         mode = 'a'
         if args.r:
             mode = 'r'

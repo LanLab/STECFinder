@@ -1,0 +1,4714 @@
+{
+	"AM1": {
+		"cluster-genes": [
+			"STEC-AM1-gene_1",
+			"STEC-AM1-gene_2"
+		],
+		"O15:H16": [
+			"wzx_22_AY647261_O15",
+			"wzy_4_AY647261_O15",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"AM10": {
+		"cluster-genes": [
+			"STEC-AM10-gene_1",
+			"STEC-AM10-gene_2"
+		],
+		"O50/O2:H32": [
+			"wzx_57_EU549863-AB811624_O50",
+			"wzy_218_AB811624_O50",
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_40_AY250014_H32"
+		]
+	},
+	"AM11": {
+		"cluster-genes": [
+			"STEC-AM11-gene_1",
+			"STEC-AM11-gene_2"
+		],
+		"H32": [
+			"fliC_40_AY250014_H32"
+		]
+	},
+	"AM12": {
+		"cluster-genes": [
+			"STEC-AM12-gene_1",
+			"STEC-AM12-gene_2"
+		],
+		"H45": [
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"AM13": {
+		"cluster-genes": [
+			"STEC-AM13-gene_1",
+			"STEC-AM13-gene_2"
+		],
+		"O109:H10": [
+			"wzx_111_HM485572_O109",
+			"wzy_88_HM485572_O109",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O49:H10": [
+			"wzx_56_AB811623_O49",
+			"wzy_47_AB811623_O49",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O49:H10/H7": [
+			"wzx_56_AB811623_O49",
+			"wzy_47_AB811623_O49",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"AM14": {
+		"cluster-genes": [
+			"STEC-AM14-gene_1",
+			"STEC-AM14-gene_2"
+		],
+		"O100:H30": [
+			"wzx_100_AB812045_O100",
+			"wzy_83_AB812045_O100",
+			"fliC_312_AY250011_H30"
+		]
+	},
+	"AM15": {
+		"cluster-genes": [
+			"STEC-AM15-gene_1",
+			"STEC-AM15-gene_2"
+		],
+		"O36:H19": [
+			"wzx_43_AB811613_O36",
+			"wzy_29_AB811613_O36",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"AM16": {
+		"cluster-genes": [
+			"STEC-AM16-gene_1",
+			"STEC-AM16-gene_2"
+		],
+		"O13:H11": [
+			"wzx_21_EU296422_O13/O129",
+			"wzx_227_AB972421_O13/O129",
+			"wzy_3_EU296422-EU296423_O13/O135",
+			"wzy_417_AB972421_O13/O129/O135",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O45:H11": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		]
+	},
+	"AM17": {
+		"cluster-genes": [
+			"STEC-AM17-gene_1",
+			"STEC-AM17-gene_2"
+		],
+		"O162:H33": [
+			"wzm_13_AB812067_O162",
+			"wzt_13_AB812067_O162",
+			"fliC_444444_AY250015_H33"
+		]
+	},
+	"AM18": {
+		"cluster-genes": [
+			"STEC-AM18-gene_1",
+			"STEC-AM18-gene_2",
+			"STEC-AM18-gene_3"
+		],
+		"O141ab/O141ac:H4": [
+			"wzy_406_SAMEA3529400_O141ab",
+			"wzy_407_SAMEA3529401_O141ac",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		],
+		"O147:H4": [
+			"wzx_151_DQ868766_O147",
+			"wzy_117_DQ868766_O147",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		],
+		"O98:H4": [
+			"wzx_99_DQ180602_O98",
+			"wzy_82_DQ180602_O98",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"AM19": {
+		"cluster-genes": [
+			"STEC-AM19-gene_1",
+			"STEC-AM19-gene_2"
+		],
+		"O38:H26": [
+			"wzx_45_AB811615_O38",
+			"wzy_40_AB811615_O38",
+			"fliC_26_AY250008_H26",
+			"fliC_285_AY337483_H26"
+		]
+	},
+	"AM2": {
+		"cluster-genes": [
+			"STEC-AM2-gene_1",
+			"STEC-AM2-gene_2",
+			"STEC-AM2-gene_3",
+			"STEC-AM2-gene_4"
+		],
+		"O109:H16": [
+			"wzx_111_HM485572_O109",
+			"wzy_88_HM485572_O109",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O136:H12": [
+			"wzx_140_AB812059_O136",
+			"wzy_108_AB812059_O136",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		],
+		"O136:H16": [
+			"wzx_140_AB812059_O136",
+			"wzy_108_AB812059_O136",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O116:H28": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		],
+		"O3:H12": [
+			"wzx_5_EU694097_O3",
+			"wzy_162_EU694097_O3",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		],
+		"O45:H16": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O15:H27": [
+			"wzx_22_AY647261_O15",
+			"wzy_4_AY647261_O15",
+			"fliC_109_AM231154_H27"
+		],
+		"O116:H12": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		]
+	},
+	"AM20": {
+		"cluster-genes": [
+			"STEC-AM20-gene_1",
+			"STEC-AM20-gene_2"
+		],
+		"O6:H10": [
+			"wzx_9_AJ426045_O6",
+			"wzx_10_CP002185_O6",
+			"wzx_12_AB811597_O6",
+			"wzy_166_AJ426423_O6",
+			"wzy_167_AJ426045_O6",
+			"wzy_168_CP002185_O6",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O6:H10/H21/H4": [
+			"wzx_9_AJ426045_O6",
+			"wzx_10_CP002185_O6",
+			"wzx_12_AB811597_O6",
+			"wzy_166_AJ426423_O6",
+			"wzy_167_AJ426045_O6",
+			"wzy_168_CP002185_O6",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10",
+			"fliC_84_AIHL01000060_H21",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"AM21": {
+		"cluster-genes": [
+			"STEC-AM21-gene_1",
+			"STEC-AM21-gene_2"
+		],
+		"O181:H8": [
+			"wzx_184_AB812078_O181",
+			"wzy_190_AB812078_O181",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"AM22": {
+		"cluster-genes": [
+			"STEC-AM22-gene"
+		],
+		"O9:H4": [
+			"wzm_2_AB010294_O9",
+			"wzm_8_D43637_O9",
+			"wzt_2_AB010294_O9",
+			"wzt_7_D43637_O9",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"AM23": {
+		"cluster-genes": [
+			"STEC-AM23-gene_1",
+			"STEC-AM23-gene_2"
+		],
+		"O86:H32": [
+			"wzx_90_AY220982_O86",
+			"wzx_91_AY667408_O86",
+			"wzx_92_AY670704_O86",
+			"wzy_75_AY220982_O86",
+			"fliC_40_AY250014_H32"
+		]
+	},
+	"AM24": {
+		"cluster-genes": [
+			"STEC-AM24-gene_1",
+			"STEC-AM24-gene_2"
+		],
+		"H26": [
+			"fliC_26_AY250008_H26",
+			"fliC_285_AY337483_H26"
+		],
+		"H30": [
+			"fliC_312_AY250011_H30"
+		]
+	},
+	"AM25": {
+		"cluster-genes": [
+			"STEC-AM25-gene_1",
+			"STEC-AM25-gene_2"
+		],
+		"O87:H16": [
+			"wzx_93_EU294177_O87",
+			"wzy_76_EU294177_O87",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"AM26": {
+		"cluster-genes": [
+			"STEC-AM26-gene_1",
+			"STEC-AM26-gene_2"
+		],
+		"O41:H19": [
+			"wzx_48_AB811617_O41",
+			"wzy_43_AB811617_O41",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"AM27": {
+		"cluster-genes": [
+			"STEC-AM27-gene"
+		],
+		"O118/O151:H12": [
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_96_HM204927_O118",
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_189_HM204926_O151",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		]
+	},
+	"AM28": {
+		"cluster-genes": [
+			"STEC-AM28-gene"
+		],
+		"O110:H9": [
+			"wzx_112_AB812049_O110",
+			"wzy_89_AB812049_O110",
+			"fliC_307_AY249994_H9"
+		]
+	},
+	"AM29": {
+		"cluster-genes": [
+			"STEC-AM29-gene_1",
+			"STEC-AM29-gene_2",
+			"STEC-AM29-gene_3"
+		],
+		"O128ab:H10": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		]
+	},
+	"AM3": {
+		"cluster-genes": [
+			"STEC-AM3-gene_1",
+			"STEC-AM3-gene_2"
+		],
+		"O109:H28": [
+			"wzx_111_HM485572_O109",
+			"wzy_88_HM485572_O109",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		],
+		"O116:H28": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		],
+		"O159/O84:H2/H28": [
+			"wzx_164_EU294176_O159",
+			"wzy_126_EU294176_O159",
+			"wzx_88_AB812036_O84",
+			"wzy_73_AB812036_O84",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"AM30": {
+		"cluster-genes": [
+			"STEC-AM30-gene_1",
+			"STEC-AM30-gene_2"
+		],
+		"O49": [
+			"wzx_56_AB811623_O49",
+			"wzy_47_AB811623_O49"
+		]
+	},
+	"AM31": {
+		"cluster-genes": [
+			"STEC-AM31-gene_1",
+			"STEC-AM31-gene_2"
+		],
+		"O78:H16": [
+			"wzx_81_FJ940775_O78",
+			"wzy_67_FJ940775_O78",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O8:H16": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"AM32": {
+		"cluster-genes": [
+			"STEC-AM32-gene_1",
+			"STEC-AM32-gene_2"
+		],
+		"H14": [
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"AM33": {
+		"cluster-genes": [
+			"STEC-AM33-gene"
+		],
+		"O141ab/O141ac:H19": [
+			"wzy_406_SAMEA3529400_O141ab",
+			"wzy_407_SAMEA3529401_O141ac",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"AM34": {
+		"cluster-genes": [
+			"STEC-AM34-gene_1",
+			"STEC-AM34-gene_2"
+		],
+		"O159:H16": [
+			"wzx_164_EU294176_O159",
+			"wzy_126_EU294176_O159",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"AM35": {
+		"cluster-genes": [
+			"STEC-AM35-gene_1",
+			"STEC-AM35-gene_2"
+		],
+		"O8:H17": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_54_AJ605766_H17",
+			"fliC_50_AJ515904_H17",
+			"flnA_2_CP002291_H17"
+		]
+	},
+	"AM36": {
+		"cluster-genes": [
+			"STEC-AM36-gene_1",
+			"STEC-AM36-gene_2"
+		],
+		"O116:H48": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_H48_AY250025_H48"
+		]
+	},
+	"AM37": {
+		"cluster-genes": [
+			"STEC-AM37-gene_1",
+			"STEC-AM37-gene_2",
+			"STEC-AM37-gene_3"
+		],
+		"O55:H9": [
+			"wzx_60_AB353132_O55",
+			"wzx_61_AB353133_O55",
+			"wzx_62_JH958641_O55",
+			"wzy_158_CP003109_O55",
+			"wzy_159_AB353132_O55",
+			"fliC_307_AY249994_H9"
+		],
+		"O55:H2": [
+			"wzx_60_AB353132_O55",
+			"wzx_61_AB353133_O55",
+			"wzx_62_JH958641_O55",
+			"wzy_158_CP003109_O55",
+			"wzy_159_AB353132_O55",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O45:H2": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"AM4": {
+		"cluster-genes": [
+			"STEC-AM4-gene"
+		],
+		"O9:H4": [
+			"wzm_2_AB010294_O9",
+			"wzm_8_D43637_O9",
+			"wzt_2_AB010294_O9",
+			"wzt_7_D43637_O9",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"AM5": {
+		"cluster-genes": [
+			"STEC-AM5-gene"
+		],
+		"O136:H20": [
+			"wzx_140_AB812059_O136",
+			"wzy_108_AB812059_O136",
+			"fliC_309_AY250003_H20"
+		]
+	},
+	"AM6": {
+		"cluster-genes": [
+			"STEC-AM6-gene_1",
+			"STEC-AM6-gene_2"
+		],
+		"O80:H2": [
+			"wzx_83_AB812032_O80",
+			"wzy_69_AB812032_O80",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"AM7": {
+		"cluster-genes": [
+			"STEC-AM7-gene_1",
+			"STEC-AM7-gene_2"
+		],
+		"H38": [
+			"fliC_270_AY337466_H38",
+			"fliC_277_AY337473_H38",
+			"fliC_5555_AY250018_H38"
+		]
+	},
+	"AM8": {
+		"cluster-genes": [
+			"STEC-AM8-gene_1",
+			"STEC-AM8-gene_2"
+		],
+		"O100:H20": [
+			"wzx_100_AB812045_O100",
+			"wzy_83_AB812045_O100",
+			"fliC_309_AY250003_H20"
+		]
+	},
+	"AM9": {
+		"cluster-genes": [
+			"STEC-AM9-gene_1",
+			"STEC-AM9-gene_2",
+			"STEC-AM9-gene_3"
+		],
+		"O50/O2:H27": [
+			"wzx_57_EU549863-AB811624_O50",
+			"wzy_218_AB811624_O50",
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_109_AM231154_H27"
+		],
+		"O107:H27": [
+			"wzx_109_EU694095_O107",
+			"wzy_86_EU694095_O107",
+			"fliC_109_AM231154_H27"
+		]
+	},
+	"B1M1": {
+		"cluster-genes": [
+			"STEC-B1M1-gene_1",
+			"STEC-B1M1-gene_2"
+		],
+		"H2/H29": [
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2",
+			"fliC_111197_JH965342_H29",
+			"fliC_286_AY337485_H29",
+			"fliC_999999_AY250012_H29"
+		],
+		"H29": [
+			"fliC_111197_JH965342_H29",
+			"fliC_286_AY337485_H29",
+			"fliC_999999_AY250012_H29"
+		]
+	},
+	"B1M10": {
+		"cluster-genes": [
+			"STEC-B1M10-gene_1",
+			"STEC-B1M10-gene_2",
+			"STEC-B1M10-gene_3"
+		],
+		"H11": [
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O22:H16": [
+			"wzx_29_AB811606_O22",
+			"wzy_15_AB811606_O22",
+			"wzy_16_DQ851855_O22",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M100": {
+		"cluster-genes": [
+			"STEC-B1M100-gene_1",
+			"STEC-B1M100-gene_2"
+		],
+		"O96:H19": [
+			"wzx_98_AB812043_O96",
+			"wzy_81_AB812043_O96",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M101": {
+		"cluster-genes": [
+			"STEC-B1M101-gene_1",
+			"STEC-B1M101-gene_2"
+		],
+		"O153/O178:H19": [
+			"wzx_159_KJ755551_O153",
+			"wzy_121_KJ755551_O153",
+			"wzx_223_KJ778799_O178",
+			"wzy_225_KJ778799_O178",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M102": {
+		"cluster-genes": [
+			"STEC-B1M102-gene_1"
+		],
+		"O180:H14": [
+			"wzx_183_JQ751058_O180",
+			"wzy_145_JQ751058_O180",
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"B1M103": {
+		"cluster-genes": [
+			"STEC-B1M103-gene",
+			"STEC-B1M103-gene_2"
+		],
+		"O8:H21": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M104": {
+		"cluster-genes": [
+			"STEC-B1M104-gene"
+		],
+		"O79:H14": [
+			"wzx_82_EU294162_O79",
+			"wzy_68_EU294162_O79",
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"B1M105": {
+		"cluster-genes": [
+			"STEC-B1M105-gene_1",
+			"STEC-B1M105-gene_2"
+		],
+		"O165:H7": [
+			"wzx_169_GU068045_O165",
+			"wzy_130_GU068045_O165",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M106": {
+		"cluster-genes": [
+			"STEC-B1M106-gene_1",
+			"STEC-B1M106-gene_2"
+		],
+		"O76:H7": [
+			"wzx_80_AB812031_O76",
+			"wzy_66_AB812031_O76",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M107": {
+		"cluster-genes": [
+			"STEC-B1M107-gene_1",
+			"STEC-B1M107-gene_2"
+		],
+		"H10": [
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		]
+	},
+	"B1M108": {
+		"cluster-genes": [
+			"STEC-B1M108-gene_1",
+			"STEC-B1M108-gene_2",
+			"STEC-B1M108-gene_3"
+		],
+		"O146:H10": [
+			"wzx_150_DQ465249_O146",
+			"wzy_116_DQ465249_O146",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		]
+	},
+	"B1M109": {
+		"cluster-genes": [
+			"STEC-B1M109-gene_1",
+			"STEC-B1M109-gene_2"
+		],
+		"O103:H21": [
+			"wzx_194_NC:013353_O103",
+			"wzx_195_AB704860_O103",
+			"wzx_209_EF027106_O103",
+			"wzy_202_EF027120_O103",
+			"wzy_203_EF027119_O103",
+			"wzy_204_EF027116_O103",
+			"wzy_205_AP010958_O103",
+			"wzy_206_EF027115_O103",
+			"wzy_207_EF027106_O103",
+			"wzy_208_EF027117_O103",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M11": {
+		"cluster-genes": [
+			"STEC-B1M11-gene_1",
+			"STEC-B1M11-gene_2",
+			"STEC-B1M11-gene_3"
+		],
+		"O171:H2": [
+			"wzx_175_AB812071_O171",
+			"wzy_137_AB812071_O171",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M110": {
+		"cluster-genes": [
+			"STEC-B1M110-gene_1",
+			"STEC-B1M110-gene_2"
+		],
+		"H21": [
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M111": {
+		"cluster-genes": [
+			"STEC-B1M111-gene"
+		],
+		"O116:H49": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		]
+	},
+	"B1M112": {
+		"cluster-genes": [
+			"STEC-B1M112-gene_1",
+			"STEC-B1M112-gene_2"
+		],
+		"O113:H8": [
+			"wzx_115_AF172324_O113",
+			"wzy_92_AF172324_O113",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M113": {
+		"cluster-genes": [
+			"STEC-B1M113-gene_1",
+			"STEC-B1M113-gene_2"
+		],
+		"O81:H31": [
+			"wzx_84_CU928162_O81",
+			"wzy_70_CU928162_O81",
+			"fliC_314_CP000247_H31",
+			"fliC_313_AY250013_H31"
+		]
+	},
+	"B1M114": {
+		"cluster-genes": [
+			"STEC-B1M114-gene_1",
+			"STEC-B1M114-gene_2"
+		],
+		"O74:H42": [
+			"wzx_78_AB812030_O74",
+			"wzy_64_AB812030_O74",
+			"fliC_274_AY337470_H42",
+			"fliC_1111111_AY250021_H42"
+		]
+	},
+	"B1M115": {
+		"cluster-genes": [
+			"STEC-B1M115-gene_1",
+			"STEC-B1M115-gene_2"
+		],
+		"O22:H16": [
+			"wzx_29_AB811606_O22",
+			"wzy_15_AB811606_O22",
+			"wzy_16_DQ851855_O22",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M116": {
+		"cluster-genes": [
+			"STEC-B1M116-gene_1",
+			"STEC-B1M116-gene_2",
+			"STEC-B1M116-gene_3"
+		],
+		"O71:H16": [
+			"wzx_76_GU445927_O71",
+			"wzy_63_GU445927_O71",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O91:H16": [
+			"wzx_96_AY035396_O91",
+			"wzy_79_AY035396_O91",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M117": {
+		"cluster-genes": [
+			"STEC-B1M117-gene"
+		],
+		"O159:H19": [
+			"wzx_164_EU294176_O159",
+			"wzy_126_EU294176_O159",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M118": {
+		"cluster-genes": [
+			"STEC-B1M118-gene_1",
+			"STEC-B1M118-gene_2"
+		],
+		"O103:H2": [
+			"wzx_194_NC:013353_O103",
+			"wzx_195_AB704860_O103",
+			"wzx_209_EF027106_O103",
+			"wzy_202_EF027120_O103",
+			"wzy_203_EF027119_O103",
+			"wzy_204_EF027116_O103",
+			"wzy_205_AP010958_O103",
+			"wzy_206_EF027115_O103",
+			"wzy_207_EF027106_O103",
+			"wzy_208_EF027117_O103",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M119": {
+		"cluster-genes": [
+			"STEC-B1M119-gene_1",
+			"STEC-B1M119-gene_2"
+		],
+		"O111:H8": [
+			"wzx_206_JN887675_O111",
+			"wzx_207_AP010960_O111",
+			"wzy_62_JN887675_O111",
+			"wzy_217_NC:013364_O111",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M12": {
+		"cluster-genes": [
+			"STEC-B1M12-gene"
+		],
+		"O96:H19": [
+			"wzx_98_AB812043_O96",
+			"wzy_81_AB812043_O96",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		],
+		"O5:H19": [
+			"wzx_8_AB811596_O5",
+			"wzy_164_AB811596_O5",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M120": {
+		"cluster-genes": [
+			"STEC-B1M120-gene_1",
+			"STEC-B1M120-gene_2"
+		],
+		"O113:H21": [
+			"wzx_115_AF172324_O113",
+			"wzy_92_AF172324_O113",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M121": {
+		"cluster-genes": [
+			"STEC-B1M121-gene_1",
+			"STEC-B1M121-gene_2"
+		],
+		"O113:H21": [
+			"wzx_115_AF172324_O113",
+			"wzy_92_AF172324_O113",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M122": {
+		"cluster-genes": [
+			"STEC-B1M122-gene_1",
+			"STEC-B1M122-gene_2",
+			"STEC-B1M122-gene_3"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M123": {
+		"cluster-genes": [
+			"STEC-B1M123-gene"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M124": {
+		"cluster-genes": [
+			"STEC-B1M124-gene_1",
+			"STEC-B1M124-gene_2"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M125": {
+		"cluster-genes": [
+			"STEC-B1M125-gene_1",
+			"STEC-B1M125-gene_2"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M126": {
+		"cluster-genes": [
+			"STEC-B1M126-gene_1",
+			"STEC-B1M126-gene_2",
+			"STEC-B1M126-gene_3"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M13": {
+		"cluster-genes": [
+			"STEC-B1M13-gene_1",
+			"STEC-B1M13-gene_2"
+		],
+		"O128ab:H2": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M14": {
+		"cluster-genes": [
+			"STEC-B1M14-gene_1",
+			"STEC-B1M14-gene_2",
+			"STEC-B1M14-gene_3",
+			"STEC-B1M14-gene_4",
+			"STEC-B1M14-gene_5",
+			"STEC-B1M14-gene_6"
+		],
+		"O139:H19": [
+			"wzx_143_DQ109552_O139",
+			"wzy_110_DQ109552_O139",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M15": {
+		"cluster-genes": [
+			"STEC-B1M15-gene_1",
+			"STEC-B1M15-gene_2"
+		],
+		"O8:H49": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		]
+	},
+	"B1M16": {
+		"cluster-genes": [
+			"STEC-B1M16-gene_1",
+			"STEC-B1M16-gene_2"
+		],
+		"O174:H2": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M17": {
+		"cluster-genes": [
+			"STEC-B1M17-gene_1",
+			"STEC-B1M17-gene_2"
+		],
+		"O163:H19": [
+			"wzx_167_AB812068_O163",
+			"wzy_129_AB812068_O163",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		],
+		"O152:H19": [
+			"wzx_158_EU294170_O152",
+			"wzy_120_EU294170_O152",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M18": {
+		"cluster-genes": [
+			"STEC-B1M18-gene_1",
+			"STEC-B1M18-gene_2"
+		],
+		"O163:H19": [
+			"wzx_167_AB812068_O163",
+			"wzy_129_AB812068_O163",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M19": {
+		"cluster-genes": [
+			"STEC-B1M19-gene_1",
+			"STEC-B1M19-gene_2"
+		],
+		"O8:H28": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"B1M2": {
+		"cluster-genes": [
+			"STEC-B1M2-gene"
+		],
+		"H11": [
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"H49": [
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		]
+	},
+	"B1M20": {
+		"cluster-genes": [
+			"STEC-B1M20-gene_1",
+			"STEC-B1M20-gene_2"
+		],
+		"O6:H34": [
+			"wzx_9_AJ426045_O6",
+			"wzx_10_CP002185_O6",
+			"wzx_12_AB811597_O6",
+			"wzy_166_AJ426423_O6",
+			"wzy_167_AJ426045_O6",
+			"wzy_168_CP002185_O6",
+			"fliC_317_AF345850_H34",
+			"fliC_318_AY250016_H34"
+		],
+		"O157/O6:H34": [
+			"wzx_196_AB602252_O157",
+			"wzx_197_AB602249_O157",
+			"wzx_198_AB602253_O157",
+			"wzx_199_AKMA01000036_O157",
+			"wzx_200_AKLI01000048_O157",
+			"wzx_201_JH959508_O157",
+			"wzx_202_AB602250_O157",
+			"wzy_193_JH964427_O157",
+			"wzy_194_AB602249_O157",
+			"wzy_195_JH970567_O157",
+			"wzy_196_AB602253_O157",
+			"wzy_197_AB602250_O157",
+			"wzy_198_AF061251_O157",
+			"wzy_201_JH953200_O157",
+			"wzx_9_AJ426045_O6",
+			"wzx_10_CP002185_O6",
+			"wzx_12_AB811597_O6",
+			"wzy_166_AJ426423_O6",
+			"wzy_167_AJ426045_O6",
+			"wzy_168_CP002185_O6",
+			"fliC_317_AF345850_H34",
+			"fliC_318_AY250016_H34"
+		]
+	},
+	"B1M21": {
+		"cluster-genes": [
+			"STEC-B1M21-gene_1",
+			"STEC-B1M21-gene_2"
+		],
+		"O91:H10": [
+			"wzx_96_AY035396_O91",
+			"wzy_79_AY035396_O91",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O91:H10/H14": [
+			"wzx_96_AY035396_O91",
+			"wzy_79_AY035396_O91",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10",
+			"fliC_89_AY249998_H14"
+		],
+		"O26/O91:H10/H11": [
+			"wzx_208_AF529080_O26",
+			"wzy_192_AF529080_O26",
+			"wzx_96_AY035396_O91",
+			"wzy_79_AY035396_O91",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		]
+	},
+	"B1M22": {
+		"cluster-genes": [
+			"STEC-B1M22-gene_1",
+			"STEC-B1M22-gene_2"
+		],
+		"O51:H10": [
+			"wzx_190_AB812020_O51",
+			"wzy_49_AB812020_O51",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O121:H10": [
+			"wzx_191_JN859209_O121",
+			"wzy_209_JN859209_O121",
+			"wzy_210_JN859212_O121",
+			"wzy_211_AY208937_O121",
+			"wzy_213_JN859216_O121",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		]
+	},
+	"B1M23": {
+		"cluster-genes": [
+			"STEC-B1M23-gene_1",
+			"STEC-B1M23-gene_2"
+		],
+		"O88:H25": [
+			"wzx_94_AB812037_O88",
+			"wzy_77_AB812037_O88",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O23:H25": [
+			"wzx_31_AB811607_O23",
+			"wzy_17_AB811607_O23",
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"B1M24": {
+		"cluster-genes": [
+			"STEC-B1M24-gene_1",
+			"STEC-B1M24-gene_2"
+		],
+		"O130:H38": [
+			"wzx_136_EU296421_O130",
+			"wzy_104_EU296421_O130",
+			"fliC_270_AY337466_H38",
+			"fliC_277_AY337473_H38",
+			"fliC_5555_AY250018_H38"
+		],
+		"O134:H38": [
+			"wzx_212_AB812058_O134",
+			"wzy_221_AB812058_O134",
+			"fliC_270_AY337466_H38",
+			"fliC_277_AY337473_H38",
+			"fliC_5555_AY250018_H38"
+		]
+	},
+	"B1M25": {
+		"cluster-genes": [
+			"STEC-B1M25-gene_1",
+			"STEC-B1M25-gene_2",
+			"STEC-B1M25-gene_3"
+		],
+		"O142:H38": [
+			"wzx_147_AB812061_O142",
+			"wzy_113_AB812061_O142",
+			"fliC_270_AY337466_H38",
+			"fliC_277_AY337473_H38",
+			"fliC_5555_AY250018_H38"
+		]
+	},
+	"B1M26": {
+		"cluster-genes": [
+			"STEC-B1M26-gene_1",
+			"STEC-B1M26-gene_2",
+			"STEC-B1M26-gene_3"
+		],
+		"O148:H8": [
+			"wzx_152_DQ167407_O148",
+			"wzx_153_AAJT02000037_O148",
+			"wzy_187_DQ167407_O148",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O8:H8": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O85:H8": [
+			"wzx_89_GU299798_O85",
+			"wzy_74_GU299798_O85",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O23:H8": [
+			"wzx_31_AB811607_O23",
+			"wzy_17_AB811607_O23",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M27": {
+		"cluster-genes": [
+			"STEC-B1M27-gene_1",
+			"STEC-B1M27-gene_2",
+			"STEC-B1M27-gene_3"
+		],
+		"O181:H49": [
+			"wzx_184_AB812078_O181",
+			"wzy_190_AB812078_O181",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		]
+	},
+	"B1M28": {
+		"cluster-genes": [
+			"STEC-B1M28-gene_1",
+			"STEC-B1M28-gene_2"
+		],
+		"O187:H52": [
+			"wzx_189_AB812083_O187",
+			"wzy_149_AB812083_O187",
+			"fliC_44444_AY250028_H52",
+			"fliC_888881_AVRH01000047_H52"
+		]
+	},
+	"B1M29": {
+		"cluster-genes": [
+			"STEC-B1M29-gene_1",
+			"STEC-B1M29-gene_2"
+		],
+		"O153/O178:H7": [
+			"wzx_159_KJ755551_O153",
+			"wzy_121_KJ755551_O153",
+			"wzx_223_KJ778799_O178",
+			"wzy_225_KJ778799_O178",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M3": {
+		"cluster-genes": [
+			"STEC-B1M3-gene_1",
+			"STEC-B1M3-gene_2",
+			"STEC-B1M3-gene_3"
+		],
+		"O117:H16": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O128ab:H16": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O45:H16": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O76:H21": [
+			"wzx_80_AB812031_O76",
+			"wzy_66_AB812031_O76",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O8:H16": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O84:H38": [
+			"wzx_88_AB812036_O84",
+			"wzy_73_AB812036_O84",
+			"fliC_270_AY337466_H38",
+			"fliC_277_AY337473_H38",
+			"fliC_5555_AY250018_H38"
+		],
+		"O128ac:H16": [
+			"wzx_405_SAMEA3529399_O128ac",
+			"wzy_405_SAMEA3529399_O128ac",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M30": {
+		"cluster-genes": [
+			"STEC-B1M30-gene_1",
+			"STEC-B1M30-gene_2"
+		],
+		"O104:H7": [
+			"wzx_102_AF361371_O104",
+			"wzx_103_KB021482_O104",
+			"wzx_104_CP003301_O104",
+			"wzx_105_AFPS01000083_O104",
+			"wzy_84_AF361371_O104",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M31": {
+		"cluster-genes": [
+			"STEC-B1M31-gene"
+		],
+		"O45:H2": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M32": {
+		"cluster-genes": [
+			"STEC-B1M32-gene_1",
+			"STEC-B1M32-gene_2",
+			"STEC-B1M32-gene_3"
+		],
+		"O22:H8": [
+			"wzx_29_AB811606_O22",
+			"wzy_15_AB811606_O22",
+			"wzy_16_DQ851855_O22",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O7:H31": [
+			"wzx_14_CP003034_O7",
+			"wzx_15_AB490074_O7",
+			"wzx_16_AF125322_O7",
+			"wzy_169_AF125322_O7",
+			"wzy_170_AB490074_O7",
+			"wzy_171_CP003034_O7",
+			"fliC_314_CP000247_H31",
+			"fliC_313_AY250013_H31"
+		],
+		"O88:H8": [
+			"wzx_94_AB812037_O88",
+			"wzy_77_AB812037_O88",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M33": {
+		"cluster-genes": [
+			"STEC-B1M33-gene_1",
+			"STEC-B1M33-gene_2"
+		],
+		"O112ab:H19": [
+			"wzx_113_EU296413_O112ab",
+			"wzy_90_EU296413_O112ab",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M34": {
+		"cluster-genes": [
+			"STEC-B1M34-gene_1",
+			"STEC-B1M34-gene_2"
+		],
+		"O150:H8": [
+			"wzx_156_EU294168_O150",
+			"wzy_119_EU294168_O150",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M35": {
+		"cluster-genes": [
+			"STEC-B1M35-gene_1",
+			"STEC-B1M35-gene_2",
+			"STEC-B1M35-gene_3",
+			"STEC-B1M35-gene_4",
+			"STEC-B1M35-gene_5",
+			"STEC-B1M35-gene_6",
+			"STEC-B1M35-gene_7"
+		],
+		"O74:H8": [
+			"wzx_78_AB812030_O74",
+			"wzy_64_AB812030_O74",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M36": {
+		"cluster-genes": [
+			"STEC-B1M36-gene_1",
+			"STEC-B1M36-gene_2"
+		],
+		"O82:H8": [
+			"wzx_85_AB812034_O82",
+			"wzy_71_AB812034_O82",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M37": {
+		"cluster-genes": [
+			"STEC-B1M37-gene_1",
+			"STEC-B1M37-gene_2"
+		],
+		"H15": [
+			"fliC_306_AY249999_H15"
+		],
+		"O128ab:H12": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		],
+		"O55:H12": [
+			"wzx_60_AB353132_O55",
+			"wzx_61_AB353133_O55",
+			"wzx_62_JH958641_O55",
+			"wzy_158_CP003109_O55",
+			"wzy_159_AB353132_O55",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		],
+		"O115:H10": [
+			"wzx_117_GU068041_O115",
+			"wzy_94_GU068041_O115",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O23:H31": [
+			"wzx_31_AB811607_O23",
+			"wzy_17_AB811607_O23",
+			"fliC_314_CP000247_H31",
+			"fliC_313_AY250013_H31"
+		],
+		"O145:H12": [
+			"wzx_203_CP006262_O145",
+			"wzx_204_JN850039_O145",
+			"wzy_212_CP006262_O145",
+			"wzy_214_JN850039_O145",
+			"wzy_215_AY863412_O145",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		],
+		"O127:H12": [
+			"wzx_132_FM180568_O127",
+			"wzx_133_AY493508_O127",
+			"wzx_210_AB812054_O127",
+			"wzy_184_FM180568_O127",
+			"wzy_185_AY493508_O127",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		]
+	},
+	"B1M38": {
+		"cluster-genes": [
+			"STEC-B1M38-gene_1",
+			"STEC-B1M38-gene_2"
+		],
+		"O168:H8": [
+			"wzx_172_EU296403_O168",
+			"wzy_133_EU296403_O168",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M39": {
+		"cluster-genes": [
+			"STEC-B1M39-gene_1",
+			"STEC-B1M39-gene_2",
+			"STEC-B1M39-gene_3"
+		],
+		"O23:H8": [
+			"wzx_31_AB811607_O23",
+			"wzy_17_AB811607_O23",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O142:H8": [
+			"wzx_147_AB812061_O142",
+			"wzy_113_AB812061_O142",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M4": {
+		"cluster-genes": [
+			"STEC-B1M4-gene"
+		],
+		"O181:H16": [
+			"wzx_184_AB812078_O181",
+			"wzy_190_AB812078_O181",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M40": {
+		"cluster-genes": [
+			"STEC-B1M40-gene_1",
+			"STEC-B1M40-gene_2",
+			"STEC-B1M40-gene_3",
+			"STEC-B1M40-gene_4",
+			"STEC-B1M40-gene_5"
+		],
+		"O91:H21": [
+			"wzx_96_AY035396_O91",
+			"wzy_79_AY035396_O91",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M41": {
+		"cluster-genes": [
+			"STEC-B1M41-gene_1",
+			"STEC-B1M41-gene_2"
+		],
+		"O156:H21": [
+			"wzx_162_AB812065_O156",
+			"wzy_124_AB812065_O156",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O174:H21": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M42": {
+		"cluster-genes": [
+			"STEC-B1M42-gene"
+		],
+		"O182:H21": [
+			"wzx_185_AB812079_O182",
+			"wzy_146_AB812079_O182",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M43": {
+		"cluster-genes": [
+			"STEC-B1M43-gene_1",
+			"STEC-B1M43-gene_2"
+		],
+		"O174:H21": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O174/O88:H21/H25": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"wzx_94_AB812037_O88",
+			"wzy_77_AB812037_O88",
+			"fliC_84_AIHL01000060_H21",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O174:H16/H21": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M44": {
+		"cluster-genes": [
+			"STEC-B1M44-gene_1",
+			"STEC-B1M44-gene_2"
+		],
+		"H7": [
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M45": {
+		"cluster-genes": [
+			"STEC-B1M45-gene_1",
+			"STEC-B1M45-gene_2"
+		],
+		"O116:H21": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O116/O153/O178:H21/H7": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"wzx_159_KJ755551_O153",
+			"wzy_121_KJ755551_O153",
+			"wzx_223_KJ778799_O178",
+			"wzy_225_KJ778799_O178",
+			"fliC_84_AIHL01000060_H21",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M46": {
+		"cluster-genes": [
+			"STEC-B1M46-gene_1",
+			"STEC-B1M46-gene_2",
+			"STEC-B1M46-gene_3"
+		],
+		"O153/O178:H19": [
+			"wzx_159_KJ755551_O153",
+			"wzy_121_KJ755551_O153",
+			"wzx_223_KJ778799_O178",
+			"wzy_225_KJ778799_O178",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M47": {
+		"cluster-genes": [
+			"STEC-B1M47-gene_1",
+			"STEC-B1M47-gene_2",
+			"STEC-B1M47-gene_3"
+		],
+		"H19": [
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M48": {
+		"cluster-genes": [
+			"STEC-B1M48-gene_1",
+			"STEC-B1M48-gene_2",
+			"STEC-B1M48-gene_3"
+		],
+		"O153/O178:H19": [
+			"wzx_159_KJ755551_O153",
+			"wzy_121_KJ755551_O153",
+			"wzx_223_KJ778799_O178",
+			"wzy_225_KJ778799_O178",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M49": {
+		"cluster-genes": [
+			"STEC-B1M49-gene_1",
+			"STEC-B1M49-gene_2"
+		],
+		"O8:H21": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M5": {
+		"cluster-genes": [
+			"STEC-B1M5-gene"
+		],
+		"O126:H8": [
+			"wzx_130_DQ465248_O126",
+			"wzx_131_GU068042_O126",
+			"wzy_182_DQ465248_O126",
+			"wzy_183_GU068042_O126",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M50": {
+		"cluster-genes": [
+			"STEC-B1M50-gene_1",
+			"STEC-B1M50-gene_2",
+			"STEC-B1M50-gene_3"
+		],
+		"O28ab:H25": [
+			"wzx_34_AB811608_O28ab",
+			"wzy_21_AB811608_O28ab",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O28ac/O42:H25": [
+			"wzx_35_AB811609_O28ac",
+			"wzx_36_DQ462205-FJ539194_O28ac/O42",
+			"wzy_22_DQ462205-FJ539194_O28ac/O42",
+			"wzx_36_DQ462205-FJ539194_O28ac/O42",
+			"wzy_22_DQ462205-FJ539194_O28ac/O42",
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"B1M51": {
+		"cluster-genes": [
+			"STEC-B1M51-gene_1",
+			"STEC-B1M51-gene_2",
+			"STEC-B1M51-gene_3"
+		],
+		"O175:H21": [
+			"wzx_179_AB812073_O175",
+			"wzy_141_AB812073_O175",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M52": {
+		"cluster-genes": [
+			"STEC-B1M52-gene_1",
+			"STEC-B1M52-gene_2"
+		],
+		"O113:H21": [
+			"wzx_115_AF172324_O113",
+			"wzy_92_AF172324_O113",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O123:H10": [
+			"wzx_126_DQ676933_O123",
+			"wzx_127_DQ676934_O123",
+			"wzx_225_AB972419_O123",
+			"wzy_99_DQ676934-AB812082_O123/O186",
+			"wzy_416_AB972419_O123",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		]
+	},
+	"B1M53": {
+		"cluster-genes": [
+			"STEC-B1M53-gene_1",
+			"STEC-B1M53-gene_2"
+		],
+		"O38:H21": [
+			"wzx_45_AB811615_O38",
+			"wzy_40_AB811615_O38",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M54": {
+		"cluster-genes": [
+			"STEC-B1M54-gene_1",
+			"STEC-B1M54-gene_2"
+		],
+		"O15:H27": [
+			"wzx_22_AY647261_O15",
+			"wzy_4_AY647261_O15",
+			"fliC_109_AM231154_H27"
+		]
+	},
+	"B1M55": {
+		"cluster-genes": [
+			"STEC-B1M55-gene_1",
+			"STEC-B1M55-gene_2"
+		],
+		"O48:H21": [
+			"wzx_55_AB811622_O48",
+			"wzy_46_AB811622_O48",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M56": {
+		"cluster-genes": [
+			"STEC-B1M56-gene_1",
+			"STEC-B1M56-gene_2"
+		],
+		"O66:H25": [
+			"wzx_72_DQ069297_O66",
+			"wzy_408_DQ069297_O66",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O66:H45": [
+			"wzx_72_DQ069297_O66",
+			"wzy_408_DQ069297_O66",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"B1M57": {
+		"cluster-genes": [
+			"STEC-B1M57-gene_1",
+			"STEC-B1M57-gene_2"
+		],
+		"O81:H21": [
+			"wzx_84_CU928162_O81",
+			"wzy_70_CU928162_O81",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M58": {
+		"cluster-genes": [
+			"STEC-B1M58-gene"
+		],
+		"H19/H21": [
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"H19": [
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M59": {
+		"cluster-genes": [
+			"STEC-B1M59-gene_1",
+			"STEC-B1M59-gene_2"
+		],
+		"O79:H28": [
+			"wzx_82_EU294162_O79",
+			"wzy_68_EU294162_O79",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"B1M6": {
+		"cluster-genes": [
+			"STEC-B1M6-gene_1",
+			"STEC-B1M6-gene_2"
+		],
+		"O7:H2": [
+			"wzx_14_CP003034_O7",
+			"wzx_15_AB490074_O7",
+			"wzx_16_AF125322_O7",
+			"wzy_169_AF125322_O7",
+			"wzy_170_AB490074_O7",
+			"wzy_171_CP003034_O7",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M60": {
+		"cluster-genes": [
+			"STEC-B1M60-gene_1",
+			"STEC-B1M60-gene_2",
+			"STEC-B1M60-gene_3",
+			"STEC-B1M60-gene_4"
+		],
+		"O140:H21": [
+			"wzx_144_AB812060_O140",
+			"wzy_111_AB812060_O140",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M61": {
+		"cluster-genes": [
+			"STEC-B1M61-gene"
+		],
+		"O139:H8": [
+			"wzx_143_DQ109552_O139",
+			"wzy_110_DQ109552_O139",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M62": {
+		"cluster-genes": [
+			"STEC-B1M62-gene_1",
+			"STEC-B1M62-gene_2"
+		],
+		"O51:H49": [
+			"wzx_190_AB812020_O51",
+			"wzy_49_AB812020_O51",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		]
+	},
+	"B1M63": {
+		"cluster-genes": [
+			"STEC-B1M63-gene_1",
+			"STEC-B1M63-gene_2"
+		],
+		"O8:H14": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"B1M64": {
+		"cluster-genes": [
+			"STEC-B1M64-gene_1",
+			"STEC-B1M64-gene_2"
+		],
+		"H8": [
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M65": {
+		"cluster-genes": [
+			"STEC-B1M65-gene_1",
+			"STEC-B1M65-gene_2"
+		],
+		"O153/O178:H19": [
+			"wzx_159_KJ755551_O153",
+			"wzy_121_KJ755551_O153",
+			"wzx_223_KJ778799_O178",
+			"wzy_225_KJ778799_O178",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M66": {
+		"cluster-genes": [
+			"STEC-B1M66-gene_1",
+			"STEC-B1M66-gene_2"
+		],
+		"O112ab:H8": [
+			"wzx_113_EU296413_O112ab",
+			"wzy_90_EU296413_O112ab",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M67": {
+		"cluster-genes": [
+			"STEC-B1M67-gene_1",
+			"STEC-B1M67-gene_2"
+		],
+		"O108:H7": [
+			"wzx_110_AB812048_O108",
+			"wzy_87_AB812048_O108",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M68": {
+		"cluster-genes": [
+			"STEC-B1M68-gene_1",
+			"STEC-B1M68-gene_2"
+		],
+		"O146:H8": [
+			"wzx_150_DQ465249_O146",
+			"wzy_116_DQ465249_O146",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M69": {
+		"cluster-genes": [
+			"STEC-B1M69-gene_1",
+			"STEC-B1M69-gene_2",
+			"STEC-B1M69-gene_3"
+		],
+		"O54:H16": [
+			"wzx_59_AB812085_O54",
+			"wzy_51_AB812085_O54",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O128ab:H16": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M7": {
+		"cluster-genes": [
+			"STEC-B1M7-gene_1",
+			"STEC-B1M7-gene_2",
+			"STEC-B1M7-gene_3"
+		],
+		"O171:H25": [
+			"wzx_175_AB812071_O171",
+			"wzy_137_AB812071_O171",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O30:H25": [
+			"wzx_38_AB811610_O30",
+			"wzy_24_AB811610_O30",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O160:H12": [
+			"wzx_165_AB812066_O160",
+			"wzy_127_AB812066_O160",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		]
+	},
+	"B1M70": {
+		"cluster-genes": [
+			"STEC-B1M70-gene_1",
+			"STEC-B1M70-gene_2"
+		],
+		"O172/O6:H49": [
+			"wzx_176_AY545992_O172",
+			"wzy_138_AY545992_O172",
+			"wzx_9_AJ426045_O6",
+			"wzx_10_CP002185_O6",
+			"wzx_12_AB811597_O6",
+			"wzy_166_AJ426423_O6",
+			"wzy_167_AJ426045_O6",
+			"wzy_168_CP002185_O6",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		],
+		"O182:H25/H49": [
+			"wzx_185_AB812079_O182",
+			"wzy_146_AB812079_O182",
+			"fliC_311_AGSG01000116_H25",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		]
+	},
+	"B1M71": {
+		"cluster-genes": [
+			"STEC-B1M71-gene_1",
+			"STEC-B1M71-gene_2"
+		],
+		"O88:H25": [
+			"wzx_94_AB812037_O88",
+			"wzy_77_AB812037_O88",
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"B1M72": {
+		"cluster-genes": [
+			"STEC-B1M72-gene_1",
+			"STEC-B1M72-gene_2"
+		],
+		"O160:H12": [
+			"wzx_165_AB812066_O160",
+			"wzy_127_AB812066_O160",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		]
+	},
+	"B1M73": {
+		"cluster-genes": [
+			"STEC-B1M73-gene_1",
+			"STEC-B1M73-gene_2"
+		],
+		"O21:H21": [
+			"wzx_28_EU694098_O21",
+			"wzy_14_EU694098_O21",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M74": {
+		"cluster-genes": [
+			"STEC-B1M74-gene_1",
+			"STEC-B1M74-gene_2",
+			"STEC-B1M74-gene_3"
+		],
+		"O117:H4": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"B1M75": {
+		"cluster-genes": [
+			"STEC-B1M75-gene_1",
+			"STEC-B1M75-gene_2"
+		],
+		"H21": [
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M76": {
+		"cluster-genes": [
+			"STEC-B1M76-gene_1",
+			"STEC-B1M76-gene_2"
+		],
+		"O104:H21": [
+			"wzx_102_AF361371_O104",
+			"wzx_103_KB021482_O104",
+			"wzx_104_CP003301_O104",
+			"wzx_105_AFPS01000083_O104",
+			"wzy_84_AF361371_O104",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M77": {
+		"cluster-genes": [
+			"STEC-B1M77-gene_1",
+			"STEC-B1M77-gene_2"
+		],
+		"H25": [
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"B1M78": {
+		"cluster-genes": [
+			"STEC-B1M78-gene_1",
+			"STEC-B1M78-gene_2"
+		],
+		"O61:H16": [
+			"wzx_66_GU220362_O61",
+			"wzy_55_GU220362_O61",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		]
+	},
+	"B1M79": {
+		"cluster-genes": [
+			"STEC-B1M79-gene_1",
+			"STEC-B1M79-gene_2"
+		],
+		"O112ab:H21": [
+			"wzx_113_EU296413_O112ab",
+			"wzy_90_EU296413_O112ab",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M8": {
+		"cluster-genes": [
+			"STEC-B1M8-gene"
+		],
+		"O174:H8": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O75:H8": [
+			"wzx_79_GU299795_O75",
+			"wzy_65_GU299795_O75",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O117:H8": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M80": {
+		"cluster-genes": [
+			"STEC-B1M80-gene_1",
+			"STEC-B1M80-gene_2",
+			"STEC-B1M80-gene_3",
+			"STEC-B1M80-gene_4"
+		],
+		"O112ab:H2": [
+			"wzx_113_EU296413_O112ab",
+			"wzy_90_EU296413_O112ab",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M81": {
+		"cluster-genes": [
+			"STEC-B1M81-gene_1",
+			"STEC-B1M81-gene_2"
+		],
+		"O4:H2": [
+			"wzx_7_AY568960_O4",
+			"wzy_163_AY568960_O4",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M82": {
+		"cluster-genes": [
+			"STEC-B1M82-gene_1",
+			"STEC-B1M82-gene_2",
+			"STEC-B1M82-gene_3",
+			"STEC-B1M82-gene_4"
+		],
+		"O174:H2": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M83": {
+		"cluster-genes": [
+			"STEC-B1M83-gene_1",
+			"STEC-B1M83-gene_2",
+			"STEC-B1M83-gene_3"
+		],
+		"O174:H2": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M84": {
+		"cluster-genes": [
+			"STEC-B1M84-gene_1",
+			"STEC-B1M84-gene_2",
+			"STEC-B1M84-gene_3"
+		],
+		"H21": [
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"B1M85": {
+		"cluster-genes": [
+			"STEC-B1M85-gene_1",
+			"STEC-B1M85-gene_2",
+			"STEC-B1M85-gene_3",
+			"STEC-B1M85-gene_4",
+			"STEC-B1M85-gene_5"
+		],
+		"O43:H2": [
+			"wzx_50_AB811619_O43",
+			"wzy_44_AB811619_O43",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M86": {
+		"cluster-genes": [
+			"STEC-B1M86-gene_1",
+			"STEC-B1M86-gene_2",
+			"STEC-B1M86-gene_3"
+		],
+		"H19": [
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M87": {
+		"cluster-genes": [
+			"STEC-B1M87-gene_1",
+			"STEC-B1M87-gene_2"
+		],
+		"O110:H28": [
+			"wzx_112_AB812049_O110",
+			"wzy_89_AB812049_O110",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"B1M88": {
+		"cluster-genes": [
+			"STEC-B1M88-gene_1",
+			"STEC-B1M88-gene_2"
+		],
+		"O174:H28": [
+			"wzx_178_DQ008592_O174",
+			"wzy_140_DQ008592_O174",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"B1M89": {
+		"cluster-genes": [
+			"STEC-B1M89-gene_1",
+			"STEC-B1M89-gene_2",
+			"STEC-B1M89-gene_3"
+		],
+		"H2": [
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"B1M9": {
+		"cluster-genes": [
+			"STEC-B1M9-gene_1",
+			"STEC-B1M9-gene_2",
+			"STEC-B1M9-gene_3"
+		],
+		"O152:H8": [
+			"wzx_158_EU294170_O152",
+			"wzy_120_EU294170_O152",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"B1M90": {
+		"cluster-genes": [
+			"STEC-B1M90-gene_1",
+			"STEC-B1M90-gene_2"
+		],
+		"O185:H7": [
+			"wzx_188_AB812081_O185",
+			"wzy_148_AB812081_O185",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M91": {
+		"cluster-genes": [
+			"STEC-B1M91-gene_1",
+			"STEC-B1M91-gene_2"
+		],
+		"O8:H7": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M92": {
+		"cluster-genes": [
+			"STEC-B1M92-gene_1",
+			"STEC-B1M92-gene_2",
+			"STEC-B1M92-gene_3"
+		],
+		"O9:H7": [
+			"wzm_2_AB010294_O9",
+			"wzm_8_D43637_O9",
+			"wzt_2_AB010294_O9",
+			"wzt_7_D43637_O9",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M93": {
+		"cluster-genes": [
+			"STEC-B1M93-gene_1",
+			"STEC-B1M93-gene_2",
+			"STEC-B1M93-gene_3"
+		],
+		"O8:H7": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M94": {
+		"cluster-genes": [
+			"STEC-B1M94-gene_1",
+			"STEC-B1M94-gene_2",
+			"STEC-B1M94-gene_3",
+			"STEC-B1M94-gene_4",
+			"STEC-B1M94-gene_5"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		],
+		"O159:H12": [
+			"wzx_164_EU294176_O159",
+			"wzy_126_EU294176_O159",
+			"fliC_83_AIFX01000055_H12",
+			"fliC_275_AY337471_H12",
+			"fliC_278_AY337474_H12",
+			"fliC_77_AB028475_H12"
+		],
+		"O36:H5": [
+			"wzx_43_AB811613_O36",
+			"wzy_29_AB811613_O36",
+			"fliC_7777777_AY249990_H5",
+			"fliC_273_AY337469_H5"
+		],
+		"O134:H19": [
+			"wzx_212_AB812058_O134",
+			"wzy_221_AB812058_O134",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M95": {
+		"cluster-genes": [
+			"STEC-B1M95-gene_1",
+			"STEC-B1M95-gene_2"
+		],
+		"O8:H28": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"B1M96": {
+		"cluster-genes": [
+			"STEC-B1M96-gene_1",
+			"STEC-B1M96-gene_2"
+		],
+		"H19": [
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"B1M97": {
+		"cluster-genes": [
+			"STEC-B1M97-gene_1",
+			"STEC-B1M97-gene_2"
+		],
+		"O21:H21": [
+			"wzx_28_EU694098_O21",
+			"wzy_14_EU694098_O21",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O88:H25": [
+			"wzx_94_AB812037_O88",
+			"wzy_77_AB812037_O88",
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"B1M98": {
+		"cluster-genes": [
+			"STEC-B1M98-gene_1",
+			"STEC-B1M98-gene_2"
+		],
+		"O104:H7": [
+			"wzx_102_AF361371_O104",
+			"wzx_103_KB021482_O104",
+			"wzx_104_CP003301_O104",
+			"wzx_105_AFPS01000083_O104",
+			"wzy_84_AF361371_O104",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B1M99": {
+		"cluster-genes": [
+			"STEC-B1M99-gene_1",
+			"STEC-B1M99-gene_2"
+		],
+		"O121:H7": [
+			"wzx_191_JN859209_O121",
+			"wzy_209_JN859209_O121",
+			"wzy_210_JN859212_O121",
+			"wzy_211_AY208937_O121",
+			"wzy_213_JN859216_O121",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B2M1": {
+		"cluster-genes": [
+			"STEC-B2M1-gene_1",
+			"STEC-B2M1-gene_2"
+		],
+		"H4": [
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"B2M10": {
+		"cluster-genes": [
+			"STEC-B2M10-gene_1",
+			"STEC-B2M10-gene_2"
+		],
+		"O16:H6": [
+			"wzx_23_AB811601_O16",
+			"wzy_5_AB811601_O16",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		]
+	},
+	"B2M11": {
+		"cluster-genes": [
+			"STEC-B2M11-gene"
+		],
+		"O109:H5": [
+			"wzx_111_HM485572_O109",
+			"wzy_88_HM485572_O109",
+			"fliC_7777777_AY249990_H5",
+			"fliC_273_AY337469_H5"
+		]
+	},
+	"B2M12": {
+		"cluster-genes": [
+			"STEC-B2M12-gene"
+		],
+		"O18ac:H7": [
+			"wzx_25_GU299793_O18ac",
+			"wzy_219_AB811603_O18ac",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		],
+		"O18ac:H21/H7": [
+			"wzx_25_GU299793_O18ac",
+			"wzy_219_AB811603_O18ac",
+			"fliC_84_AIHL01000060_H21",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"B2M13": {
+		"cluster-genes": [
+			"STEC-B2M13-gene_1",
+			"STEC-B2M13-gene_2"
+		],
+		"O50/O2:H6": [
+			"wzx_57_EU549863-AB811624_O50",
+			"wzy_218_AB811624_O50",
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		],
+		"O2:H6": [
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		]
+	},
+	"B2M14": {
+		"cluster-genes": [
+			"STEC-B2M14-gene_1",
+			"STEC-B2M14-gene_2",
+			"STEC-B2M14-gene_3"
+		],
+		"O50/O2:H6": [
+			"wzx_57_EU549863-AB811624_O50",
+			"wzy_218_AB811624_O50",
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		]
+	},
+	"B2M2": {
+		"cluster-genes": [
+			"STEC-B2M2-gene_1",
+			"STEC-B2M2-gene_2"
+		],
+		"O177:H45": [
+			"wzx_181_DQ008593_O177",
+			"wzy_143_DQ008593_O177",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"B2M3": {
+		"cluster-genes": [
+			"STEC-B2M3-gene_1",
+			"STEC-B2M3-gene_2"
+		],
+		"O25:H4": [
+			"wzx_32_GU014554_O25",
+			"wzy_19_GU014554_O25",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"B2M4": {
+		"cluster-genes": [
+			"STEC-B2M4-gene"
+		],
+		"H5": [
+			"fliC_7777777_AY249990_H5",
+			"fliC_273_AY337469_H5"
+		]
+	},
+	"B2M5": {
+		"cluster-genes": [
+			"STEC-B2M5-gene"
+		],
+		"O63:H6": [
+			"wzx_68_EU549862_O63",
+			"wzx_69_FJ539195_O63",
+			"wzy_177_EU549862_O63",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		]
+	},
+	"B2M6": {
+		"cluster-genes": [
+			"STEC-B2M6-gene_1",
+			"STEC-B2M6-gene_2"
+		],
+		"O156:H1": [
+			"wzx_162_AB812065_O156",
+			"wzy_124_AB812065_O156",
+			"fliC_303_L07387_H1",
+			"fliC_104_AB028471_H1"
+		],
+		"O33:H14": [
+			"wzx_40_AB811611_O33",
+			"wzy_26_AB811611_O33",
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"B2M7": {
+		"cluster-genes": [
+			"STEC-B2M7-gene"
+		],
+		"O134:H31": [
+			"wzx_212_AB812058_O134",
+			"wzy_221_AB812058_O134",
+			"fliC_314_CP000247_H31",
+			"fliC_313_AY250013_H31"
+		],
+		"O134/O46:H31": [
+			"wzx_212_AB812058_O134",
+			"wzy_221_AB812058_O134",
+			"wzx_54_AB811621_O46",
+			"wzy_45_AB811621_O46",
+			"fliC_314_CP000247_H31",
+			"fliC_313_AY250013_H31"
+		]
+	},
+	"B2M8": {
+		"cluster-genes": [
+			"STEC-B2M8-gene_1",
+			"STEC-B2M8-gene_2"
+		],
+		"O110:H31": [
+			"wzx_112_AB812049_O110",
+			"wzy_89_AB812049_O110",
+			"fliC_314_CP000247_H31",
+			"fliC_313_AY250013_H31"
+		]
+	},
+	"B2M9": {
+		"cluster-genes": [
+			"STEC-B2M9-gene_1",
+			"STEC-B2M9-gene_2"
+		],
+		"O54:H45": [
+			"wzx_59_AB812085_O54",
+			"wzy_51_AB812085_O54",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"C1": {
+		"cluster-genes": [
+			"STEC-C1-gene_1",
+			"STEC-C1-gene_2",
+			"STEC-C1-gene_3",
+			"STEC-C1-gene_4"
+		],
+		"O82": [
+			"wzx_85_AB812034_O82",
+			"wzy_71_AB812034_O82"
+		],
+		"O69:H11": [
+			"wzx_74_AB812028_O69",
+			"wzy_60_AB812028_O69",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O103:H8": [
+			"wzx_194_NC:013353_O103",
+			"wzx_195_AB704860_O103",
+			"wzx_209_EF027106_O103",
+			"wzy_202_EF027120_O103",
+			"wzy_203_EF027119_O103",
+			"wzy_204_EF027116_O103",
+			"wzy_205_AP010958_O103",
+			"wzy_206_EF027115_O103",
+			"wzy_207_EF027106_O103",
+			"wzy_208_EF027117_O103",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O71:H11": [
+			"wzx_76_GU445927_O71",
+			"wzy_63_GU445927_O71",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O71:H8": [
+			"wzx_76_GU445927_O71",
+			"wzy_63_GU445927_O71",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O123:H11": [
+			"wzx_126_DQ676933_O123",
+			"wzx_127_DQ676934_O123",
+			"wzx_225_AB972419_O123",
+			"wzy_99_DQ676934-AB812082_O123/O186",
+			"wzy_416_AB972419_O123",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O117:H8": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O177:H11": [
+			"wzx_181_DQ008593_O177",
+			"wzy_143_DQ008593_O177",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O111:H8": [
+			"wzx_206_JN887675_O111",
+			"wzx_207_AP010960_O111",
+			"wzy_62_JN887675_O111",
+			"wzy_217_NC:013364_O111",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O26:H11": [
+			"wzx_208_AF529080_O26",
+			"wzy_192_AF529080_O26",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O111:H11": [
+			"wzx_206_JN887675_O111",
+			"wzx_207_AP010960_O111",
+			"wzy_62_JN887675_O111",
+			"wzy_217_NC:013364_O111",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O70:H11": [
+			"wzx_75_FN995094_O70",
+			"wzy_61_FN995094_O70",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O118/O151:H8": [
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_96_HM204927_O118",
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_189_HM204926_O151",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O34:H9": [
+			"wzx_41_AB811612_O34",
+			"wzy_27_AB811612_O34",
+			"fliC_307_AY249994_H9"
+		],
+		"O103:H11": [
+			"wzx_194_NC:013353_O103",
+			"wzx_195_AB704860_O103",
+			"wzx_209_EF027106_O103",
+			"wzy_202_EF027120_O103",
+			"wzy_203_EF027119_O103",
+			"wzy_204_EF027116_O103",
+			"wzy_205_AP010958_O103",
+			"wzy_206_EF027115_O103",
+			"wzy_207_EF027106_O103",
+			"wzy_208_EF027117_O103",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O118/O151:H16": [
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_96_HM204927_O118",
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_189_HM204926_O151",
+			"fliC_279_AY337475_H16",
+			"fliC_280_AY337476_H16",
+			"fliC_92_JH954529_H16",
+			"fliC_281_AY337477_H16",
+			"fliC_93_JH953794_H16",
+			"fliC_300_AB128919_H16"
+		],
+		"O26:H8": [
+			"wzx_208_AF529080_O26",
+			"wzy_192_AF529080_O26",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		]
+	},
+	"C10": {
+		"cluster-genes": [
+			"STEC-C10-gene_1",
+			"STEC-C10-gene_2"
+		],
+		"O128ab:H2": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O21:H2": [
+			"wzx_28_EU694098_O21",
+			"wzy_14_EU694098_O21",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"C11": {
+		"cluster-genes": [
+			"STEC-C11-gene"
+		],
+		"O117:H7": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"C12": {
+		"cluster-genes": [
+			"STEC-C12-gene_1",
+			"STEC-C12-gene_2"
+		],
+		"O76:H19": [
+			"wzx_80_AB812031_O76",
+			"wzy_66_AB812031_O76",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"C13": {
+		"cluster-genes": [
+			"STEC-C13-gene_1",
+			"STEC-C13-gene_2",
+			"STEC-C13-gene_3",
+			"STEC-C13-gene_4"
+		],
+		"O113:H21": [
+			"wzx_115_AF172324_O113",
+			"wzy_92_AF172324_O113",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"C14": {
+		"cluster-genes": [
+			"STEC-C14-gene_1",
+			"STEC-C14-gene_2",
+			"STEC-C14-gene_3",
+			"STEC-C14-gene_4"
+		],
+		"O113:H4": [
+			"wzx_115_AF172324_O113",
+			"wzy_92_AF172324_O113",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		],
+		"O117:H4": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"C15": {
+		"cluster-genes": [
+			"STEC-C15-gene_1",
+			"STEC-C15-gene_2"
+		],
+		"O104:H4": [
+			"wzx_102_AF361371_O104",
+			"wzx_103_KB021482_O104",
+			"wzx_104_CP003301_O104",
+			"wzx_105_AFPS01000083_O104",
+			"wzy_84_AF361371_O104",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"C16": {
+		"cluster-genes": [
+			"STEC-C16-gene_1",
+			"STEC-C16-gene_2",
+			"STEC-C16-gene_3",
+			"STEC-C16-gene_4"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"C17": {
+		"cluster-genes": [
+			"STEC-C17-gene_1",
+			"STEC-C17-gene_2",
+			"STEC-C17-gene_3"
+		],
+		"O130:H11": [
+			"wzx_136_EU296421_O130",
+			"wzy_104_EU296421_O130",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		],
+		"O3:H21": [
+			"wzx_5_EU694097_O3",
+			"wzy_162_EU694097_O3",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O93:H46": [
+			"wzx_97_AB812041_O93",
+			"wzy_80_AB812041_O93",
+			"fliC_96_AY250024_H46",
+			"fliC_3_AB028478_H46"
+		],
+		"O179:H8": [
+			"wzx_182_AB812076_O179",
+			"wzy_144_AB812076_O179",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O149:H8": [
+			"wzx_155_DQ091854_O149",
+			"wzy_118_DQ868764_O149",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O171:H8": [
+			"wzx_175_AB812071_O171",
+			"wzy_137_AB812071_O171",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O4:H11": [
+			"wzx_7_AY568960_O4",
+			"wzy_163_AY568960_O4",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		]
+	},
+	"C18": {
+		"cluster-genes": [
+			"STEC-C18-gene_1",
+			"STEC-C18-gene_2",
+			"STEC-C18-gene_3"
+		],
+		"O55:H7": [
+			"wzx_60_AB353132_O55",
+			"wzx_61_AB353133_O55",
+			"wzx_62_JH958641_O55",
+			"wzy_158_CP003109_O55",
+			"wzy_159_AB353132_O55",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"C2": {
+		"cluster-genes": [
+			"STEC-C2-gene_1",
+			"STEC-C2-gene_2",
+			"STEC-C2-gene_3",
+			"STEC-C2-gene_4"
+		],
+		"O103:H2": [
+			"wzx_194_NC:013353_O103",
+			"wzx_195_AB704860_O103",
+			"wzx_209_EF027106_O103",
+			"wzy_202_EF027120_O103",
+			"wzy_203_EF027119_O103",
+			"wzy_204_EF027116_O103",
+			"wzy_205_AP010958_O103",
+			"wzy_206_EF027115_O103",
+			"wzy_207_EF027106_O103",
+			"wzy_208_EF027117_O103",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O118/O151:H2": [
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_96_HM204927_O118",
+			"wzx_122_AB972418-AB972424_O118/O151",
+			"wzy_189_HM204926_O151",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O4:H2": [
+			"wzx_7_AY568960_O4",
+			"wzy_163_AY568960_O4",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O123:H2": [
+			"wzx_126_DQ676933_O123",
+			"wzx_127_DQ676934_O123",
+			"wzx_225_AB972419_O123",
+			"wzy_99_DQ676934-AB812082_O123/O186",
+			"wzy_416_AB972419_O123",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O111:H2": [
+			"wzx_206_JN887675_O111",
+			"wzx_207_AP010960_O111",
+			"wzy_62_JN887675_O111",
+			"wzy_217_NC:013364_O111",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O71:H2": [
+			"wzx_76_GU445927_O71",
+			"wzy_63_GU445927_O71",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O15:H2": [
+			"wzx_22_AY647261_O15",
+			"wzy_4_AY647261_O15",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O109:H2": [
+			"wzx_111_HM485572_O109",
+			"wzy_88_HM485572_O109",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O115:H2": [
+			"wzx_117_GU068041_O115",
+			"wzy_94_GU068041_O115",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O45:H2": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"C3": {
+		"cluster-genes": [
+			"STEC-C3-gene_1",
+			"STEC-C3-gene_2",
+			"STEC-C3-gene_3",
+			"STEC-C3-gene_4"
+		],
+		"O84:H2": [
+			"wzx_88_AB812036_O84",
+			"wzy_73_AB812036_O84",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O156:H25": [
+			"wzx_162_AB812065_O156",
+			"wzy_124_AB812065_O156",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O103:H25": [
+			"wzx_194_NC:013353_O103",
+			"wzx_195_AB704860_O103",
+			"wzx_209_EF027106_O103",
+			"wzy_202_EF027120_O103",
+			"wzy_203_EF027119_O103",
+			"wzy_204_EF027116_O103",
+			"wzy_205_AP010958_O103",
+			"wzy_206_EF027115_O103",
+			"wzy_207_EF027106_O103",
+			"wzy_208_EF027117_O103",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O74:H25": [
+			"wzx_78_AB812030_O74",
+			"wzy_64_AB812030_O74",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O84:H25/H28": [
+			"wzx_88_AB812036_O84",
+			"wzy_73_AB812036_O84",
+			"fliC_311_AGSG01000116_H25",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		],
+		"O98:H25": [
+			"wzx_99_DQ180602_O98",
+			"wzy_82_DQ180602_O98",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O182:H25": [
+			"wzx_185_AB812079_O182",
+			"wzy_146_AB812079_O182",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O150:H2": [
+			"wzx_156_EU294168_O150",
+			"wzy_119_EU294168_O150",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O182:H25/H49": [
+			"wzx_185_AB812079_O182",
+			"wzy_146_AB812079_O182",
+			"fliC_311_AGSG01000116_H25",
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		],
+		"O108:H25": [
+			"wzx_110_AB812048_O108",
+			"wzy_87_AB812048_O108",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O108:H2": [
+			"wzx_110_AB812048_O108",
+			"wzy_87_AB812048_O108",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O150/O177:H2": [
+			"wzx_156_EU294168_O150",
+			"wzy_119_EU294168_O150",
+			"wzx_181_DQ008593_O177",
+			"wzy_143_DQ008593_O177",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		],
+		"O98:H21": [
+			"wzx_99_DQ180602_O98",
+			"wzy_82_DQ180602_O98",
+			"fliC_84_AIHL01000060_H21"
+		],
+		"O172:H25": [
+			"wzx_176_AY545992_O172",
+			"wzy_138_AY545992_O172",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O45:H2": [
+			"wzx_51_JN859200_O45",
+			"wzx_52_JN859208_O45",
+			"wzx_53_CU463050_O45",
+			"wzy_152_AIGX01000028_O45",
+			"wzy_153_CU463050_O45",
+			"wzy_154_JN859208_O45",
+			"wzy_156_JN859205_O45",
+			"wzy_157_AY771223_O45",
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"C4": {
+		"cluster-genes": [
+			"STEC-C4-gene_1",
+			"STEC-C4-gene_2",
+			"STEC-C4-gene_3"
+		],
+		"O5:H9": [
+			"wzx_8_AB811596_O5",
+			"wzy_164_AB811596_O5",
+			"fliC_307_AY249994_H9"
+		],
+		"O10:H25": [
+			"wzx_18_AB811599_O10",
+			"wzy_173_AB811599_O10",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O165:H25": [
+			"wzx_169_GU068045_O165",
+			"wzy_130_GU068045_O165",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O177:H25": [
+			"wzx_181_DQ008593_O177",
+			"wzy_143_DQ008593_O177",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O145:H25": [
+			"wzx_203_CP006262_O145",
+			"wzx_204_JN850039_O145",
+			"wzy_212_CP006262_O145",
+			"wzy_214_JN850039_O145",
+			"wzy_215_AY863412_O145",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O172:H25": [
+			"wzx_176_AY545992_O172",
+			"wzy_138_AY545992_O172",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O98:H25": [
+			"wzx_99_DQ180602_O98",
+			"wzy_82_DQ180602_O98",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O136:H25": [
+			"wzx_140_AB812059_O136",
+			"wzy_108_AB812059_O136",
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"C5": {
+		"cluster-genes": [
+			"STEC-C5-gene_1",
+			"STEC-C5-gene_2",
+			"STEC-C5-gene_3",
+			"STEC-C5-gene_4"
+		],
+		"O121:H19": [
+			"wzx_191_JN859209_O121",
+			"wzy_209_JN859209_O121",
+			"wzy_210_JN859212_O121",
+			"wzy_211_AY208937_O121",
+			"wzy_213_JN859216_O121",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"C6": {
+		"cluster-genes": [
+			"STEC-C6-gene_1",
+			"STEC-C6-gene_2",
+			"STEC-C6-gene_3"
+		],
+		"O145:H28": [
+			"wzx_203_CP006262_O145",
+			"wzx_204_JN850039_O145",
+			"wzy_212_CP006262_O145",
+			"wzy_214_JN850039_O145",
+			"wzy_215_AY863412_O145",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		],
+		"O117:H28": [
+			"wzx_120_EU694096_O117",
+			"wzy_180_EU694096_O117",
+			"wzy_181_DQ465247_O117",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"C7": {
+		"cluster-genes": [
+			"STEC-C7-gene_1",
+			"STEC-C7-gene_2",
+			"STEC-C7-gene_3",
+			"STEC-C7-gene_4"
+		],
+		"O91:H14": [
+			"wzx_96_AY035396_O91",
+			"wzy_79_AY035396_O91",
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"C8": {
+		"cluster-genes": [
+			"STEC-C8-gene_1",
+			"STEC-C8-gene_2",
+			"STEC-C8-gene_3",
+			"STEC-C8-gene_4",
+			"STEC-C8-gene_5"
+		],
+		"O146:H21": [
+			"wzx_150_DQ465249_O146",
+			"wzy_116_DQ465249_O146",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"C9": {
+		"cluster-genes": [
+			"STEC-C9-gene_1",
+			"STEC-C9-gene_2"
+		],
+		"O146:H21": [
+			"wzx_150_DQ465249_O146",
+			"wzy_116_DQ465249_O146",
+			"fliC_84_AIHL01000060_H21"
+		]
+	},
+	"CM1": {
+		"cluster-genes": [
+			"STEC-CM1-gene_1",
+			"STEC-CM1-gene_2",
+			"STEC-CM1-gene_3",
+			"STEC-CM1-gene_4",
+			"STEC-CM1-gene_5",
+			"STEC-CM1-gene_6"
+		],
+		"O8:H9": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_307_AY249994_H9"
+		]
+	},
+	"CM2": {
+		"cluster-genes": [
+			"STEC-CM2-gene_1",
+			"STEC-CM2-gene_2"
+		],
+		"O104:H10": [
+			"wzx_102_AF361371_O104",
+			"wzx_103_KB021482_O104",
+			"wzx_104_CP003301_O104",
+			"wzx_105_AFPS01000083_O104",
+			"wzy_84_AF361371_O104",
+			"fliC_284_AY337482_H10",
+			"fliC_33333_AY249995_H10"
+		],
+		"O116:H11": [
+			"wzx_119_AB812051_O116",
+			"wzy_95_AB812051_O116",
+			"fliC_269_AY337465_H11",
+			"fliC_276_AY337472_H11"
+		]
+	},
+	"CM3": {
+		"cluster-genes": [
+			"STEC-CM3-gene_1",
+			"STEC-CM3-gene_2"
+		],
+		"O8:H9": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_307_AY249994_H9"
+		],
+		"O78:H4": [
+			"wzx_81_FJ940775_O78",
+			"wzy_67_FJ940775_O78",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		],
+		"O128ab:H4": [
+			"wzx_134_AY217096_O128ab",
+			"wzy_103_AY217096_O128ab",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		],
+		"O114:H4": [
+			"wzx_116_AY573377_O114",
+			"wzy_93_AY573377_O114",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"CM4": {
+		"cluster-genes": [
+			"STEC-CM4-gene_1",
+			"STEC-CM4-gene_2"
+		],
+		"O102:H6": [
+			"wzx_224_AB812047_O102",
+			"wzy_178_AB812047_O102",
+			"wzy_179_JX087966_O102",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		]
+	},
+	"CM5": {
+		"cluster-genes": [
+			"STEC-CM5-gene_1"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"CM6": {
+		"cluster-genes": [
+			"STEC-CM6-gene",
+			"STEC-CM6-gene_2"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"CM7": {
+		"cluster-genes": [
+			"STEC-CM7-gene_1",
+			"STEC-CM7-gene_2"
+		],
+		"O8:H19": [
+			"wzx_17_AF013583_O8",
+			"wzy_172_AF013583_O8",
+			"wzm_1_AB010150_O8",
+			"wzm_7_AB811598_O8",
+			"wzt_1_AB010150_O8",
+			"wzt_6_AB811598_O8",
+			"fliC_282_AY337479_H19",
+			"fliC_102_AY250002_H19"
+		]
+	},
+	"DM1": {
+		"cluster-genes": [
+			"STEC-DM1-gene"
+		],
+		"O13:H20": [
+			"wzx_21_EU296422_O13/O129",
+			"wzx_227_AB972421_O13/O129",
+			"wzy_3_EU296422-EU296423_O13/O135",
+			"wzy_417_AB972421_O13/O129/O135",
+			"fliC_309_AY250003_H20"
+		]
+	},
+	"DM10": {
+		"cluster-genes": [
+			"STEC-DM10-gene_1",
+			"STEC-DM10-gene_2"
+		],
+		"O17/O77:H18": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"DM11": {
+		"cluster-genes": [
+			"STEC-DM11-gene_1",
+			"STEC-DM11-gene_2"
+		],
+		"O17/O77:H18": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"DM12": {
+		"cluster-genes": [
+			"STEC-DM12-gene_1",
+			"STEC-DM12-gene_2"
+		],
+		"O17/O77:H18": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"DM13": {
+		"cluster-genes": [
+			"STEC-DM13-gene_1",
+			"STEC-DM13-gene_2"
+		],
+		"O15:H18": [
+			"wzx_22_AY647261_O15",
+			"wzy_4_AY647261_O15",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"DM14": {
+		"cluster-genes": [
+			"STEC-DM14-gene_1",
+			"STEC-DM14-gene_2"
+		],
+		"O17/O77:H18": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"DM15": {
+		"cluster-genes": [
+			"STEC-DM15-gene"
+		],
+		"O36:H1": [
+			"wzx_43_AB811613_O36",
+			"wzy_29_AB811613_O36",
+			"fliC_303_L07387_H1",
+			"fliC_104_AB028471_H1"
+		],
+		"O36:H28": [
+			"wzx_43_AB811613_O36",
+			"wzy_29_AB811613_O36",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"DM16": {
+		"cluster-genes": [
+			"STEC-DM16-gene"
+		],
+		"H49": [
+			"fliC_103_AY250026_H49",
+			"fliC_5_AB028480_H49"
+		],
+		"O158:H23": [
+			"wzx_163_GU068044_O158",
+			"wzy_125_GU068044_O158",
+			"fliC_81_AB028476_H23"
+		]
+	},
+	"DM17": {
+		"cluster-genes": [
+			"STEC-DM17-gene"
+		],
+		"O162:H6": [
+			"wzm_13_AB812067_O162",
+			"wzt_13_AB812067_O162",
+			"fliC_1_AY249991_H6",
+			"fliC_2_AIEY01000041_H6",
+			"fliC_82_AIFA01000047_H6"
+		]
+	},
+	"DM18": {
+		"cluster-genes": [
+			"STEC-DM18-gene"
+		],
+		"O138:H14": [
+			"wzx_142_DQ109551_O138",
+			"wzy_109_DQ109551_O138",
+			"fliC_89_AY249998_H14"
+		]
+	},
+	"DM19": {
+		"cluster-genes": [
+			"STEC-DM19-gene"
+		],
+		"H26": [
+			"fliC_26_AY250008_H26",
+			"fliC_285_AY337483_H26"
+		]
+	},
+	"DM2": {
+		"cluster-genes": [
+			"STEC-DM2-gene"
+		],
+		"H18/H7": [
+			"fliC_308_AY250001_H18",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		],
+		"O157:H18/H7": [
+			"wzx_196_AB602252_O157",
+			"wzx_197_AB602249_O157",
+			"wzx_198_AB602253_O157",
+			"wzx_199_AKMA01000036_O157",
+			"wzx_200_AKLI01000048_O157",
+			"wzx_201_JH959508_O157",
+			"wzx_202_AB602250_O157",
+			"wzy_193_JH964427_O157",
+			"wzy_194_AB602249_O157",
+			"wzy_195_JH970567_O157",
+			"wzy_196_AB602253_O157",
+			"wzy_197_AB602250_O157",
+			"wzy_198_AF061251_O157",
+			"wzy_201_JH953200_O157",
+			"fliC_308_AY250001_H18",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"DM20": {
+		"cluster-genes": [
+			"STEC-DM20-gene_1",
+			"STEC-DM20-gene_2"
+		],
+		"O139:H1": [
+			"wzx_143_DQ109552_O139",
+			"wzy_110_DQ109552_O139",
+			"fliC_303_L07387_H1",
+			"fliC_104_AB028471_H1"
+		]
+	},
+	"DM21": {
+		"cluster-genes": [
+			"STEC-DM21-gene_1",
+			"STEC-DM21-gene_2"
+		],
+		"O139:H1": [
+			"wzx_143_DQ109552_O139",
+			"wzy_110_DQ109552_O139",
+			"fliC_303_L07387_H1",
+			"fliC_104_AB028471_H1"
+		]
+	},
+	"DM22": {
+		"cluster-genes": [
+			"STEC-DM22-gene"
+		],
+		"H34": [
+			"fliC_317_AF345850_H34",
+			"fliC_318_AY250016_H34"
+		]
+	},
+	"DM3": {
+		"cluster-genes": [
+			"STEC-DM3-gene_1",
+			"STEC-DM3-gene_2"
+		],
+		"O11:H15": [
+			"wzx_19_HQ388393_O11",
+			"wzy_1_HQ388393_O11",
+			"fliC_306_AY249999_H15"
+		],
+		"O157/O21:H15": [
+			"wzx_196_AB602252_O157",
+			"wzx_197_AB602249_O157",
+			"wzx_198_AB602253_O157",
+			"wzx_199_AKMA01000036_O157",
+			"wzx_200_AKLI01000048_O157",
+			"wzx_201_JH959508_O157",
+			"wzx_202_AB602250_O157",
+			"wzy_193_JH964427_O157",
+			"wzy_194_AB602249_O157",
+			"wzy_195_JH970567_O157",
+			"wzy_196_AB602253_O157",
+			"wzy_197_AB602250_O157",
+			"wzy_198_AF061251_O157",
+			"wzy_201_JH953200_O157",
+			"wzx_28_EU694098_O21",
+			"wzy_14_EU694098_O21",
+			"fliC_306_AY249999_H15"
+		]
+	},
+	"DM4": {
+		"cluster-genes": [
+			"STEC-DM4-gene"
+		],
+		"O166:H15": [
+			"wzx_170_GU299794_O166",
+			"wzy_131_GU299794_O166",
+			"fliC_306_AY249999_H15"
+		]
+	},
+	"DM5": {
+		"cluster-genes": [
+			"STEC-DM5-gene_1",
+			"STEC-DM5-gene_2",
+			"STEC-DM5-gene_3"
+		],
+		"O166:H15": [
+			"wzx_170_GU299794_O166",
+			"wzy_131_GU299794_O166",
+			"fliC_306_AY249999_H15"
+		]
+	},
+	"DM6": {
+		"cluster-genes": [
+			"STEC-DM6-gene_1",
+			"STEC-DM6-gene_2"
+		],
+		"O23:H15": [
+			"wzx_31_AB811607_O23",
+			"wzy_17_AB811607_O23",
+			"fliC_306_AY249999_H15"
+		]
+	},
+	"DM7": {
+		"cluster-genes": [
+			"STEC-DM7-gene_1",
+			"STEC-DM7-gene_2"
+		],
+		"H2": [
+			"fliC_85_AIHA01000023_H2",
+			"fliC_87_AF543692_H2"
+		]
+	},
+	"DM8": {
+		"cluster-genes": [
+			"STEC-DM8-gene"
+		],
+		"O17/O77:H41": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_13_AY250020_H41"
+		]
+	},
+	"DM9": {
+		"cluster-genes": [
+			"STEC-DM9-gene_1",
+			"STEC-DM9-gene_2"
+		],
+		"O17/O77:H18": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"EM1": {
+		"cluster-genes": [
+			"STEC-EM1-gene"
+		],
+		"O132:H18": [
+			"wzx_138_AB812056_O132",
+			"wzy_106_AB812056_O132",
+			"fliC_308_AY250001_H18"
+		],
+		"O69/O71:H18": [
+			"wzx_74_AB812028_O69",
+			"wzy_60_AB812028_O69",
+			"wzx_76_GU445927_O71",
+			"wzy_63_GU445927_O71",
+			"fliC_308_AY250001_H18"
+		]
+	},
+	"EM10": {
+		"cluster-genes": [
+			"STEC-EM10-gene_1",
+			"STEC-EM10-gene_2"
+		],
+		"O98:H40": [
+			"wzx_99_DQ180602_O98",
+			"wzy_82_DQ180602_O98",
+			"fliC_55_AJ884568_H40"
+		]
+	},
+	"EM11": {
+		"cluster-genes": [
+			"STEC-EM11-gene_1",
+			"STEC-EM11-gene_2"
+		],
+		"O126:H27": [
+			"wzx_130_DQ465248_O126",
+			"wzx_131_GU068042_O126",
+			"wzy_182_DQ465248_O126",
+			"wzy_183_GU068042_O126",
+			"fliC_109_AM231154_H27"
+		]
+	},
+	"EM12": {
+		"cluster-genes": [
+			"STEC-EM12-gene"
+		],
+		"O53:H45": [
+			"wzx_58_EU289392_O53",
+			"wzy_50_EU289392_O53",
+			"fliC_90_AY250023_H45"
+		],
+		"O17/O77:H39": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_55555_AY250019_H39"
+		]
+	},
+	"EM13": {
+		"cluster-genes": [
+			"STEC-EM13-gene"
+		],
+		"O2:H25": [
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_311_AGSG01000116_H25"
+		],
+		"O50/O2:H25": [
+			"wzx_57_EU549863-AB811624_O50",
+			"wzy_218_AB811624_O50",
+			"wzx_221_KY115229_O2",
+			"wzx_222_KY115228_O2",
+			"wzy_48_EU549863_O2",
+			"wzy_415_EU549863_O2",
+			"wzy_412_KY115229_O2",
+			"wzy_413_KY115228_O2",
+			"fliC_311_AGSG01000116_H25"
+		]
+	},
+	"EM14": {
+		"cluster-genes": [
+			"STEC-EM14-gene_1",
+			"STEC-EM14-gene_2"
+		],
+		"O17/O77:H45": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"EM15": {
+		"cluster-genes": [
+			"STEC-EM15-gene_1",
+			"STEC-EM15-gene_2",
+			"STEC-EM15-gene_3"
+		],
+		"O17/O77:H45": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"EM16": {
+		"cluster-genes": [
+			"STEC-EM16-gene_1",
+			"STEC-EM16-gene_2"
+		],
+		"O17/O77:H45": [
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_233_AB812084-AB811620_O17/O44",
+			"wzx_24_AB812084-DQ000314_O17/O77",
+			"wzy_6_DQ000314_O77",
+			"wzy_224_AB972416_O77",
+			"fliC_90_AY250023_H45"
+		],
+		"O106/O73:H45": [
+			"wzx_108_DQ000315_O106",
+			"wzy_8_DQ000315_O106",
+			"wzx_77_DQ000313_O73",
+			"wzy_7_DQ000313_O73",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"EM17": {
+		"cluster-genes": [
+			"STEC-EM17-gene_1",
+			"STEC-EM17-gene_2"
+		],
+		"H20": [
+			"fliC_309_AY250003_H20"
+		],
+		"O13/O157:H23": [
+			"wzx_21_EU296422_O13/O129",
+			"wzx_227_AB972421_O13/O129",
+			"wzy_3_EU296422-EU296423_O13/O135",
+			"wzy_417_AB972421_O13/O129/O135",
+			"wzx_196_AB602252_O157",
+			"wzx_197_AB602249_O157",
+			"wzx_198_AB602253_O157",
+			"wzx_199_AKMA01000036_O157",
+			"wzx_200_AKLI01000048_O157",
+			"wzx_201_JH959508_O157",
+			"wzx_202_AB602250_O157",
+			"wzy_193_JH964427_O157",
+			"wzy_194_AB602249_O157",
+			"wzy_195_JH970567_O157",
+			"wzy_196_AB602253_O157",
+			"wzy_197_AB602250_O157",
+			"wzy_198_AF061251_O157",
+			"wzy_201_JH953200_O157",
+			"fliC_81_AB028476_H23"
+		]
+	},
+	"EM18": {
+		"cluster-genes": [
+			"STEC-EM18-gene_1",
+			"STEC-EM18-gene_2"
+		],
+		"O137:H41": [
+			"wzx_141_GU068043_O137",
+			"wzy_13_GU068043_O137",
+			"fliC_13_AY250020_H41"
+		]
+	},
+	"EM19": {
+		"cluster-genes": [
+			"STEC-EM19-gene"
+		],
+		"O52:H45": [
+			"wzm_4_AY528413_O52",
+			"wzt_4_AY528413_O52",
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"EM2": {
+		"cluster-genes": [
+			"STEC-EM2-gene_1",
+			"STEC-EM2-gene_2"
+		],
+		"H20": [
+			"fliC_309_AY250003_H20"
+		]
+	},
+	"EM3": {
+		"cluster-genes": [
+			"STEC-EM3-gene_1",
+			"STEC-EM3-gene_2"
+		],
+		"O80:H42": [
+			"wzx_83_AB812032_O80",
+			"wzy_69_AB812032_O80",
+			"fliC_274_AY337470_H42",
+			"fliC_1111111_AY250021_H42"
+		]
+	},
+	"EM4": {
+		"cluster-genes": [
+			"STEC-EM4-gene_1",
+			"STEC-EM4-gene_2"
+		],
+		"O27:H30": [
+			"wzx_33_GU014555_O27",
+			"wzy_20_GU014555_O27",
+			"fliC_312_AY250011_H30"
+		]
+	},
+	"EM5": {
+		"cluster-genes": [
+			"STEC-EM5-gene"
+		],
+		"H20": [
+			"fliC_309_AY250003_H20"
+		]
+	},
+	"EM6": {
+		"cluster-genes": [
+			"STEC-EM6-gene"
+		],
+		"H26": [
+			"fliC_26_AY250008_H26",
+			"fliC_285_AY337483_H26"
+		]
+	},
+	"EM7": {
+		"cluster-genes": [
+			"STEC-EM7-gene_1",
+			"STEC-EM7-gene_2"
+		],
+		"H45": [
+			"fliC_90_AY250023_H45"
+		]
+	},
+	"EM8": {
+		"cluster-genes": [
+			"STEC-EM8-gene_1",
+			"STEC-EM8-gene_2",
+			"STEC-EM8-gene_3"
+		],
+		"O176:H4": [
+			"wzx_180_AB812074_O176",
+			"wzy_142_AB812074_O176",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"EM9": {
+		"cluster-genes": [
+			"STEC-EM9-gene"
+		],
+		"O166:H28": [
+			"wzx_170_GU299794_O166",
+			"wzy_131_GU299794_O166",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"GM1": {
+		"cluster-genes": [
+			"STEC-GM1-gene"
+		],
+		"H34": [
+			"fliC_317_AF345850_H34",
+			"fliC_318_AY250016_H34"
+		],
+		"O146:H28": [
+			"wzx_150_DQ465249_O146",
+			"wzy_116_DQ465249_O146",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		],
+		"O185:H28": [
+			"wzx_188_AB812081_O185",
+			"wzy_148_AB812081_O185",
+			"fliC_105_AAJT02000052_H28",
+			"fliC_88_AY250010_H28"
+		]
+	},
+	"GM2": {
+		"cluster-genes": [
+			"STEC-GM2-gene_1",
+			"STEC-GM2-gene_2",
+			"STEC-GM2-gene_3"
+		],
+		"O143:H4": [
+			"wzx_146_EU294164_O143",
+			"wzy_114_EU294164_O143",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		],
+		"O24:H4": [
+			"wzx_30_DQ220292_O24",
+			"wzy_18_DQ220292_O24",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"GM3": {
+		"cluster-genes": [
+			"STEC-GM3-gene_1",
+			"STEC-GM3-gene_2"
+		],
+		"O183:H18": [
+			"wzx_186_AB627352_O183",
+			"wzy_232_AB627352_O183",
+			"fliC_308_AY250001_H18"
+		],
+		"O3:H8": [
+			"wzx_5_EU694097_O3",
+			"wzy_162_EU694097_O3",
+			"fliC_86_AJ865465_H8",
+			"fliC_56_AJ884569_H8"
+		],
+		"O61:H34": [
+			"wzx_66_GU220362_O61",
+			"wzy_55_GU220362_O61",
+			"fliC_317_AF345850_H34",
+			"fliC_318_AY250016_H34"
+		]
+	},
+	"GM4": {
+		"cluster-genes": [
+			"STEC-GM4-gene_1",
+			"STEC-GM4-gene_2"
+		],
+		"O119:H4": [
+			"wzx_124_GQ499368_O119",
+			"wzy_97_GQ499368_O119",
+			"fliC_52_AJ605764_H4",
+			"fliC_51_AJ536600_H4",
+			"fliC_53_AJ605765_H4"
+		]
+	},
+	"O157H7": {
+		"cluster-genes": [
+			"STEC-O157H7-gene_1",
+			"STEC-O157H7-gene_2",
+			"STEC-O157H7-gene_3",
+			"STEC-O157H7-gene_4",
+			"STEC-O157H7-gene_5",
+			"STEC-O157H7-gene_6"
+		],
+		"O157:H7": [
+			"wzx_196_AB602252_O157",
+			"wzx_197_AB602249_O157",
+			"wzx_198_AB602253_O157",
+			"wzx_199_AKMA01000036_O157",
+			"wzx_200_AKLI01000048_O157",
+			"wzx_201_JH959508_O157",
+			"wzx_202_AB602250_O157",
+			"wzy_193_JH964427_O157",
+			"wzy_194_AB602249_O157",
+			"wzy_195_JH970567_O157",
+			"wzy_196_AB602253_O157",
+			"wzy_197_AB602250_O157",
+			"wzy_198_AF061251_O157",
+			"wzy_201_JH953200_O157",
+			"fliC_22_AF228494_H7",
+			"fliC_19_AF228491_H7",
+			"fliC_20_AF228492_H7",
+			"fliC_21_AB028474_H7",
+			"fliC_25_AB334574_H7",
+			"fliC_24_AF228496_H7",
+			"fliC_23_AF228495_H7",
+			"fliC_94_AY337468_H7",
+			"fliC_95_JH694260_H7",
+			"fliC_97_KB000721_H7",
+			"fliC_98_AB334575_H7",
+			"fliC_99_KB007180_H7",
+			"fliC_100_AOES01000098_H7",
+			"fliC_15_AF228487_H7",
+			"fliC_108_KB006714_H7",
+			"fliC_101_JH946604_H7"
+		]
+	},
+	"O103H2": {
+		"cluster-genes": [
+			"STEC-O103H2-gene_1",
+			"STEC-O103H2-gene_2",
+			"STEC-O103H2-gene_3",
+			"STEC-O103H2-gene_4"
+		]
+	},
+	"O118H16": {
+		"cluster-genes": [
+			"STEC-O118H16-gene_1",
+			"STEC-O118H16-gene_2",
+			"STEC-O118H16-gene_3",
+			"STEC-O118H16-gene_4"
+		]
+	},
+	"O111H8": {
+		"cluster-genes": [
+			"STEC-O111H8-gene_1",
+			"STEC-O111H8-gene_2",
+			"STEC-O111H8-gene_3"
+		]
+	},
+	"O103H11": {
+		"cluster-genes": [
+			"STEC-O103H11-gene_1",
+			"STEC-O103H11-gene_2",
+			"STEC-O103H11-gene_3"
+		]
+	},
+	"O123H2": {
+		"cluster-genes": [
+			"STEC-O123H2-gene_1",
+			"STEC-O123H2-gene_2",
+			"STEC-O123H2-gene_3"
+		]
+	},		
+	"O26H11": {
+		"cluster-genes": [
+			"STEC-O26H11-gene_1",
+			"STEC-O26H11-gene_2",
+			"STEC-O26H11-gene_3",
+			"STEC-O26H11-gene_4",
+			"STEC-O26H11-gene_5",
+			"STEC-O26H11-gene_6"
+		]
+	},
+	"O45H2": {
+		"cluster-genes": [
+			"STEC-O45H2-gene_1",
+			"STEC-O45H2-gene_2",
+			"STEC-O45H2-gene_3",
+			"STEC-O45H2-gene_4",
+			"STEC-O45H2-gene_5"
+		]
+	},
+	"O45H2-C3": {
+		"cluster-genes": [
+			"STEC-C3O45H2-gene_1",
+			"STEC-C3O45H2-gene_2",
+			"STEC-C3O45H2-gene_3"
+		]
+	},
+	"O45H2-AM37": {
+		"cluster-genes": [
+			"STEC-AM37O45H2-gene_1",
+			"STEC-AM37O45H2-gene_2",
+			"STEC-AM37O45H2-gene_3"
+		]
+	}
+}
