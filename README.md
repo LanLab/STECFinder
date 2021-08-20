@@ -60,7 +60,8 @@ Algorithm cutoffs:
   --h_depth H_DEPTH     When using reads as input the minimum depth percentage relative to genome average for positive fliC gene call (default: 1.0)
 ```
 
-#Example:
+
+# Example:
 
 Run on a folder containing pairs of fastq files using kma for gene identification
 
@@ -72,13 +73,15 @@ Run on a folder containing genome files using kma for gene identification
 python STECfinder.py -i "/input/genomes/folder/*" --output "/output/file/name"
 ```
 
-#Output:
+
+# Output:
 ````
 Sample	        Cluster	Cluster Serotype	Serotype	Big10 serotype	O antigens	H antigens	stx type	ipaH presence	Notes
 SRR3995879	O157H7	O157:H7	                O157:H7	        -	        wzy_O157	H7	        stx2a	        -	        -
 SRR1917514	C4	O5:H9	                O5:H9	        -	        wzy_O5	        H9	        stx1a	        -	        -
 ````
-##Column descriptions:
+
+## Column descriptions:
 | Column | Description |
 | ----------- | ----------- |
 |Sample|Input strain ID (extracted from input files)|
