@@ -25,6 +25,6 @@ setup(name='stecfinder',
       packages=find_packages(),
       include_package_data=True,
       entry_points={
-          'console_scripts': ['stecfinder=stecfinder.stecfinder:main'],
+          'console_scripts': ['stecfinder=stecfinder.STECfinder:main'],
       },
       zip_safe=False)
