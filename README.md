@@ -1,5 +1,6 @@
 # STECFinder
-Clustering and Serotyping of Shigatoxin producing E. coli using genomic cluster specific markers
+Clustering and Serotyping of Shigatoxin producing E. coli using genomic cluster specific markers.
+
 This tool can identify the serotype of STEC using cluster-specific genes and O-antigen/H-antigen genes. Input is either
 illumina reads (fastq.gz) or genome assemblies (fasta).
 
