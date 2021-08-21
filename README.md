@@ -25,6 +25,10 @@ Make sure that you have the dependencies installed.
 ## Option 2: Conda installation
 `conda install -c bioconda -c conda-forge stecfinder`
 
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/stecfinder/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/stecfinder/badges/downloads.svg)](https://anaconda.org/bioconda/stecfinder)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/stecfinder/badges/version.svg)](https://anaconda.org/bioconda/stecfinder)
+
 # Usage:
 ```commandline
 usage: 
