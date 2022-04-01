@@ -98,8 +98,7 @@ def top_ranked_oantigen(genes_set):
     genes = delete_genes(remove, genes_set)
     return genes
 
-
-def blastn_cleanup(blast,args):
+def blastn_stx_cleanup(blast,args):
     blast.remove('')
     genes_set = {}
     outhits = []
@@ -111,6 +110,7 @@ def blastn_cleanup(blast,args):
         perc_identity = float(info[5])
         score = float(info[6])
         len_coverage = 100 * float(info[2]) / float(info[1])
+
         if start > end:
             save = start
             start = end
@@ -119,9 +119,12 @@ def blastn_cleanup(blast,args):
         if gene in genes_set.keys():
             genes_set[gene]['positions'].extend(list(range(start, end + 1)))
             genes_set[gene]['match'] = len(set(genes_set[gene]['positions']))
-            genes_set[gene]['len_coverage'] = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
-            if perc_identity > genes_set[gene]['pident']:
+            lcov = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
+            if perc_identity > genes_set[gene]['pident'] and len_coverage >= lcov:
                 genes_set[gene]['pident'] = perc_identity
+                genes_set[gene]['len_coverage'] = lcov
+                if gene.startswith("stx"):
+                    sl(1)
             continue
 
         if gene == "ipaH":
@@ -147,6 +150,65 @@ def blastn_cleanup(blast,args):
             genes_set[gene]['len_coverage'] = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
             genes_set[gene]['score'] = score
             outhits.append(line)
+            # if gene.startswith("stx"):
+            #     print(line)
+
+    return genes_set, outhits
+
+def blastn_cleanup(blast,args):
+    blast.remove('')
+    genes_set = {}
+    outhits = []
+    for line in blast:
+        info = line.rstrip().split('\t')
+        gene = gene_rename(info[0])
+        start = int(info[3])
+        end = int(info[4])
+        perc_identity = float(info[5])
+        score = float(info[6])
+        len_coverage = 100 * float(info[2]) / float(info[1])
+
+        if start > end:
+            save = start
+            start = end
+            end = save
+
+        if gene in genes_set.keys():
+            genes_set[gene]['positions'].extend(list(range(start, end + 1)))
+            genes_set[gene]['match'] = len(set(genes_set[gene]['positions']))
+            lcov = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
+            if perc_identity > genes_set[gene]['pident'] and len_coverage >= lcov:
+                genes_set[gene]['pident'] = perc_identity
+                genes_set[gene]['len_coverage'] = lcov
+                if gene.startswith("stx"):
+                    sl(1)
+            continue
+
+        if gene == "ipaH":
+            cut = args.ipaH_length
+        elif gene.startswith("stx"):
+            cut = args.stx_length
+        elif gene.startswith("STEC"):
+            cut = args.length
+        elif gene.startswith("wz"):
+            cut = args.o_length
+        elif gene.startswith("fl"):
+            cut = args.h_length
+        else:
+            cut = 0
+
+
+        if float(len_coverage) >= cut:
+            genes_set[gene] = {}
+            genes_set[gene]['slength'] = float(info[1])
+            genes_set[gene]['match'] = float(info[2])
+            genes_set[gene]['positions'] = list(range(start, end + 1))
+            genes_set[gene]['pident'] = perc_identity
+            genes_set[gene]['len_coverage'] = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
+            genes_set[gene]['score'] = score
+            outhits.append(line)
+            # if gene.startswith("stx"):
+            #     print(line)
 
     return genes_set, outhits
 
@@ -165,8 +227,63 @@ def top_ranked_hantigen(genes_set):
     genes = delete_genes(remove, genes_set)
     return genes
 
-def top_ranked_stx(genes_set):
+def stx_snptyping(args,files,dir):
+    result = {}
+    if args.r:
+        name = os.path.basename(files[1])
+        result['sample'] = re.search(r'(.*)\_.*\.fastq\.gz', name).group(1)
+        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir+"stx",result['sample'],"stx_psuedoref.fasta")
+        outfile = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.res"
+        genes,hit_results = genes_frm_kma_output(result['sample'],args)
+    else:
+        # blast_results = run_blast(dir, files,"stx_psuedoref.fasta")
+        run_kma_genome(dir, files, str(args.t), args.tmpdir + "stx", result['sample'], "stx_psuedoref.fasta")
+        # genes,hit_results = blastn_stx_cleanup(blast_results,args)
+        result['sample'] = os.path.basename(files).split('.')[0]
 
+    sl(10)
+
+def top_ranked_stx(genes_set,args,files,dir):
+    # stx_snptyping(args, files, dir)
+
+    ## pident len_coverage
+    genetypes = ["stx1", "stx2"]
+    tophits = {x: [] for x in genetypes}
+    for gene in genes_set:
+        if gene.startswith("stx"):
+            genetype = gene[:4]
+            genescore = genes_set[gene]['score']
+            genecov = genes_set[gene]['len_coverage']
+            geneident = genes_set[gene]['pident']
+            # if gene.startswith("stx"):
+            #     sl(1)
+            if genecov == 100.0 and geneident == 100.0:
+                if tophits[genetype] == []:
+                    tophits[genetype] = [gene]
+                else:
+                    tophits[genetype].append(gene)
+
+    # sl(1)
+    if tophits["stx1"] == [] and tophits["stx2"] == []:
+        # stx_snptyping(args,files,dir)
+        tophitsbest = {x: ["", 0] for x in genetypes}
+        for gene in genes_set:
+            if gene.startswith("stx"):
+                genetype = gene[:4]
+                genescore = genes_set[gene]['score']
+                if genescore > tophitsbest[genetype][1]:
+                    tophitsbest[genetype] = [gene, genescore]
+        tophits = tophitsbest
+    remove = []
+    for gene in genes_set:
+        if gene.startswith("stx"):
+            genetype = gene[:4]
+            if gene not in tophits[genetype]:
+                remove.append(gene)
+    genes = delete_genes(remove, genes_set)
+    return genes
+
+def top_ranked_stx_bac(genes_set):
     genetypes = ["stx1", "stx2"]
     tophits = {x: ["", 0] for x in genetypes}
     for gene in genes_set:
@@ -506,20 +623,28 @@ def get_gene_type(gene):
 
     return gene_type
 
-def run_blast(dir, fileA):
+def run_blast(dir, fileA,db):
     # Get all genes for ipaH & cluster genes
-    qry = f'blastn -db "{dir}/resources/genes.fasta" -outfmt "6 sseqid slen length sstart send pident bitscore" ' \
+    qry = f'blastn -db "{dir}/resources/{db}" -outfmt "6 sseqid slen length sstart send pident bitscore qseqid qstart qend" ' \
           f'-perc_identity 80 -query "{fileA}"'
     blast_hits = subprocess.check_output(qry, shell=True, stderr=subprocess.STDOUT)
     blast_hits = blast_hits.decode("ascii").split('\n')
     return blast_hits
 
-def run_kma(dir, r1, r2, threads,tmp,strain_id):
+def run_kma(dir, r1, r2, threads,tmp,strain_id,db):
 
     if not os.path.exists(tmp):
         os.mkdir(tmp)
-    kma_db = dir + "/resources/genes.fasta"
-    kma_cmd = f'kma -mct 0.001 -ipe "{r1}" "{r2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -o "{tmp}/{strain_id}kmatmp_out"'
+    kma_db = dir + f"/resources/{db}"
+    kma_cmd = f'kma -mct 0.001 -ipe "{r1}" "{r2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
+    subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
+
+def run_kma_genome(dir, g, threads,tmp,strain_id,db):
+
+    if not os.path.exists(tmp):
+        os.mkdir(tmp)
+    kma_db = dir + f"/resources/{db}"
+    kma_cmd = f'kma -mct 0.001 -i "{g} -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
 
 def add_duped_genes(genes_set):
@@ -711,16 +836,16 @@ def run_typing(dir, files, mode, args):
     if mode == "r":
         name = os.path.basename(files[1])
         result['sample'] = re.search(r'(.*)\_.*\.fastq\.gz', name).group(1)
-        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir,result['sample'])
+        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir,result['sample'],"genes.fasta")
         genes,hit_results = genes_frm_kma_output(result['sample'],args)
     else:
-        blast_results = run_blast(dir, files)
+        blast_results = run_blast(dir, files,"genes.fasta")
         genes,hit_results = blastn_cleanup(blast_results,args)
         result['sample'] = os.path.basename(files).split('.')[0]
 
 
     genes = top_ranked_hantigen(genes)
-    genes = top_ranked_stx(genes)
+    genes = top_ranked_stx(genes,args,files,dir)
     genes = h_duplicate_remove(genes)
     genes = top_ranked_oantigen(genes)
 
@@ -914,49 +1039,70 @@ def get_args():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         usage='\nSTECFinder.py -i <input_data1> <input_data2> ... OR\nSTECFinder.py -i <directory/*> OR '
               '\nSTECFinder.py -i <Read1> <Read2> -r [Raw Reads]\n',add_help=False)
-    parser.print_usage = parser.print_help
-    io = parser.add_argument_group('Input/Output')
-    io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
-    io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
-    io.add_argument("-t", nargs=1, type=int, default='4', help="number of threads. Default 4.")
-    io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
-    io.add_argument("--output",
-                        help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
-    misc = parser.add_argument_group('Misc')
-    misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
-    misc.add_argument("--check", action='store_true', help="check dependencies are installed")
-    misc.add_argument("-v", "--version", action='store_true', help="Print version number")
-
-    cuts = parser.add_argument_group('Algorithm cutoffs')
-
-    cuts.add_argument("--cutoff", type=float,
-                        help="minimum read coverage for gene to be called", default="10.0")
-    cuts.add_argument("--length", type=float,
-                        help="percentage of gene length needed for positive call", default="50.0")
-    cuts.add_argument("--ipaH_length", type=float,
-                        help="percentage of ipaH gene length needed for positive gene call", default="10.0")
-    cuts.add_argument("--ipaH_depth", type=float,
-                        help="When using reads as input the minimum depth percentage relative to genome average "
-                             "for positive ipaH gene call", default="1.0")
-    cuts.add_argument("--stx_length", type=float,
-                        help="percentage of stx gene length needed for positive gene call", default="10.0")
-    cuts.add_argument("--stx_depth", type=float,
-                        help="When using reads as input the minimum depth percentage relative to genome average "
-                             "for positive stx gene call", default="1.0")
-    cuts.add_argument("--o_length", type=float,
-                        help="percentage of wz_ gene length needed for positive call", default="60.0")
-    cuts.add_argument("--o_depth", type=float,
-                        help="When using reads as input the minimum depth percentage relative to genome average "
-                             "for positive wz_ gene call", default="1.0")
-    cuts.add_argument("--h_length", type=float,
-                        help="percentage of fliC gene length needed for positive call", default="60.0")
-    cuts.add_argument("--h_depth", type=float,
-                        help="When using reads as input the minimum depth percentage relative to genome average "
-                             "for positive fliC gene call", default="1.0")
+    # parser.print_usage = parser.print_help
+    # io = parser.add_argument_group('Input/Output')
+    # io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
+    # io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
+    # io.add_argument("-t", nargs=1, type=int, default='4', help="number of threads. Default 4.")
+    # io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
+    # io.add_argument("--output",
+    #                     help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
+    # misc = parser.add_argument_group('Misc')
+    # misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
+    # misc.add_argument("--check", action='store_true', help="check dependencies are installed")
+    # misc.add_argument("-v", "--version", action='store_true', help="Print version number")
+    #
+    # cuts = parser.add_argument_group('Algorithm cutoffs')
+    #
+    # cuts.add_argument("--cutoff", type=float,
+    #                     help="minimum read coverage for gene to be called", default="10.0")
+    # cuts.add_argument("--length", type=float,
+    #                     help="percentage of gene length needed for positive call", default="50.0")
+    # cuts.add_argument("--ipaH_length", type=float,
+    #                     help="percentage of ipaH gene length needed for positive gene call", default="10.0")
+    # cuts.add_argument("--ipaH_depth", type=float,
+    #                     help="When using reads as input the minimum depth percentage relative to genome average "
+    #                          "for positive ipaH gene call", default="1.0")
+    # cuts.add_argument("--stx_length", type=float,
+    #                     help="percentage of stx gene length needed for positive gene call", default="10.0")
+    # cuts.add_argument("--stx_depth", type=float,
+    #                     help="When using reads as input the minimum depth percentage relative to genome average "
+    #                          "for positive stx gene call", default="1.0")
+    # cuts.add_argument("--o_length", type=float,
+    #                     help="percentage of wz_ gene length needed for positive call", default="60.0")
+    # cuts.add_argument("--o_depth", type=float,
+    #                     help="When using reads as input the minimum depth percentage relative to genome average "
+    #                          "for positive wz_ gene call", default="1.0")
+    # cuts.add_argument("--h_length", type=float,
+    #                     help="percentage of fliC gene length needed for positive call", default="60.0")
+    # cuts.add_argument("--h_depth", type=float,
+    #                     help="When using reads as input the minimum depth percentage relative to genome average "
+    #                          "for positive fliC gene call", default="1.0")
 
 
 
     args = parser.parse_args()
+
+    args.i = ["/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/SRR4195775_1.fastq.gz","/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/SRR4195775_2.fastq.gz"]
+    args.r = True
+    args.t = 4
+    args.hits = False
+    args.output = False
+
+    args.h = False
+    args.check = False
+    args.version = False
+
+    args.cutoff=10.0
+    args.length=50.0
+    args.ipaH_length=10.0
+    args.ipaH_depth=1.0
+    args.stx_length=10.0
+    args.stx_depth=1.0
+    args.o_length=60.0
+    args.o_depth=1.0
+    args.h_length=60.0
+    args.h_depth=1.0
 
     return args,parser
 
