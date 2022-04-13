@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # Developers: Michael Payne, Thanh Nguyen
-#version=1.1.0
+# version=1.1.0
 import argparse
 import os
 import sys
 import subprocess
 import json
+import gzip
 import re
 import uuid
 import shutil
@@ -32,6 +33,7 @@ def get_json_data():
         data = json.load(f)
     return data
 
+
 def get_stx_data():
     curr_dir = get_currdir()
     json_file = os.path.join(curr_dir, 'resources/stx-subtype-acc.json')
@@ -39,35 +41,49 @@ def get_stx_data():
         data = json.load(f)
     return data
 
+
+def get_stx_snp_data():
+    curr_dir = get_currdir()
+    json_file = os.path.join(curr_dir, 'resources/stx_group_specific_snps.json')
+    with open(json_file) as f:
+        data = json.load(f)
+    return data
+
+
 def ipaH_detect(genes):
     if 'ipaH' in genes:
         return True
     return False
 
-def stx_detect(genes):
+
+def stx_detect(genes, exactstx, stx2s):
     stx_conv = get_stx_data()
     stx_out = []
     for i in genes:
         if "stx" in i:
-            fixi = i.replace(":","_")
+            fixi = i.replace(":", "_")
             stx_out.append(stx_conv[fixi])
-
+    exactstx = [stx_conv[x.replace(":", "_")] for x in exactstx]
     stx_out = list(set(stx_out))
+    stx_out = [x + "*" if x not in exactstx else x for x in stx_out]
+    stx_out += stx2s
     if len(stx_out) > 0:
         return ",".join(stx_out)
     else:
         return False
+
 
 def delete_genes(remove, genes):
     for g in remove:
         del genes[g]
     return genes
 
+
 def antigen_search(genes):
     h = {}
     o = {}
     for g in genes:
-        g = g.replace(" ","")
+        g = g.replace(" ", "")
         if g.startswith("fliC"):
             antigen = g.split("_")[-1]
             h[antigen] = antigen
@@ -75,20 +91,22 @@ def antigen_search(genes):
             antigen = g.split("_")[-1]
             o[antigen] = g.split("_")[0] + "_" + g.split("_")[-1]
 
-    return list(o.values()),list(h.values())
+    return list(o.values()), list(h.values())
+
 
 def gene_rename(gene):
-    return gene.replace(":","_")
+    return gene.replace(":", "_")
+
 
 def top_ranked_oantigen(genes_set):
-    genetypes = ["wzx","wzy","wzt","wzm"]
-    tophits = {x:["",0] for x in genetypes}
+    genetypes = ["wzx", "wzy", "wzt", "wzm"]
+    tophits = {x: ["", 0] for x in genetypes}
     for gene in genes_set:
         if gene.startswith("wz"):
             genetype = gene[:3]
             genescore = genes_set[gene]['score']
             if genescore > tophits[genetype][1]:
-                tophits[genetype] = [gene,genescore]
+                tophits[genetype] = [gene, genescore]
     remove = []
     for gene in genes_set:
         if gene.startswith("wz"):
@@ -98,7 +116,8 @@ def top_ranked_oantigen(genes_set):
     genes = delete_genes(remove, genes_set)
     return genes
 
-def blastn_stx_cleanup(blast,args):
+
+def blastn_stx_cleanup(blast, args):
     blast.remove('')
     genes_set = {}
     outhits = []
@@ -140,7 +159,6 @@ def blastn_stx_cleanup(blast,args):
         else:
             cut = 0
 
-
         if float(len_coverage) >= cut:
             genes_set[gene] = {}
             genes_set[gene]['slength'] = float(info[1])
@@ -155,7 +173,8 @@ def blastn_stx_cleanup(blast,args):
 
     return genes_set, outhits
 
-def blastn_cleanup(blast,args):
+
+def blastn_cleanup(blast, args):
     blast.remove('')
     genes_set = {}
     outhits = []
@@ -197,7 +216,6 @@ def blastn_cleanup(blast,args):
         else:
             cut = 0
 
-
         if float(len_coverage) >= cut:
             genes_set[gene] = {}
             genes_set[gene]['slength'] = float(info[1])
@@ -211,14 +229,15 @@ def blastn_cleanup(blast,args):
             #     print(line)
 
     return genes_set, outhits
+
 
 def top_ranked_hantigen(genes_set):
-    tophit = ["",0]
+    tophit = ["", 0]
     for gene in genes_set:
         if gene.startswith("fliC"):
             genescore = genes_set[gene]['score']
             if genescore > tophit[1]:
-                tophit = [gene,genescore]
+                tophit = [gene, genescore]
     remove = []
     for gene in genes_set:
         if gene.startswith("fliC"):
@@ -227,52 +246,217 @@ def top_ranked_hantigen(genes_set):
     genes = delete_genes(remove, genes_set)
     return genes
 
-def stx_snptyping(args,files,dir):
+
+def check_stx2_present(outres,args):
+    inf = open(outres,"r").read().splitlines()
+    if len(inf) > 1:
+        col = inf[1].split("\t")
+        if inf[1].startswith("pseudoref_stx") and float(col[4]) > 80 and float(col[5]) >= args.stx_length and float(col[8]) >= args.stx_depth:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
+    stx_present = check_stx2_present(outres,args)
+    if not stx_present:
+        return []
+    stx2_snpdata = get_stx_snp_data()
+    specificsnps = stx2_snpdata["specific_snps"]
+    acd_diff = stx2_snpdata['acd_differentiation']
+    nuclist = ["A", "C", "G", "T", "N", "-"]
+    print(f"{sample}\n")
+    afperc = 0.9
+    SNPls = []
+    halfSNPls = []
+
+    with gzip.open(outfile, mode="rt") as infile:
+        for line in infile:
+            if not line.startswith("#"):
+                col = line.split("\t")
+                pos = col[1]
+                ref = col[3]
+                alt = str.upper(col[4])
+                af = [x for x in col[7].split(";") if x.startswith("AF")][0]
+                af = float(af.replace("AF=", ""))
+                nuccount = [x for x in col[7].split(";") if x.startswith("AD6")][0]
+                nuccount = map(int, nuccount.replace("AD6=", "").split(","))
+                nuccount = dict(zip(nuclist, nuccount))
+                depth = [x for x in col[7].split(";") if x.startswith("DP")][0].replace("DP=", "")
+
+                if af <= afperc:
+                    if int(depth) >= hdepthcut:
+                        alltypes = sum(nuccount.values())
+                        mincount = alltypes * (1 - afperc)
+                        for n in nuccount:
+                            if nuccount[n] >= mincount:
+                                snp = pos + n
+                                halfSNPls.append(snp)
+                else:
+                    if int(depth) >= depthcut:
+                        snp = pos + alt
+                        SNPls.append(snp)
+    matches = []
+    hmatches = []
+    for stx2allele in specificsnps:
+
+        specificls = specificsnps[stx2allele]
+        matchsnps = [x for x in SNPls if x in specificls]
+        hmatchsnps = [x for x in halfSNPls if x in specificls]
+        if any([x in specificls for x in SNPls]):
+            if len(specificls) > 4 and len(matchsnps) > (0.5 * len(specificls)):
+                print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+                matches.append(stx2allele)
+            elif len(specificls) <= 4:
+                print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+                matches.append(stx2allele)
+            else:
+                print(f"matchbelow {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+        elif any([x in specificls for x in halfSNPls]):
+            if len(specificls) > 4 and len(hmatchsnps) > (0.25 * len(specificls)):
+                print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+                hmatches.append(stx2allele)
+            elif len(specificls) <= 4:
+                print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+                hmatches.append(stx2allele)
+            else:
+                print(f"halfmatchbelow {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+    if "stx2acd" in matches or "stx2acd" in hmatches:
+        for stx2allele in acd_diff:
+            specificls = acd_diff[stx2allele]
+            matchsnps = [x for x in SNPls if x in specificls]
+            hmatchsnps = [x for x in halfSNPls if x in specificls]
+            if any([x in specificls for x in SNPls]):
+                print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+                matches.append(stx2allele)
+            elif any([x in specificls for x in halfSNPls]):
+                print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+                hmatches.append(stx2allele)
+
+    """
+    cases
+    *2a              2acd full               2a full
+    *2c              2acd full               2ac full
+    *2d              2acd full               2ad full
+    *2a 2c           2acd full               2ac full            2a half
+    *2a 2d           2acd full               2ac half            2a half         2ad half/full
+    *2c 2d           2acd full               2ac half            2ad half
+    2l and 2a     2acd full               2l half
+    other 2a        other specific half     2acd half           2a half         2ac half (possible 2ad half)    
+    other 2c        other specific half     2acd half           2ac half
+    other 2d        other specific half     2acd half           2ad half
+    other half      other specific half     other specific half
+    
+    """
+
+    outhits = []
+    if "stx2acd" in matches:
+        if "stx2a" in matches:
+            outhits.append("stx2a")
+        elif "stx2a" in hmatches:
+            outhits.append("stx2a")
+            if "stx2ad" in hmatches or "stx2ad" in matches:
+                outhits.append("stx2d")
+            elif "stx2ac" in hmatches or "stx2ac" in matches:
+                outhits.append("stx2c")
+        elif "stx2ac" in matches or "stx2ac" in hmatches:
+            outhits.append("stx2c")
+        elif "stx2ad" in matches or "stx2ad" in hmatches:
+            outhits.append("stx2d")
+        elif "stx2ac" in hmatches and "stx2ad" in hmatches:
+            outhits.append("stx2c")
+            outhits.append("stx2d")
+        elif "stx2l" in hmatches:
+            outhits.append("stx2l")
+            if "stx2a" in matches or "stx2a" in hmatches:
+                outhits.append("stx2a")
+            elif "stx2ac" in hmatches:
+                outhits.append("stx2c")
+            elif "stx2ad" in matches:
+                outhits.append("stx2d")
+    elif "stx2acd" in hmatches:
+        if "stx2a" in hmatches or "stx2a" in matches:
+            outhits.append("stx2a")
+        elif "stx2ac" in hmatches or "stx2ac" in matches:
+            outhits.append("stx2c")
+        elif "stx2ad" in matches or "stx2ad" in matches:
+            outhits.append("stx2d")
+        for x in hmatches:
+            if x not in ["stx2acd", "stx2a", "stx2ac", "stx2ad"]:
+                outhits.append(x)
+    else:
+        for x in matches:
+            if x not in ["stx2acd", "stx2a", "stx2ac", "stx2ad"]:
+                outhits.append(x)
+        for x in hmatches:
+            if x not in ["stx2acd", "stx2a", "stx2ac", "stx2ad"]:
+                outhits.append(x)
+    print(f"{sample} {outhits}\n")
+    if outhits == []:
+        outhits = ["stx2_unknown"]
+    return outhits
+    #
+    # print(outhits)
+    # sl(10000)
+
+
+def stx_snptyping(args, files, dir):
     result = {}
     if args.r:
         name = os.path.basename(files[1])
         result['sample'] = re.search(r'(.*)\_.*\.fastq\.gz', name).group(1)
-        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir+"stx",result['sample'],"stx_psuedoref.fasta")
-        outfile = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.res"
-        genes,hit_results = genes_frm_kma_output(result['sample'],args)
+        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir + "stx", result['sample'], "stx_psuedoref.fasta")
+        outvcf= f"{args.tmpdir}stx/{result['sample']}kmatmp_out.vcf.gz"
+        outres = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.res"
+        stx2s = process_kma_vcf(result['sample'], outvcf,2,1, outres,args)
     else:
         # blast_results = run_blast(dir, files,"stx_psuedoref.fasta")
-        run_kma_genome(dir, files, str(args.t), args.tmpdir + "stx", result['sample'], "stx_psuedoref.fasta")
-        # genes,hit_results = blastn_stx_cleanup(blast_results,args)
         result['sample'] = os.path.basename(files).split('.')[0]
+        run_kma_genome(dir, files, str(args.t), args.tmpdir + "stx", result['sample'], "stx_psuedoref.fasta")
+        outvcf = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.vcf.gz"
+        outres = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.res"
+        stx2s = process_kma_vcf(result['sample'], outvcf,1,1, outres,args)
 
-    sl(10)
+    return stx2s
 
-def top_ranked_stx(genes_set,args,files,dir):
-    # stx_snptyping(args, files, dir)
 
+def top_ranked_stx(genes_set, args, files, dir):
+    stx2s = stx_snptyping(args, files, dir)
+    stx2_present = False
     ## pident len_coverage
     genetypes = ["stx1", "stx2"]
     tophits = {x: [] for x in genetypes}
+    exact_stx = []
     for gene in genes_set:
         if gene.startswith("stx"):
             genetype = gene[:4]
-            genescore = genes_set[gene]['score']
-            genecov = genes_set[gene]['len_coverage']
-            geneident = genes_set[gene]['pident']
-            # if gene.startswith("stx"):
-            #     sl(1)
-            if genecov == 100.0 and geneident == 100.0:
-                if tophits[genetype] == []:
-                    tophits[genetype] = [gene]
-                else:
-                    tophits[genetype].append(gene)
+            if genetype != "stx2":
+                genescore = genes_set[gene]['score']
+                genecov = genes_set[gene]['len_coverage']
+                geneident = genes_set[gene]['pident']
+                # if gene.startswith("stx"):
+                #     sl(1)
+                if genecov == 100.0 and geneident == 100.0:
+                    exact_stx.append(gene)
+                    if tophits[genetype] == []:
+                        tophits[genetype] = [gene]
+                    else:
+                        tophits[genetype].append(gene)
+            else:
+                stx2_present = True
 
     # sl(1)
-    if tophits["stx1"] == [] and tophits["stx2"] == []:
+    if tophits["stx1"] == []:
         # stx_snptyping(args,files,dir)
         tophitsbest = {x: ["", 0] for x in genetypes}
         for gene in genes_set:
             if gene.startswith("stx"):
                 genetype = gene[:4]
-                genescore = genes_set[gene]['score']
-                if genescore > tophitsbest[genetype][1]:
-                    tophitsbest[genetype] = [gene, genescore]
+                if genetype != "stx2":
+                    genescore = genes_set[gene]['score']
+                    if genescore > tophitsbest[genetype][1]:
+                        tophitsbest[genetype] = [gene, genescore]
         tophits = tophitsbest
     remove = []
     for gene in genes_set:
@@ -281,7 +465,11 @@ def top_ranked_stx(genes_set,args,files,dir):
             if gene not in tophits[genetype]:
                 remove.append(gene)
     genes = delete_genes(remove, genes_set)
-    return genes
+
+    if stx2s == [] and stx2_present:
+        stx2s = ["stx2_unknown"]
+    return genes, exact_stx, stx2s,stx2_present
+
 
 def top_ranked_stx_bac(genes_set):
     genetypes = ["stx1", "stx2"]
@@ -300,6 +488,7 @@ def top_ranked_stx_bac(genes_set):
                 remove.append(gene)
     genes = delete_genes(remove, genes_set)
     return genes
+
 
 def h_duplicate_remove(genes):
     remove = []
@@ -337,12 +526,11 @@ def map_depth_ratios(genes):
 
 def mapping_depth_cutoff(bam):
     mlst = ["NC_000913.3:recA", "NC_000913.3:purA", "NC_000913.3:mdh", "NC_000913.3:icd", "NC_000913.3:gyrB",
-            "NC_000913.3:fumC", "NC_000913.3:adk","NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
-            "NC_000913.3_icd", "NC_000913.3_gyrB","NC_000913.3_fumC", "NC_000913.3_adk"]
+            "NC_000913.3:fumC", "NC_000913.3:adk", "NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
+            "NC_000913.3_icd", "NC_000913.3_gyrB", "NC_000913.3_fumC", "NC_000913.3_adk"]
     depth = 0
 
     depthcol = 8
-
 
     for line in bam:
         info = line.split('\t')
@@ -354,14 +542,14 @@ def mapping_depth_cutoff(bam):
 
     return depth / 7
 
+
 def mapping_depth_cutoff_genes(genedict):
     mlst = ["NC_000913.3:recA", "NC_000913.3:purA", "NC_000913.3:mdh", "NC_000913.3:icd", "NC_000913.3:gyrB",
-            "NC_000913.3:fumC", "NC_000913.3:adk","NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
-            "NC_000913.3_icd", "NC_000913.3_gyrB","NC_000913.3_fumC", "NC_000913.3_adk"]
+            "NC_000913.3:fumC", "NC_000913.3:adk", "NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
+            "NC_000913.3_icd", "NC_000913.3_gyrB", "NC_000913.3_fumC", "NC_000913.3_adk"]
     depth = 0
 
     depthcol = 8
-
 
     for gene in genedict:
         if gene in mlst:
@@ -370,8 +558,7 @@ def mapping_depth_cutoff_genes(genedict):
     return depth / 7
 
 
-def determine_cluster(genes,data):
-
+def determine_cluster(genes, data):
     cluster_list = {}
     # Check for the all cluster-specific genes found in genes
     for s in data:
@@ -413,147 +600,147 @@ def determine_cluster(genes,data):
         elif list(cluster_list.keys())[0] == "O26H11":
             c = "Unknown Cluster"
             big10 = "O26:H11"
-        elif list(cluster_list.keys())[0] in ["O45H2","O45H2-C3","O45H2-AM37"]:
+        elif list(cluster_list.keys())[0] in ["O45H2", "O45H2-C3", "O45H2-AM37"]:
             c = "Unknown Cluster"
             big10 = "O45:H2"
         else:
-            c =list(cluster_list.keys())[0]
+            c = list(cluster_list.keys())[0]
     elif 'AM6' in cluster_list.keys() and 'O45H2-AM37' in cluster_list.keys():
-        c ='AM6'
+        c = 'AM6'
     elif 'B1M126' in cluster_list.keys() and 'B1M2' in cluster_list.keys():
-        c ='B1M126'
+        c = 'B1M126'
     elif 'B1M27' in cluster_list.keys() and 'B1M36' in cluster_list.keys():
-        c ='B1M27'
+        c = 'B1M27'
     elif 'B1M28' in cluster_list.keys() and 'AM28' in cluster_list.keys():
-        c ='B1M28'
+        c = 'B1M28'
     elif 'B1M30' in cluster_list.keys() and 'B1M78' in cluster_list.keys():
-        c ='B1M30'
+        c = 'B1M30'
     elif 'B1M30' in cluster_list.keys() and 'C15' in cluster_list.keys():
-        c ='B1M30'
+        c = 'B1M30'
     elif 'B1M57' in cluster_list.keys() and 'B1M33' in cluster_list.keys():
-        c ='B1M57'
+        c = 'B1M57'
     elif 'B1M35' in cluster_list.keys() and 'B1M114' in cluster_list.keys():
-        c ='B1M35'
+        c = 'B1M35'
     elif 'B1M36' in cluster_list.keys() and 'B1M114' in cluster_list.keys():
-        c ='B1M36'
+        c = 'B1M36'
     elif 'B1M40' in cluster_list.keys() and 'C8' in cluster_list.keys():
-        c ='B1M40'
+        c = 'B1M40'
     elif 'B1M48' in cluster_list.keys() and 'B1M114' in cluster_list.keys():
-        c ='B1M48'
+        c = 'B1M48'
     elif 'B1M47' in cluster_list.keys() and 'B1M46' in cluster_list.keys():
-        c ='B1M47'
+        c = 'B1M47'
     elif 'GM2' in cluster_list.keys() and 'O26H11' in cluster_list.keys():
-        c ='GM2'
+        c = 'GM2'
     elif 'GM2' in cluster_list.keys() and 'GM4' in cluster_list.keys():
-        c ='GM2'
+        c = 'GM2'
     elif 'B1M120' in cluster_list.keys() and 'B1M121' in cluster_list.keys():
-        c ='B1M120'
+        c = 'B1M120'
     elif 'C12' in cluster_list.keys() and 'CM4' in cluster_list.keys():
-        c ='C12'
+        c = 'C12'
     elif 'C13' in cluster_list.keys() and 'CM5' in cluster_list.keys():
-        c ='C13'
+        c = 'C13'
     elif 'C13' in cluster_list.keys() and 'B1M14' in cluster_list.keys():
-        c ='C13'
+        c = 'C13'
     elif 'C13' in cluster_list.keys() and 'B1M49' in cluster_list.keys():
-        c ='C13'
+        c = 'C13'
     elif 'C3' in cluster_list.keys() and 'O26H11' in cluster_list.keys():
-        c ='C3'
+        c = 'C3'
     elif 'C3' in cluster_list.keys() and 'B1M77' in cluster_list.keys():
-        c ='C3'
+        c = 'C3'
     elif 'C3' in cluster_list.keys() and 'CM5' in cluster_list.keys():
-        c ='C3'
+        c = 'C3'
     elif 'C8' in cluster_list.keys() and 'AM12' in cluster_list.keys():
-        c ='C8'
+        c = 'C8'
     elif 'C4' in cluster_list.keys() and 'B1M78' in cluster_list.keys():
-        c ='C4'
+        c = 'C4'
     elif 'C4' in cluster_list.keys() and 'B2M5' in cluster_list.keys():
-        c ='C4'
+        c = 'C4'
     elif 'C5' in cluster_list.keys() and 'O26H11' in cluster_list.keys():
-        c ='C5'
+        c = 'C5'
     elif 'C5' in cluster_list.keys() and 'B1M77' in cluster_list.keys():
-        c ='C5'
+        c = 'C5'
     elif 'O157H7' in cluster_list.keys() and 'C7' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'AM18' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'B1M25' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'B1M31' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'B2M7' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'DM14' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'O103H2' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'O157H7' in cluster_list.keys() and 'DM8' in cluster_list.keys():
-        c ='O157H7'
+        c = 'O157H7'
     elif 'C18' in cluster_list.keys() and 'O157H7' in cluster_list.keys():
-        c ='C18'
+        c = 'C18'
     elif 'C14' in cluster_list.keys() and 'B2M11' in cluster_list.keys():
-        c ='C14'
+        c = 'C14'
     elif 'C17' in cluster_list.keys() and 'B1M14' in cluster_list.keys():
-        c ='C17'
+        c = 'C17'
     elif 'C17' in cluster_list.keys() and 'B1M33' in cluster_list.keys():
-        c ='C17'
-    #elif 'AM20' in cluster_list.keys() and 'C14' in cluster_list.keys():
-        #c ='AM20'
+        c = 'C17'
+    # elif 'AM20' in cluster_list.keys() and 'C14' in cluster_list.keys():
+    # c ='AM20'
     elif 'B1M50' in cluster_list.keys() and 'C17' in cluster_list.keys():
-        c ='B1M50'
+        c = 'B1M50'
     elif 'B1M74' in cluster_list.keys() and 'DM9' in cluster_list.keys():
-        c ='B1M74'
+        c = 'B1M74'
     elif 'C7' in cluster_list.keys() and 'B1M67' in cluster_list.keys():
-        c ='C7'
+        c = 'C7'
     elif 'C7' in cluster_list.keys() and 'B2M11' in cluster_list.keys():
-        c ='C7'
+        c = 'C7'
     elif 'C7' in cluster_list.keys() and 'C9' in cluster_list.keys():
-        c ='C7'
+        c = 'C7'
     elif 'B1M8' in cluster_list.keys() and 'B1M9' in cluster_list.keys():
-        c ='B1M8'
+        c = 'B1M8'
     elif 'B1M82' in cluster_list.keys() and 'B1M14' in cluster_list.keys():
-        c ='B1M82'
+        c = 'B1M82'
     elif 'B1M92' in cluster_list.keys() and 'B1M93' in cluster_list.keys():
-        c ='B1M92'
+        c = 'B1M92'
     elif 'B1M94' in cluster_list.keys() and 'EM6' in cluster_list.keys():
-        c ='B1M94'
+        c = 'B1M94'
     elif 'B1M95' in cluster_list.keys() and 'B1M94' in cluster_list.keys():
-        c ='B1M95'
+        c = 'B1M95'
     elif 'B1M5' in cluster_list.keys() and 'B1M62' in cluster_list.keys():
-        c ='B1M5'
+        c = 'B1M5'
     elif 'B1M5' in cluster_list.keys() and 'DM8' in cluster_list.keys():
-        c ='B1M5'
+        c = 'B1M5'
     elif 'B1M50' in cluster_list.keys() and 'B1M121' in cluster_list.keys():
-        c ='B1M50'
+        c = 'B1M50'
     elif 'B2M6' in cluster_list.keys() and 'B1M27' in cluster_list.keys():
-        c ='B2M6'
+        c = 'B2M6'
     elif 'DM13' in cluster_list.keys() and 'DM14' in cluster_list.keys():
-        c ='DM13'
+        c = 'DM13'
     elif 'CM3' in cluster_list.keys() and 'CM1' in cluster_list.keys():
-        c ='CM3'
+        c = 'CM3'
     elif 'EM5' in cluster_list.keys() and 'EM17' in cluster_list.keys():
-        c ='EM5'
+        c = 'EM5'
     elif 'CM2' in cluster_list.keys() and 'CM1' in cluster_list.keys():
-        c ='CM2'
+        c = 'CM2'
     elif 'B1M80' in cluster_list.keys() and 'B1M43' in cluster_list.keys():
-        c ='B1M80'
+        c = 'B1M80'
     elif 'B1M41' in cluster_list.keys() and 'B1M43' in cluster_list.keys():
-        c ='B1M41'
+        c = 'B1M41'
     elif 'C8' in cluster_list.keys() and 'C7' in cluster_list.keys():
-        c ='C8'
+        c = 'C8'
     elif 'AM9' in cluster_list.keys() and 'O157H7' in cluster_list.keys():
-        c ='AM9'
+        c = 'AM9'
     elif 'DM2' in cluster_list.keys() and 'O157H7' in cluster_list.keys():
-        c ='DM2'
+        c = 'DM2'
     elif 'B1M41' in cluster_list.keys() and 'C8' in cluster_list.keys():
-        c ='B1M41'
+        c = 'B1M41'
     elif 'GM3' in cluster_list.keys() and 'DM8' in cluster_list.keys():
-        c ='GM3'
+        c = 'GM3'
     elif 'B1M44' in cluster_list.keys() and 'B1M32' in cluster_list.keys():
-        c ='B1M44'
+        c = 'B1M44'
     elif 'B1M42' in cluster_list.keys() and 'C8' in cluster_list.keys():
-        c ='B1M42'
+        c = 'B1M42'
     elif 'GM1' in cluster_list.keys() and 'AM25' in cluster_list.keys():
-        c ='GM1'
+        c = 'GM1'
     elif 'C1' in cluster_list.keys() and 'O103H11' in cluster_list.keys() and 'O26H11' in cluster_list.keys():
         c = "C1"
         big10 = 'O103:H11'
@@ -592,10 +779,10 @@ def determine_cluster(genes,data):
 
     return c, big10
 
-def string_result(res, output):
 
+def string_result(res, output):
     result = res['sample'] + "\t" + str(res['cluster']) + "\t" + res['cluster_serotype'] + "\t" + \
-             res['serotype'] + "\t" + res['big10'] + "\t" + res['oantigens'] + "\t" + res['hantigens']\
+             res['serotype'] + "\t" + res['big10'] + "\t" + res['oantigens'] + "\t" + res['hantigens'] \
              + "\t" + res['stx'] + "\t" + res['ipaH'] + "\t" + res['notes']
 
     if output:
@@ -608,8 +795,8 @@ def get_gene_type(gene):
     gene_type = ""
 
     mlst = ["NC_000913.3:recA", "NC_000913.3:purA", "NC_000913.3:mdh", "NC_000913.3:icd", "NC_000913.3:gyrB",
-            "NC_000913.3:fumC", "NC_000913.3:adk","NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
-            "NC_000913.3_icd", "NC_000913.3_gyrB","NC_000913.3_fumC", "NC_000913.3_adk"]
+            "NC_000913.3:fumC", "NC_000913.3:adk", "NC_000913.3_recA", "NC_000913.3_purA", "NC_000913.3_mdh",
+            "NC_000913.3_icd", "NC_000913.3_gyrB", "NC_000913.3_fumC", "NC_000913.3_adk"]
     if gene in mlst:
         gene_type = "House Keeping"
     elif gene.startswith("fl") or gene.startswith("wz"):
@@ -623,7 +810,8 @@ def get_gene_type(gene):
 
     return gene_type
 
-def run_blast(dir, fileA,db):
+
+def run_blast(dir, fileA, db):
     # Get all genes for ipaH & cluster genes
     qry = f'blastn -db "{dir}/resources/{db}" -outfmt "6 sseqid slen length sstart send pident bitscore qseqid qstart qend" ' \
           f'-perc_identity 80 -query "{fileA}"'
@@ -631,21 +819,24 @@ def run_blast(dir, fileA,db):
     blast_hits = blast_hits.decode("ascii").split('\n')
     return blast_hits
 
-def run_kma(dir, r1, r2, threads,tmp,strain_id,db):
 
+def run_kma(dir, r1, r2, threads, tmp, strain_id, db):
     if not os.path.exists(tmp):
         os.mkdir(tmp)
     kma_db = dir + f"/resources/{db}"
     kma_cmd = f'kma -mct 0.001 -ipe "{r1}" "{r2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
+    # print(kma_cmd)
+    # subprocess.run(kma_cmd, shell=True)
 
-def run_kma_genome(dir, g, threads,tmp,strain_id,db):
-
+def run_kma_genome(dir, g, threads, tmp, strain_id, db):
     if not os.path.exists(tmp):
         os.mkdir(tmp)
     kma_db = dir + f"/resources/{db}"
-    kma_cmd = f'kma -mct 0.001 -i "{g} -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
+    kma_cmd = f'kma -mct 0.001 -i "{g}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
+    # print(kma_cmd)
+    # subprocess.run(kma_cmd, shell=True)
 
 def add_duped_genes(genes_set):
     """
@@ -656,7 +847,7 @@ def add_duped_genes(genes_set):
     curr_dir = get_currdir()
     json_file = os.path.join(curr_dir, 'resources/duplicate_cluster_genes.json')
     genes_set2 = {}
-    f = open(f"{json_file}","r")
+    f = open(f"{json_file}", "r")
     dupe_dict = json.load(f)
     for gene in genes_set:
         indupe = False
@@ -668,23 +859,20 @@ def add_duped_genes(genes_set):
                     genes_set2[g] = genes_set[gene]
         if not indupe:
             genes_set2[gene] = genes_set[gene]
-    return genes_set2,dupe_dict
+    return genes_set2, dupe_dict
 
 
-
-
-def genes_frm_kma_output(strain_id,args):
-
+def genes_frm_kma_output(strain_id, args):
     outfile = f"{args.tmpdir}/{strain_id}kmatmp_out.res"
     genes_set = {}
     outhits = []
     if os.path.exists(outfile):
-        hit_results = open(outfile,'r').read().splitlines()
+        hit_results = open(outfile, 'r').read().splitlines()
 
         depth_cut = mapping_depth_cutoff(hit_results)
         for l in hit_results[1:]:
             col = l.split("\t")
-            gene = col[0].replace(" ","")
+            gene = col[0].replace(" ", "")
 
             lengthperc = col[5]
             percid = col[4]
@@ -694,22 +882,22 @@ def genes_frm_kma_output(strain_id,args):
 
             if gene == "ipaH":
                 cut = args.ipaH_length
-                dcut = (float(args.ipaH_depth)/100)*depth_cut
+                dcut = (float(args.ipaH_depth) / 100) * depth_cut
             elif gene.startswith("stx"):
                 cut = args.stx_length
-                dcut = (float(args.stx_depth)/100)*depth_cut
+                dcut = (float(args.stx_depth) / 100) * depth_cut
             elif gene.startswith("fl"):
                 cut = args.h_length
-                dcut = (float(args.h_depth)/100)*depth_cut
+                dcut = (float(args.h_depth) / 100) * depth_cut
             elif gene.startswith("wz"):
                 cut = args.o_length
-                dcut = (float(args.o_depth)/100)*depth_cut
+                dcut = (float(args.o_depth) / 100) * depth_cut
             elif gene.startswith("STEC"):
                 cut = args.length
                 dcut = (float(args.cutoff) / 100) * depth_cut
             else:
                 cut = 0
-                dcut = (float(args.cutoff)/100)*depth_cut
+                dcut = (float(args.cutoff) / 100) * depth_cut
 
             if float(lengthperc) >= cut and float(readdepth) >= dcut:
                 genes_set[gene] = {}
@@ -723,8 +911,9 @@ def genes_frm_kma_output(strain_id,args):
     else:
         sys.exit(f'KMA output file missing at: {args.tmpdir}/{strain_id}kmatmp_out.res')
     shutil.rmtree(args.tmpdir)
-    genes_set,dupedict = add_duped_genes(genes_set)
-    return genes_set,outhits
+    genes_set, dupedict = add_duped_genes(genes_set)
+    return genes_set, outhits
+
 
 def collapse_multiple_o_antigen(oantigens):
     if oantigens == []:
@@ -762,7 +951,8 @@ def collapse_multiple_o_antigen(oantigens):
     dedup_o = list(set(oonly))
     return dedup_o
 
-def serotype_subset(test,existing):
+
+def serotype_subset(test, existing):
     if "O" in test and "H" in test:
         if test == existing:
             return True
@@ -785,9 +975,8 @@ def serotype_subset(test,existing):
             return True
     return False
 
-def cluster_aware_antigen_search(cluster,genes,clustergenes):
 
-
+def cluster_aware_antigen_search(cluster, genes, clustergenes):
     ## get antigen genes
     oantigens, hantigens = antigen_search(genes)
 
@@ -816,7 +1005,7 @@ def cluster_aware_antigen_search(cluster,genes,clustergenes):
         cluster_serotypes = [x for y in cluster.split(",") for x in clustergenes[y] if x != "cluster-genes"]
         cluster_limited_serotypes = []
         for expected_serotypes in cluster_serotypes:
-            match = serotype_subset(serotype,expected_serotypes)
+            match = serotype_subset(serotype, expected_serotypes)
             if match:
                 cluster_limited_serotypes.append(expected_serotypes)
 
@@ -830,27 +1019,25 @@ def cluster_aware_antigen_search(cluster,genes,clustergenes):
     return serotype, ",".join(oantigens), ",".join(hantigens), cluster_limited_serotypes, cluster_serotypes
 
 
-
 def run_typing(dir, files, mode, args):
     result = {}
     if mode == "r":
         name = os.path.basename(files[1])
         result['sample'] = re.search(r'(.*)\_.*\.fastq\.gz', name).group(1)
-        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir,result['sample'],"genes.fasta")
-        genes,hit_results = genes_frm_kma_output(result['sample'],args)
+        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir, result['sample'], "genes.fasta")
+        genes, hit_results = genes_frm_kma_output(result['sample'], args)
     else:
-        blast_results = run_blast(dir, files,"genes.fasta")
-        genes,hit_results = blastn_cleanup(blast_results,args)
+        blast_results = run_blast(dir, files, "genes.fasta")
+        genes, hit_results = blastn_cleanup(blast_results, args)
         result['sample'] = os.path.basename(files).split('.')[0]
 
-
     genes = top_ranked_hantigen(genes)
-    genes = top_ranked_stx(genes,args,files,dir)
+    genes, exactstx, stx2s,stx2_present = top_ranked_stx(genes, args, files, dir)
     genes = h_duplicate_remove(genes)
     genes = top_ranked_oantigen(genes)
 
     clustergenes = get_json_data()
-    cluster, big10 = determine_cluster(genes,clustergenes)
+    cluster, big10 = determine_cluster(genes, clustergenes)
     result['cluster'] = cluster
     result['big10'] = big10
     """
@@ -865,9 +1052,9 @@ def run_typing(dir, files, mode, args):
     -	    -	-	        "Strain with cluster specific genes but no stx detected"
     """
     ipaH = ipaH_detect(genes)
-    stx = stx_detect(genes)
-    serotype, oantigens, hantigens, cluster_restricted_serotype, cluster_serotypes = cluster_aware_antigen_search(cluster,genes,clustergenes)
-
+    stx = stx_detect(genes, exactstx, stx2s)
+    serotype, oantigens, hantigens, cluster_restricted_serotype, cluster_serotypes = cluster_aware_antigen_search(
+        cluster, genes, clustergenes)
 
     result['serotype'] = serotype
     result['cluster_serotype'] = cluster_restricted_serotype
@@ -907,12 +1094,14 @@ def run_typing(dir, files, mode, args):
         result['ipaH'] = "+"
         result['stx'] = "-"
         result['cluster'] = cluster
-        result['notes'] += "Strain with cluster specific genes but no stx detected and ipaH detected - looks like EIEC/Shigella but clusters with STEC."
+        result[
+            'notes'] += "Strain with cluster specific genes but no stx detected and ipaH detected - looks like EIEC/Shigella but clusters with STEC."
     elif ipaH and stx and cluster != "Unknown Cluster":
         result['ipaH'] = '+'
         result['stx'] = stx
         result['cluster'] = cluster
-        result['notes'] += "Strain in STEC cluster but has ipaH and stx - looks like EIEC/Shigella but clusters with STEC."
+        result[
+            'notes'] += "Strain in STEC cluster but has ipaH and stx - looks like EIEC/Shigella but clusters with STEC."
     else:
         result['ipaH'] = "-"
         result['stx'] = "-"
@@ -923,11 +1112,15 @@ def run_typing(dir, files, mode, args):
         if len(oantigens.split(",")) == 0 or len(hantigens.split(",")) == 0:
             result['notes'] += " Possible missing antigen in big10 isolate."
         else:
-            result['notes'] += " Missmatch between big10 specific genes and antigen genes, possible big10 specific genes false positive."
+            result[
+                'notes'] += " Missmatch between big10 specific genes and antigen genes, possible big10 specific genes false positive."
 
     if cluster_restricted_serotype == "-":
-        result['notes'] += " Detected O and H antigen genes do not match previously known serotypes for this cluster ({})".format(",".join(cluster_serotypes))
-    elif ("H" not in serotype and "H" in cluster_restricted_serotype) or ("O" not in serotype and "O" in cluster_restricted_serotype):
+        result[
+            'notes'] += " Detected O and H antigen genes do not match previously known serotypes for this cluster ({})".format(
+            ",".join(cluster_serotypes))
+    elif ("H" not in serotype and "H" in cluster_restricted_serotype) or (
+            "O" not in serotype and "O" in cluster_restricted_serotype):
         result['notes'] += " Complete serotype inferred from known cluster serotypes"
 
     # Print result
@@ -937,8 +1130,6 @@ def run_typing(dir, files, mode, args):
         outp.close()
     else:
         print(string_result(result, args.output))
-
-
 
     for g in genes:
         genes[g]["genetype"] = get_gene_type(g)
@@ -951,9 +1142,11 @@ def run_typing(dir, files, mode, args):
                                         key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[6])]))
                 outp.write("--------------- PROCESSED GENE SET ---------------\n")
                 outp.write("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tgene_type\n")
-                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                for key in sorted(genes.keys(),
+                                  key=lambda x: (genes[x]['genetype'], x.split("-gene")[0], x.split("_")[-1])):
                     item = genes[key]
-                    o = map(str,[key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']), item['genetype']])
+                    o = map(str, [key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']),
+                                  item['genetype']])
                     outp.write("\t".join(o) + "\n")
                 outp.write("---------- RAW BLAST HITS ----------\n")
                 outp.write("#seqid\tslen\tlength\tsstart\tsend\tpident\tbitscore\n")
@@ -964,13 +1157,17 @@ def run_typing(dir, files, mode, args):
                                         key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[1])]))
                 dratios = map_depth_ratios(genes)
                 outp.write("--------------- PROCESSED GENE SET ---------------\n")
-                outp.write("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tdepth\tnormalised_depth\tgene_type\n")
-                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                outp.write(
+                    "#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tdepth\tnormalised_depth\tgene_type\n")
+                for key in sorted(genes.keys(),
+                                  key=lambda x: (genes[x]['genetype'], x.split("-gene")[0], x.split("_")[-1])):
                     item = genes[key]
-                    o = map(str,[key,int(item['slength']),item['pident'],item['len_coverage'],int(item['score']),item['depth'],dratios[key],item['genetype']])
+                    o = map(str, [key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']),
+                                  item['depth'], dratios[key], item['genetype']])
                     outp.write("\t".join(o) + "\n")
                 outp.write("---------- RAW KMA HITS HITS ----------\n")
-                outp.write("#Template\tScore\tExpected\tTemplate_length\tTemplate_Identity\tTemplate_Coverage\tQuery_Identity\tQuery_Coverage\tDepth\tq_value\tp_value\n")
+                outp.write(
+                    "#Template\tScore\tExpected\tTemplate_length\tTemplate_Identity\tTemplate_Coverage\tQuery_Identity\tQuery_Coverage\tDepth\tq_value\tp_value\n")
                 outp.write('\n'.join(sorted_results) + "\n")
                 outp.write("----------------------------------------\n")
 
@@ -982,9 +1179,11 @@ def run_typing(dir, files, mode, args):
                                         key=lambda x: tuple([re.split(":|-|_", x)[0], 1 / int(x.split("\t")[6])]))
                 print("--------------- PROCESSED GENE SET ---------------")
                 print("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tgene_type")
-                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                for key in sorted(genes.keys(),
+                                  key=lambda x: (genes[x]['genetype'], x.split("-gene")[0], x.split("_")[-1])):
                     item = genes[key]
-                    o = map(str,[key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']), item['genetype']])
+                    o = map(str, [key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']),
+                                  item['genetype']])
                     print("\t".join(o) + "")
                 print("---------- RAW BLAST HITS ----------")
                 print("#seqid\tslen\tlength\tsstart\tsend\tpident\tbitscore")
@@ -996,19 +1195,21 @@ def run_typing(dir, files, mode, args):
                 dratios = map_depth_ratios(genes)
                 print("--------------- PROCESSED GENE SET ---------------")
                 print("#gene\tsubject_length\tperc_ident\tlength_percentage\tscore\tdepth\tnormalised_depth\tgene_type")
-                for key in sorted(genes.keys(),key=lambda x: (genes[x]['genetype'],x.split("-gene")[0],x.split("_")[-1])):
+                for key in sorted(genes.keys(),
+                                  key=lambda x: (genes[x]['genetype'], x.split("-gene")[0], x.split("_")[-1])):
                     item = genes[key]
-                    o = map(str,[key,int(item['slength']),item['pident'],item['len_coverage'],int(item['score']),item['depth'],dratios[key],item['genetype']])
+                    o = map(str, [key, int(item['slength']), item['pident'], item['len_coverage'], int(item['score']),
+                                  item['depth'], dratios[key], item['genetype']])
                     print("\t".join(o) + "")
                 print("---------- RAW KMA HITS ----------")
-                print("#Template\tScore\tExpected\tTemplate_length\tTemplate_Identity\tTemplate_Coverage\tQuery_Identity\tQuery_Coverage\tDepth\tq_value\tp_value")
+                print(
+                    "#Template\tScore\tExpected\tTemplate_length\tTemplate_Identity\tTemplate_Coverage\tQuery_Identity\tQuery_Coverage\tDepth\tq_value\tp_value")
                 print('\n'.join(sorted_results) + "")
                 print("----------------------------------------")
 
 
-
 def check_deps(checkonly, args):
-    depslist = ["blastn","kma"]
+    depslist = ["blastn", "kma"]
     f = 0
     for dep in depslist:
         rc = subprocess.call(['which', dep], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -1028,6 +1229,7 @@ def check_deps(checkonly, args):
         else:
             return
 
+
 def get_currdir():
     dir = os.path.dirname(os.path.realpath(__file__))
     if "OneDrive - UNSW" in dir:
@@ -1036,80 +1238,91 @@ def get_currdir():
 
 
 def get_args():
+    debug = False
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        usage='\nSTECFinder.py -i <input_data1> <input_data2> ... OR\nSTECFinder.py -i <directory/*> OR '
-              '\nSTECFinder.py -i <Read1> <Read2> -r [Raw Reads]\n',add_help=False)
-    # parser.print_usage = parser.print_help
-    # io = parser.add_argument_group('Input/Output')
-    # io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
-    # io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
-    # io.add_argument("-t", nargs=1, type=int, default='4', help="number of threads. Default 4.")
-    # io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
-    # io.add_argument("--output",
-    #                     help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
-    # misc = parser.add_argument_group('Misc')
-    # misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
-    # misc.add_argument("--check", action='store_true', help="check dependencies are installed")
-    # misc.add_argument("-v", "--version", action='store_true', help="Print version number")
-    #
-    # cuts = parser.add_argument_group('Algorithm cutoffs')
-    #
-    # cuts.add_argument("--cutoff", type=float,
-    #                     help="minimum read coverage for gene to be called", default="10.0")
-    # cuts.add_argument("--length", type=float,
-    #                     help="percentage of gene length needed for positive call", default="50.0")
-    # cuts.add_argument("--ipaH_length", type=float,
-    #                     help="percentage of ipaH gene length needed for positive gene call", default="10.0")
-    # cuts.add_argument("--ipaH_depth", type=float,
-    #                     help="When using reads as input the minimum depth percentage relative to genome average "
-    #                          "for positive ipaH gene call", default="1.0")
-    # cuts.add_argument("--stx_length", type=float,
-    #                     help="percentage of stx gene length needed for positive gene call", default="10.0")
-    # cuts.add_argument("--stx_depth", type=float,
-    #                     help="When using reads as input the minimum depth percentage relative to genome average "
-    #                          "for positive stx gene call", default="1.0")
-    # cuts.add_argument("--o_length", type=float,
-    #                     help="percentage of wz_ gene length needed for positive call", default="60.0")
-    # cuts.add_argument("--o_depth", type=float,
-    #                     help="When using reads as input the minimum depth percentage relative to genome average "
-    #                          "for positive wz_ gene call", default="1.0")
-    # cuts.add_argument("--h_length", type=float,
-    #                     help="percentage of fliC gene length needed for positive call", default="60.0")
-    # cuts.add_argument("--h_depth", type=float,
-    #                     help="When using reads as input the minimum depth percentage relative to genome average "
-    #                          "for positive fliC gene call", default="1.0")
+                                     usage='\nSTECFinder.py -i <input_data1> <input_data2> ... OR\nSTECFinder.py -i <directory/*> OR '
+                                           '\nSTECFinder.py -i <Read1> <Read2> -r [Raw Reads]\n', add_help=False)
+    parser.print_usage = parser.print_help
+    if not debug:
+        io = parser.add_argument_group('Input/Output')
+        io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
+        io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
+        io.add_argument("-t", type=int, default=4, help="number of threads. Default 4.")
+        io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
+        io.add_argument("--output",
+                            help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
+        misc = parser.add_argument_group('Misc')
+        misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
+        misc.add_argument("--check", action='store_true', help="check dependencies are installed")
+        misc.add_argument("-v", "--version", action='store_true', help="Print version number")
 
+        cuts = parser.add_argument_group('Algorithm cutoffs')
 
+        cuts.add_argument("--cutoff", type=float,
+                            help="minimum read coverage for gene to be called", default="10.0")
+        cuts.add_argument("--length", type=float,
+                            help="percentage of gene length needed for positive call", default="50.0")
+        cuts.add_argument("--ipaH_length", type=float,
+                            help="percentage of ipaH gene length needed for positive gene call", default="10.0")
+        cuts.add_argument("--ipaH_depth", type=float,
+                            help="When using reads as input the minimum depth percentage relative to genome average "
+                                 "for positive ipaH gene call", default="1.0")
+        cuts.add_argument("--stx_length", type=float,
+                            help="percentage of stx gene length needed for positive gene call", default="10.0")
+        cuts.add_argument("--stx_depth", type=float,
+                            help="When using reads as input the minimum depth percentage relative to genome average "
+                                 "for positive stx gene call", default="1.0")
+        cuts.add_argument("--o_length", type=float,
+                            help="percentage of wz_ gene length needed for positive call", default="60.0")
+        cuts.add_argument("--o_depth", type=float,
+                            help="When using reads as input the minimum depth percentage relative to genome average "
+                                 "for positive wz_ gene call", default="1.0")
+        cuts.add_argument("--h_length", type=float,
+                            help="percentage of fliC gene length needed for positive call", default="60.0")
+        cuts.add_argument("--h_depth", type=float,
+                            help="When using reads as input the minimum depth percentage relative to genome average "
+                                 "for positive fliC gene call", default="1.0")
 
     args = parser.parse_args()
 
-    args.i = ["/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/SRR4195775_1.fastq.gz","/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/SRR4195775_2.fastq.gz"]
-    args.r = True
-    args.t = 4
-    args.hits = False
-    args.output = False
+    if debug:
+        acc = "SRR9671364"
+        # args.i = [f"/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_1.fastq.gz",f"/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_2.fastq.gz"]
+        # # args.i = [
+        # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/*"]
+        # # args.i = [
+        # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/b-ERR2602223_1.fastq.gz",
+        # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/b-ERR2602223_2.fastq.gz"]
+        # args.r = True
 
-    args.h = False
-    args.check = False
-    args.version = False
+        args.i = ["/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/d-SRR10026306.fasta"]
+        args.r = False
+        args.t = 4
+        args.hits = False
+        args.output = False
 
-    args.cutoff=10.0
-    args.length=50.0
-    args.ipaH_length=10.0
-    args.ipaH_depth=1.0
-    args.stx_length=10.0
-    args.stx_depth=1.0
-    args.o_length=60.0
-    args.o_depth=1.0
-    args.h_length=60.0
-    args.h_depth=1.0
+        args.h = False
+        args.check = False
+        args.version = False
 
-    return args,parser
+        args.cutoff = 10.0
+        args.length = 50.0
+        args.ipaH_length = 10.0
+        args.ipaH_depth = 1.0
+        args.stx_length = 10.0
+        args.stx_depth = 1.0
+        args.o_length = 60.0
+        args.o_depth = 1.0
+        args.h_length = 60.0
+        args.h_depth = 1.0
+
+    return args, parser
+
 
 def main():
     version = "1.0.0"
 
-    args,parser = get_args()
+    args, parser = get_args()
 
     if args.check:
         check_deps(True, args)
@@ -1117,7 +1330,6 @@ def main():
     if args.version:
         print(f"STECFinder version: {version}")
         sys.exit(0)
-
 
     args.runuuid = str(uuid.uuid1())
 
@@ -1127,10 +1339,8 @@ def main():
     else:
         args.tmpdir = args.runuuid
 
-
     # Directory current script is in
     dir = get_currdir()
-
 
     if not args.i:
         parser.error("-i is required")
@@ -1172,7 +1382,7 @@ def main():
                     i = 0
                     if args.output:
                         outp = open(args.output, "w")
-                        outp.write(outheader+"\n")
+                        outp.write(outheader + "\n")
                         outp.close()
                     else:
                         print(outheader)
@@ -1188,7 +1398,7 @@ def main():
                 i = 0
                 if args.output:
                     outp = open(args.output, "w")
-                    outp.write(outheader+"\n")
+                    outp.write(outheader + "\n")
                     outp.close()
                 else:
                     print(outheader)
@@ -1199,7 +1409,7 @@ def main():
                 sys.exit()
             if args.output:
                 outp = open(args.output, "w")
-                outp.write(outheader+"\n")
+                outp.write(outheader + "\n")
                 outp.close()
             else:
                 print(outheader)
@@ -1208,7 +1418,7 @@ def main():
             # Run assembled genome version
             if args.output:
                 outp = open(args.output, "w")
-                outp.write(outheader+"\n")
+                outp.write(outheader + "\n")
                 outp.close()
             else:
                 print(outheader)
@@ -1217,10 +1427,10 @@ def main():
                 for f in list_files:
                     path = dir1 + "/" + f
                     if file_type(path, mode):
-                        run_typing(dir, path, mode,args)
+                        run_typing(dir, path, mode, args)
             elif len(args.i) > 1:
                 for f in args.i:
-                    run_typing(dir, f, mode,args)
+                    run_typing(dir, f, mode, args)
             else:
                 run_typing(dir, args.i[0], mode, args)
 
