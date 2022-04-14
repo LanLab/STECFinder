@@ -142,8 +142,8 @@ def blastn_stx_cleanup(blast, args):
             if perc_identity > genes_set[gene]['pident'] and len_coverage >= lcov:
                 genes_set[gene]['pident'] = perc_identity
                 genes_set[gene]['len_coverage'] = lcov
-                if gene.startswith("stx"):
-                    sl(1)
+                # if gene.startswith("stx"):
+                #     sl(1)
             continue
 
         if gene == "ipaH":
@@ -199,8 +199,8 @@ def blastn_cleanup(blast, args):
             if perc_identity > genes_set[gene]['pident'] and len_coverage >= lcov:
                 genes_set[gene]['pident'] = perc_identity
                 genes_set[gene]['len_coverage'] = lcov
-                if gene.startswith("stx"):
-                    sl(1)
+                # if gene.startswith("stx"):
+                #     sl(1)
             continue
 
         if gene == "ipaH":
@@ -251,52 +251,17 @@ def check_stx2_present(outres,args):
     inf = open(outres,"r").read().splitlines()
     if len(inf) > 1:
         col = inf[1].split("\t")
-        if inf[1].startswith("pseudoref_stx") and float(col[4]) > 80 and float(col[5]) >= args.stx_length and float(col[8]) >= args.stx_depth:
+        # if inf[1].startswith("pseudoref_stx") and float(col[4]) > 80 and float(col[5]) >= args.stx_length and float(col[8]) >= args.stx_depth:
+        if inf[1].startswith("pseudoref_stx") and float(col[5]) >= args.stx_length and float(
+                col[8]) >= args.stx_depth:
             return True
         else:
             return False
     else:
         return False
 
-def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
-    stx_present = check_stx2_present(outres,args)
-    if not stx_present:
-        return []
-    stx2_snpdata = get_stx_snp_data()
-    specificsnps = stx2_snpdata["specific_snps"]
-    acd_diff = stx2_snpdata['acd_differentiation']
-    nuclist = ["A", "C", "G", "T", "N", "-"]
-    print(f"{sample}\n")
-    afperc = 0.9
-    SNPls = []
-    halfSNPls = []
 
-    with gzip.open(outfile, mode="rt") as infile:
-        for line in infile:
-            if not line.startswith("#"):
-                col = line.split("\t")
-                pos = col[1]
-                ref = col[3]
-                alt = str.upper(col[4])
-                af = [x for x in col[7].split(";") if x.startswith("AF")][0]
-                af = float(af.replace("AF=", ""))
-                nuccount = [x for x in col[7].split(";") if x.startswith("AD6")][0]
-                nuccount = map(int, nuccount.replace("AD6=", "").split(","))
-                nuccount = dict(zip(nuclist, nuccount))
-                depth = [x for x in col[7].split(";") if x.startswith("DP")][0].replace("DP=", "")
-
-                if af <= afperc:
-                    if int(depth) >= hdepthcut:
-                        alltypes = sum(nuccount.values())
-                        mincount = alltypes * (1 - afperc)
-                        for n in nuccount:
-                            if nuccount[n] >= mincount:
-                                snp = pos + n
-                                halfSNPls.append(snp)
-                else:
-                    if int(depth) >= depthcut:
-                        snp = pos + alt
-                        SNPls.append(snp)
+def get_snpmatches(specificsnps,SNPls,halfSNPls,acd_diff):
     matches = []
     hmatches = []
     for stx2allele in specificsnps:
@@ -333,22 +298,24 @@ def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
             elif any([x in specificls for x in halfSNPls]):
                 print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
+    return matches,hmatches
 
+def type_combinations(matches,hmatches):
     """
-    cases
-    *2a              2acd full               2a full
-    *2c              2acd full               2ac full
-    *2d              2acd full               2ad full
-    *2a 2c           2acd full               2ac full            2a half
-    *2a 2d           2acd full               2ac half            2a half         2ad half/full
-    *2c 2d           2acd full               2ac half            2ad half
-    2l and 2a     2acd full               2l half
-    other 2a        other specific half     2acd half           2a half         2ac half (possible 2ad half)    
-    other 2c        other specific half     2acd half           2ac half
-    other 2d        other specific half     2acd half           2ad half
-    other half      other specific half     other specific half
-    
-    """
+        cases
+        *2a              2acd full               2a full
+        *2c              2acd full               2ac full
+        *2d              2acd full               2ad full
+        *2a 2c           2acd full               2ac full            2a half
+        *2a 2d           2acd full               2ac half            2a half         2ad half/full
+        *2c 2d           2acd full               2ac half            2ad half
+        2l and 2a     2acd full               2l half
+        other 2a        other specific half     2acd half           2a half         2ac half (possible 2ad half)
+        other 2c        other specific half     2acd half           2ac half
+        other 2d        other specific half     2acd half           2ad half
+        other half      other specific half     other specific half
+
+        """
 
     outhits = []
     if "stx2acd" in matches:
@@ -392,6 +359,70 @@ def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
         for x in hmatches:
             if x not in ["stx2acd", "stx2a", "stx2ac", "stx2ad"]:
                 outhits.append(x)
+    return outhits
+
+def get_possible_if_none(specificsnps, SNPls, outhits):
+    if outhits == []:
+        possible = []
+        for stx2allele in specificsnps:
+            specificls = specificsnps[stx2allele]
+            if any([x in specificls for x in SNPls]):
+                possible.append(stx2allele)
+        if possible != []:
+            p = [x.replace("stx2","") for x in possible]
+            comb = "stx2"+"*/".join(p)+"*"
+            outhits.append(comb)
+        else:
+            outhits.append("stx2_unknown")
+        return outhits
+    return outhits
+
+def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
+    stx_present = check_stx2_present(outres,args)
+    if not stx_present:
+        return []
+    stx2_snpdata = get_stx_snp_data()
+    specificsnps = stx2_snpdata["specific_snps"]
+    acd_diff = stx2_snpdata['acd_differentiation']
+    nuclist = ["A", "C", "G", "T", "N", "-"]
+    print(f"{sample}\n")
+    afperc = 0.9
+    SNPls = []
+    halfSNPls = []
+
+    with gzip.open(outfile, mode="rt") as infile:
+        for line in infile:
+            if not line.startswith("#"):
+                col = line.split("\t")
+                pos = col[1]
+                ref = col[3]
+                alt = str.upper(col[4])
+                af = [x for x in col[7].split(";") if x.startswith("AF")][0]
+                af = float(af.replace("AF=", ""))
+                nuccount = [x for x in col[7].split(";") if x.startswith("AD6")][0]
+                nuccount = map(int, nuccount.replace("AD6=", "").split(","))
+                nuccount = dict(zip(nuclist, nuccount))
+                depth = [x for x in col[7].split(";") if x.startswith("DP")][0].replace("DP=", "")
+
+                if af <= afperc:
+                    if int(depth) >= hdepthcut:
+                        alltypes = sum(nuccount.values())
+                        mincount = alltypes * (1 - afperc)
+                        for n in nuccount:
+                            if nuccount[n] >= mincount:
+                                snp = pos + n
+                                halfSNPls.append(snp)
+                else:
+                    if int(depth) >= depthcut:
+                        snp = pos + alt
+                        SNPls.append(snp)
+
+    matches,hmatches = get_snpmatches(specificsnps,SNPls,halfSNPls,acd_diff)
+
+    outhits = type_combinations(matches,hmatches)
+
+    outhits = get_possible_if_none(specificsnps, SNPls, outhits)
+
     print(f"{sample} {outhits}\n")
     if outhits == []:
         outhits = ["stx2_unknown"]
@@ -1286,8 +1317,8 @@ def get_args():
     args = parser.parse_args()
 
     if debug:
-        acc = "SRR9671364"
-        # args.i = [f"/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_1.fastq.gz",f"/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_2.fastq.gz"]
+        acc = "ERR3329376"
+        args.i = [f"/Users/michaelpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_1.fastq.gz",f"/Users/michaelpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_2.fastq.gz"]
         # # args.i = [
         # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/*"]
         # # args.i = [
@@ -1295,8 +1326,8 @@ def get_args():
         # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/b-ERR2602223_2.fastq.gz"]
         # args.r = True
 
-        args.i = ["/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/d-SRR10026306.fasta"]
-        args.r = False
+        # args.i = ["/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/d-SRR10026306.fasta"]
+        args.r = True
         args.t = 4
         args.hits = False
         args.output = False
