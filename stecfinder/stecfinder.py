@@ -910,7 +910,7 @@ def genes_frm_kma_output(strain_id, args):
 
     else:
         sys.exit(f'KMA output file missing at: {args.tmpdir}/{strain_id}kmatmp_out.res')
-    shutil.rmtree(args.tmpdir)
+    # shutil.rmtree(args.tmpdir)
     genes_set, dupedict = add_duped_genes(genes_set)
     return genes_set, outhits
 
@@ -1088,7 +1088,7 @@ def run_typing(dir, files, mode, args):
     elif ipaH and not stx and cluster == "Unknown Cluster":
         result['ipaH'] = "+"
         result['stx'] = "-"
-        result['cluster'] = cluster
+        result['cluster'] = "EIEC/Shigella"
         result['notes'] += "ipaH+stx- = Possible EIEC/Shigella, try out other tool shigeifinder!"
     elif ipaH and not stx and cluster != "Unknown Cluster":
         result['ipaH'] = "+"
