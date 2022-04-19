@@ -252,8 +252,10 @@ def check_stx2_present(outres,args):
     if len(inf) > 1:
         col = inf[1].split("\t")
         # if inf[1].startswith("pseudoref_stx") and float(col[4]) > 80 and float(col[5]) >= args.stx_length and float(col[8]) >= args.stx_depth:
-        if inf[1].startswith("pseudoref_stx") and float(col[5]) >= args.stx_length and float(
+        if args.r and inf[1].startswith("pseudoref_stx") and float(col[5]) >= args.stx_length and float(
                 col[8]) >= args.stx_depth:
+            return True
+        elif not args.r and inf[1].startswith("pseudoref_stx") and float(col[5]) >= args.stx_length:
             return True
         else:
             return False
@@ -271,32 +273,32 @@ def get_snpmatches(specificsnps,SNPls,halfSNPls,acd_diff):
         hmatchsnps = [x for x in halfSNPls if x in specificls]
         if any([x in specificls for x in SNPls]):
             if len(specificls) > 4 and len(matchsnps) > (0.5 * len(specificls)):
-                print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+                # print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
                 matches.append(stx2allele)
             elif len(specificls) <= 4:
-                print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+                # print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
                 matches.append(stx2allele)
-            else:
-                print(f"matchbelow {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+            # else:
+                # print(f"matchbelow {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
         elif any([x in specificls for x in halfSNPls]):
             if len(specificls) > 4 and len(hmatchsnps) > (0.25 * len(specificls)):
-                print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+                # print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
             elif len(specificls) <= 4:
-                print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+                # print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
-            else:
-                print(f"halfmatchbelow {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+            # else:
+                # print(f"halfmatchbelow {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
     if "stx2acd" in matches or "stx2acd" in hmatches:
         for stx2allele in acd_diff:
             specificls = acd_diff[stx2allele]
             matchsnps = [x for x in SNPls if x in specificls]
             hmatchsnps = [x for x in halfSNPls if x in specificls]
             if any([x in specificls for x in SNPls]):
-                print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
+                # print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
                 matches.append(stx2allele)
             elif any([x in specificls for x in halfSNPls]):
-                print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
+                # print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
     return matches,hmatches
 
@@ -385,7 +387,7 @@ def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
     specificsnps = stx2_snpdata["specific_snps"]
     acd_diff = stx2_snpdata['acd_differentiation']
     nuclist = ["A", "C", "G", "T", "N", "-"]
-    print(f"{sample}\n")
+    # print(f"{sample}\n")
     afperc = 0.9
     SNPls = []
     halfSNPls = []
@@ -423,7 +425,7 @@ def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
 
     outhits = get_possible_if_none(specificsnps, SNPls, outhits)
 
-    print(f"{sample} {outhits}\n")
+    # print(f"{sample} {outhits}\n")
     if outhits == []:
         outhits = ["stx2_unknown"]
     return outhits
@@ -1317,17 +1319,9 @@ def get_args():
     args = parser.parse_args()
 
     if debug:
-        acc = "ERR3329376"
-        args.i = [f"/Users/michaelpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_1.fastq.gz",f"/Users/michaelpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/{acc}_2.fastq.gz"]
-        # # args.i = [
-        # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/testreads/*"]
-        # # args.i = [
-        # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/b-ERR2602223_1.fastq.gz",
-        # #     "/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/b-ERR2602223_2.fastq.gz"]
-        # args.r = True
-
-        # args.i = ["/Users/mjohnpayne/Library/CloudStorage/OneDrive-UNSW/lab_members/Xiaomei/stecfinder/stx_testing/stx2a-c_runs/d-SRR10026306.fasta"]
-        args.r = True
+        acc = ""
+        args.i = [f"/path/{acc}.fasta"]
+        args.r = False
         args.t = 4
         args.hits = False
         args.output = False
@@ -1351,7 +1345,7 @@ def get_args():
 
 
 def main():
-    version = "1.0.0"
+    version = "1.1.0"
 
     args, parser = get_args()
 
@@ -1380,7 +1374,7 @@ def main():
         check_deps(False, args)
 
     if len(sys.argv) == 0:
-        os.system("python3.7 " + dir + "/STECFinder.py -h")
+        os.system("python " + dir + "/STECFinder.py -h")
     else:
         outheader = "Sample\tCluster\tCluster Serotype\tSerotype\tBig10 serotype\tO antigens\tH antigens\tstx type\tipaH presence\tNotes"
         mode = 'a'
