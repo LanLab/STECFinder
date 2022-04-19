@@ -431,6 +431,7 @@ def stx_snptyping(args, files, dir):
         outvcf = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.vcf.gz"
         outres = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.res"
         stx2s = process_kma_vcf(result['sample'], outvcf,1,1, outres,args)
+    shutil.rmtree(args.tmpdir+ "stx")
 
     return stx2s
 
@@ -920,7 +921,7 @@ def genes_frm_kma_output(strain_id, args):
 
     else:
         sys.exit(f'KMA output file missing at: {args.tmpdir}/{strain_id}kmatmp_out.res')
-    # shutil.rmtree(args.tmpdir)
+    shutil.rmtree(args.tmpdir)
     genes_set, dupedict = add_duped_genes(genes_set)
     return genes_set, outhits
 
