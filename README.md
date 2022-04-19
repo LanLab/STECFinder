@@ -100,6 +100,13 @@ SRR1917514	C4	O5:H9	                O5:H9	        -	        wzy_O5	        H9	  
 |_ipaH_| presence or absence of _ipaH_ gene|
 |Notes| Other information if unexpected results are observed|
 
+### Note on stx2 allele call outputs
+- \* denotes a call with some uncertainty (either a non perfect match to a known allele for stx1, or a minority of allele specific SNPs for stx2)
+- calls separated by "/" are multiple possible alleles for a single stx2 locus
+- calls separated by "," are calls for multiple separate stx2 loci in the same genome
+
+Assemblies will often merge multiple stx2 genes into one assembled locus. Therefore it is only possible to detect multiple stx2 alleles in one strain using raw reads, which allow the frequencies of stx2 type defining SNPs to be evaluated.
+
 ## Column descriptions for additional tables produced by --hits flag:
 ### - PROCESSED GENE SET -
 Filtered gene hits used to make clustering, serotyping and gene presence calls for algorithm
