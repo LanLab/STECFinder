@@ -168,8 +168,7 @@ def blastn_stx_cleanup(blast, args):
             genes_set[gene]['len_coverage'] = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
             genes_set[gene]['score'] = score
             outhits.append(line)
-            # if gene.startswith("stx"):
-            #     print(line)
+
 
     return genes_set, outhits
 
@@ -225,8 +224,7 @@ def blastn_cleanup(blast, args):
             genes_set[gene]['len_coverage'] = 100 * genes_set[gene]['match'] / genes_set[gene]['slength']
             genes_set[gene]['score'] = score
             outhits.append(line)
-            # if gene.startswith("stx"):
-            #     print(line)
+
 
     return genes_set, outhits
 
@@ -273,32 +271,20 @@ def get_snpmatches(specificsnps,SNPls,halfSNPls,acd_diff):
         hmatchsnps = [x for x in halfSNPls if x in specificls]
         if any([x in specificls for x in SNPls]):
             if len(specificls) > 4 and len(matchsnps) > (0.5 * len(specificls)):
-                # print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
                 matches.append(stx2allele)
             elif len(specificls) <= 4:
-                # print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
                 matches.append(stx2allele)
-            # else:
-                # print(f"matchbelow {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
         elif any([x in specificls for x in halfSNPls]):
             if len(specificls) > 4 and len(hmatchsnps) > (0.25 * len(specificls)):
-                # print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
             elif len(specificls) <= 4:
-                # print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
-            # else:
-                # print(f"halfmatchbelow {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
     if "stx2acd" in matches or "stx2acd" in hmatches:
         for stx2allele in acd_diff:
             specificls = acd_diff[stx2allele]
-            matchsnps = [x for x in SNPls if x in specificls]
-            hmatchsnps = [x for x in halfSNPls if x in specificls]
             if any([x in specificls for x in SNPls]):
-                # print(f"match {stx2allele} {len(specificls)} {len(matchsnps)} {matchsnps}\n")
                 matches.append(stx2allele)
             elif any([x in specificls for x in halfSNPls]):
-                # print(f"halfmatch {stx2allele} {len(specificls)} {len(hmatchsnps)} {hmatchsnps}\n")
                 hmatches.append(stx2allele)
     return matches,hmatches
 
@@ -387,7 +373,6 @@ def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
     specificsnps = stx2_snpdata["specific_snps"]
     acd_diff = stx2_snpdata['acd_differentiation']
     nuclist = ["A", "C", "G", "T", "N", "-"]
-    # print(f"{sample}\n")
     afperc = 0.9
     SNPls = []
     halfSNPls = []
@@ -425,13 +410,9 @@ def process_kma_vcf(sample, outfile,hdepthcut,depthcut, outres,args):
 
     outhits = get_possible_if_none(specificsnps, SNPls, outhits)
 
-    # print(f"{sample} {outhits}\n")
     if outhits == []:
         outhits = ["stx2_unknown"]
     return outhits
-    #
-    # print(outhits)
-    # sl(10000)
 
 
 def stx_snptyping(args, files, dir):
@@ -859,8 +840,6 @@ def run_kma(dir, r1, r2, threads, tmp, strain_id, db):
     kma_db = dir + f"/resources/{db}"
     kma_cmd = f'kma -mct 0.001 -ipe "{r1}" "{r2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
-    # print(kma_cmd)
-    # subprocess.run(kma_cmd, shell=True)
 
 def run_kma_genome(dir, g, threads, tmp, strain_id, db):
     if not os.path.exists(tmp):
@@ -868,8 +847,6 @@ def run_kma_genome(dir, g, threads, tmp, strain_id, db):
     kma_db = dir + f"/resources/{db}"
     kma_cmd = f'kma -mct 0.001 -i "{g}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
-    # print(kma_cmd)
-    # subprocess.run(kma_cmd, shell=True)
 
 def add_duped_genes(genes_set):
     """
@@ -1015,9 +992,7 @@ def cluster_aware_antigen_search(cluster, genes, clustergenes):
 
     ## deduplicate O calls from different genes
     if len(oantigens) > 0:
-        # print(oantigens)
         collapsed_o_calls = collapse_multiple_o_antigen(oantigens)
-        # print(collapsed_o_calls)
         oa = "/".join(collapsed_o_calls)
     else:
         oa = "-"
@@ -1271,75 +1246,51 @@ def get_currdir():
 
 
 def get_args():
-    debug = False
+
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                      usage='\nSTECFinder.py -i <input_data1> <input_data2> ... OR\nSTECFinder.py -i <directory/*> OR '
                                            '\nSTECFinder.py -i <Read1> <Read2> -r [Raw Reads]\n', add_help=False)
     parser.print_usage = parser.print_help
-    if not debug:
-        io = parser.add_argument_group('Input/Output')
-        io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
-        io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
-        io.add_argument("-t", type=int, default=4, help="number of threads. Default 4.")
-        io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
-        io.add_argument("--output",
-                            help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
-        misc = parser.add_argument_group('Misc')
-        misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
-        misc.add_argument("--check", action='store_true', help="check dependencies are installed")
-        misc.add_argument("-v", "--version", action='store_true', help="Print version number")
+    io = parser.add_argument_group('Input/Output')
+    io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
+    io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
+    io.add_argument("-t", type=int, default=4, help="number of threads. Default 4.")
+    io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
+    io.add_argument("--output",
+                        help="output file to write to (if not used writes to stdout and tmp folder in current dir)")
+    misc = parser.add_argument_group('Misc')
+    misc.add_argument("-h", "--help", action="help", help="show this help message and exit")
+    misc.add_argument("--check", action='store_true', help="check dependencies are installed")
+    misc.add_argument("-v", "--version", action='store_true', help="Print version number")
 
-        cuts = parser.add_argument_group('Algorithm cutoffs')
+    cuts = parser.add_argument_group('Algorithm cutoffs')
 
-        cuts.add_argument("--cutoff", type=float,
-                            help="minimum read coverage for gene to be called", default="10.0")
-        cuts.add_argument("--length", type=float,
-                            help="percentage of gene length needed for positive call", default="50.0")
-        cuts.add_argument("--ipaH_length", type=float,
-                            help="percentage of ipaH gene length needed for positive gene call", default="10.0")
-        cuts.add_argument("--ipaH_depth", type=float,
-                            help="When using reads as input the minimum depth percentage relative to genome average "
-                                 "for positive ipaH gene call", default="1.0")
-        cuts.add_argument("--stx_length", type=float,
-                            help="percentage of stx gene length needed for positive gene call", default="10.0")
-        cuts.add_argument("--stx_depth", type=float,
-                            help="When using reads as input the minimum depth percentage relative to genome average "
-                                 "for positive stx gene call", default="1.0")
-        cuts.add_argument("--o_length", type=float,
-                            help="percentage of wz_ gene length needed for positive call", default="60.0")
-        cuts.add_argument("--o_depth", type=float,
-                            help="When using reads as input the minimum depth percentage relative to genome average "
-                                 "for positive wz_ gene call", default="1.0")
-        cuts.add_argument("--h_length", type=float,
-                            help="percentage of fliC gene length needed for positive call", default="60.0")
-        cuts.add_argument("--h_depth", type=float,
-                            help="When using reads as input the minimum depth percentage relative to genome average "
-                                 "for positive fliC gene call", default="1.0")
+    cuts.add_argument("--cutoff", type=float,
+                        help="minimum read coverage for gene to be called", default="10.0")
+    cuts.add_argument("--length", type=float,
+                        help="percentage of gene length needed for positive call", default="50.0")
+    cuts.add_argument("--ipaH_length", type=float,
+                        help="percentage of ipaH gene length needed for positive gene call", default="10.0")
+    cuts.add_argument("--ipaH_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive ipaH gene call", default="1.0")
+    cuts.add_argument("--stx_length", type=float,
+                        help="percentage of stx gene length needed for positive gene call", default="10.0")
+    cuts.add_argument("--stx_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive stx gene call", default="1.0")
+    cuts.add_argument("--o_length", type=float,
+                        help="percentage of wz_ gene length needed for positive call", default="60.0")
+    cuts.add_argument("--o_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive wz_ gene call", default="1.0")
+    cuts.add_argument("--h_length", type=float,
+                        help="percentage of fliC gene length needed for positive call", default="60.0")
+    cuts.add_argument("--h_depth", type=float,
+                        help="When using reads as input the minimum depth percentage relative to genome average "
+                             "for positive fliC gene call", default="1.0")
 
     args = parser.parse_args()
-
-    if debug:
-        acc = ""
-        args.i = [f"/path/{acc}.fasta"]
-        args.r = False
-        args.t = 4
-        args.hits = False
-        args.output = False
-
-        args.h = False
-        args.check = False
-        args.version = False
-
-        args.cutoff = 10.0
-        args.length = 50.0
-        args.ipaH_length = 10.0
-        args.ipaH_depth = 1.0
-        args.stx_length = 10.0
-        args.stx_depth = 1.0
-        args.o_length = 60.0
-        args.o_depth = 1.0
-        args.h_length = 60.0
-        args.h_depth = 1.0
 
     return args, parser
 
