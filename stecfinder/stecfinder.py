@@ -1312,7 +1312,10 @@ def main():
 
     if args.output:
         outdir = os.path.dirname(args.output)
-        args.tmpdir = outdir + "/" + args.runuuid
+        if outdir == "":
+            args.tmpdir = args.runuuid
+        else:
+            args.tmpdir = outdir + "/" + args.runuuid
     else:
         args.tmpdir = args.runuuid
 
