@@ -835,13 +835,13 @@ def run_blast(dir, fileA, db):
     return blast_hits
 
 
-def run_kma(dir, read1, read2, singles, threads, tmp, strain_id, db):
+def run_kma(dir, r1, r2, unpaired, threads, tmp, strain_id, db):
     if not os.path.exists(tmp):
         os.mkdir(tmp)
     kma_db = dir + f"/resources/{db}"
-    kma_cmd = f'kma -mct 0.001 -ipe "{read1}" "{read2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
-    if singles is not None:
-        kma_cmd += f' -i "{singles}"'
+    kma_cmd = f'kma -mct 0.001 -ipe "{r1}" "{r2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
+    if unpaired is not None:
+        kma_cmd += f' -i "{unpaired}"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
 
 def run_kma_genome(dir, g, threads, tmp, strain_id, db):
