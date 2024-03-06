@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Developers: Michael Payne, Thanh Nguyen
-# version=1.1.0
+# version=1.1.2
 import argparse
 import os
 import sys
@@ -420,7 +420,7 @@ def stx_snptyping(args, files, dir):
     if args.r:
         name = os.path.basename(files[1])
         result['sample'] = re.search(r'(.*)\_.*\.fastq\.gz', name).group(1)
-        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir + "stx", result['sample'], "stx_psuedoref.fasta")
+        run_kma(dir, files[0], files[1], files[2], str(args.t), args.tmpdir + "stx", result['sample'], "stx_psuedoref.fasta")
         outvcf= f"{args.tmpdir}stx/{result['sample']}kmatmp_out.vcf.gz"
         outres = f"{args.tmpdir}stx/{result['sample']}kmatmp_out.res"
         stx2s = process_kma_vcf(result['sample'], outvcf,2,1, outres,args)
@@ -835,11 +835,13 @@ def run_blast(dir, fileA, db):
     return blast_hits
 
 
-def run_kma(dir, r1, r2, threads, tmp, strain_id, db):
+def run_kma(dir, read1, read2, singles, threads, tmp, strain_id, db):
     if not os.path.exists(tmp):
         os.mkdir(tmp)
     kma_db = dir + f"/resources/{db}"
-    kma_cmd = f'kma -mct 0.001 -ipe "{r1}" "{r2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
+    kma_cmd = f'kma -mct 0.001 -ipe "{read1}" "{read2}" -t_db "{kma_db}" -t {threads} -ConClave 2 -mrs 0.001 -mrc 0.001 -ID 1 -vcf -o "{tmp}/{strain_id}kmatmp_out"'
+    if singles is not None:
+        kma_cmd += f' -i "{singles}"'
     subprocess.run(kma_cmd + ">/dev/null 2>&1", shell=True)
 
 def run_kma_genome(dir, g, threads, tmp, strain_id, db):
@@ -1033,7 +1035,7 @@ def run_typing(dir, files, mode, args):
     if mode == "r":
         name = os.path.basename(files[1])
         result['sample'] = re.search(r'(.*)\_.*\.fastq\.gz', name).group(1)
-        run_kma(dir, files[0], files[1], str(args.t), args.tmpdir, result['sample'], "genes.fasta")
+        run_kma(dir, files[0], files[1], files[2], str(args.t), args.tmpdir, result['sample'], "genes.fasta")
         genes, hit_results = genes_frm_kma_output(result['sample'], args)
     else:
         blast_results = run_blast(dir, files, "genes.fasta")
@@ -1255,6 +1257,9 @@ def get_args():
     io = parser.add_argument_group('Input/Output')
     io.add_argument("-i", nargs="+", help="<string>: path/to/input_data")
     io.add_argument("-r", action='store_true', help="Add flag if file is raw reads.")
+    io.add_argument("--read1", help="Read 1 input if input format is raw reads. NOTE: Can only handle one sample at a time and mutually exclusive with -i.")
+    io.add_argument("--read2", help="Read 2 input if input format is raw reads. NOTE: Can only handle one sample at a time and mutually exclusive with -i.")
+    io.add_argument("--unpaired", help="Unpaired read input if input format is raw reads. NOTE: Can only handle one sample at a time and mutually exclusive with -i. Also only supported in addition to paired reads.")
     io.add_argument("-t", type=int, default=4, help="number of threads. Default 4.")
     io.add_argument("--hits", action='store_true', help="shows detailed gene search results")
     io.add_argument("--output",
@@ -1297,7 +1302,7 @@ def get_args():
 
 
 def main():
-    version = "1.1.0"
+    version = "1.1.2"
 
     args, parser = get_args()
 
@@ -1322,8 +1327,14 @@ def main():
     # Directory current script is in
     dir = get_currdir()
 
-    if not args.i:
-        parser.error("-i is required")
+    if not (args.i or (args.read1 and args.read2)):
+        parser.error("-i or --read1/--read2 are required")
+
+    if args.i and (args.read1 or args.read2 or args.unpaired):
+        parser.error("Can only input via -i OR --read1/--read2/--unpaired")
+    
+    if args.unpaired and (args.read1 is None or args.read2 is None):
+        parser.error("Can only input via --unpaired with both --read1 and --read2")
 
     if not args.check:
         check_deps(False, args)
@@ -1335,30 +1346,48 @@ def main():
         mode = 'a'
         if args.r:
             mode = 'r'
-        for files in args.i:
-            if "*" in args.i[0]:
-                dir1 = files.replace("*", "")
-                if not os.path.isdir(dir1):
-                    sys.exit('Invalid Directory Input! Directory: ' + dir1)
-                break
-            else:
-                if not os.path.isfile(files):
-                    sys.exit('Invalid Input File(s)! File Not Found:' + files)
-                if not file_type(files, mode):
-                    sys.exit('Incorrect File Type! File:' + files)
+        if args.i:
+            for files in args.i:
+                if "*" in args.i[0]:
+                    dir1 = files.replace("*", "")
+                    if not os.path.isdir(dir1):
+                        sys.exit('Invalid Directory Input! Directory: ' + dir1)
+                    break
+                else:
+                    if not os.path.isfile(files):
+                        sys.exit('Invalid Input File(s)! File Not Found:' + files)
+                    if not file_type(files, mode):
+                        sys.exit('Incorrect File Type! File:' + files)
         if mode == 'r':
             # Run Raw Reads version
             # Check that there is 2 Reads inputed
-            if len(args.i) < 2 or len(args.i) % 2 != 0:
-                if "*" in args.i[0] and len(args.i) == 1:
-                    samples = set()
-                    for files in os.listdir(dir1):
-                        if files.endswith(".fastq.gz"):
-                            path = dir1 + files
-                            samples.add(path)
-                    reads = sorted(samples)
-                    if len(reads) % 2 != 0:
+            if args.i is not None:
+                if len(args.i) < 2 or len(args.i) % 2 != 0:
+                    if "*" in args.i[0] and len(args.i) == 1:
+                        samples = set()
+                        for files in os.listdir(dir1):
+                            if files.endswith(".fastq.gz"):
+                                path = dir1 + files
+                                samples.add(path)
+                        reads = sorted(samples)
+                        if len(reads) % 2 != 0:
+                            sys.exit('Missing Input File(s)!!')
+                        i = 0
+                        if args.output:
+                            outp = open(args.output, "w")
+                            outp.write(outheader + "\n")
+                            outp.close()
+                        else:
+                            print(outheader)
+                        while i < len(reads):
+                            f = [reads[i], reads[i + 1], None]
+                            run_typing(dir, f, mode, args)
+                            i += 2
+                        sys.exit()
+                    else:
                         sys.exit('Missing Input File(s)!!')
+                elif len(args.i) > 2:
+                    files = sorted(args.i)
                     i = 0
                     if args.output:
                         outp = open(args.output, "w")
@@ -1366,34 +1395,23 @@ def main():
                         outp.close()
                     else:
                         print(outheader)
-                    while i < len(reads):
-                        f = [reads[i], reads[i + 1]]
+                    while i < len(args.i):
+                        f = [files[i], files[i + 1], None]
                         run_typing(dir, f, mode, args)
                         i += 2
                     sys.exit()
-                else:
-                    sys.exit('Missing Input File(s)!!')
-            elif len(args.i) > 2:
-                files = sorted(args.i)
-                i = 0
                 if args.output:
                     outp = open(args.output, "w")
                     outp.write(outheader + "\n")
                     outp.close()
                 else:
                     print(outheader)
-                while i < len(args.i):
-                    f = [files[i], files[i + 1]]
-                    run_typing(dir, f, mode, args)
-                    i += 2
-                sys.exit()
-            if args.output:
-                outp = open(args.output, "w")
-                outp.write(outheader + "\n")
-                outp.close()
-            else:
-                print(outheader)
-            run_typing(dir, args.i, mode, args)
+                run_typing(dir, [args.i[0], args.i[1], None], mode, args)
+            if args.read1 is not None:
+                if args.read2 is None:
+                    sys.exit('Missing Input File(s)!!')
+                f = [args.read1, args.read2, args.unpaired if args.unpaired else None]
+                run_typing(dir, f, mode, args)
         else:
             # Run assembled genome version
             if args.output:

@@ -7,7 +7,7 @@ def readme():
 
 
 setup(name='stecfinder',
-      version='1.0.0',
+      version='1.1.2',
       description='In silico clustering and serotyping of Shigatoxin producing E. coli',
       long_description=readme(),
       classifiers=[
